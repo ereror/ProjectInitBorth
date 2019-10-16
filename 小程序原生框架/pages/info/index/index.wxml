@@ -1,0 +1,166 @@
+<import src="../../../templates/tabbar/tabbar.wxml" />
+<import src="../../../templates/loading/loading.wxml" />
+<import src="../../../templates/swiper-ad/swiper-ad.wxml" />
+<import src="../../../templates/swiper-category/swiper-category.wxml" />
+<import src="../../../templates/info/info.wxml" />
+<import src="../../../templates/roller/roller.wxml" />
+<import src="../../../templates/areamess/areamess.wxml" />
+
+<block wx:if="{{nowPageIndex==0}}">
+<view class='fill-primary fill-head'>
+  <image src='/images/icon/barbg.png' style='width:750rpx;' mode='widthFix' />
+</view>
+<view style='height:76rpx;'></view>
+<view style='height:80rpx;'>
+  <template is='areamess' data='{{imghead, total, location}}'></template>
+</view>
+<view style='height:20rpx;'></view>
+<template is="swiper-ad" data="{{list:otherData.ad,...swiperAd}}" wx:if='{{false}}'></template>
+
+<!-- 通知 -->
+<view class='flex-y-center' style='padding:50rpx 30rpx 30rpx;background:white' wx:if='{{false}}'> 
+   <image src='/images/icon/notice.png' style='width:30rpx;height:26rpx;'></image>
+   <template is="roller" data="{{list:otherData.notice,...roller,url:'/pages/message/noticeDetail/noticeDetail?id='}}"></template>
+</view>
+<!-- 块 -->
+<view class='fill-reserve' style='padding: 20rpx' bindtap='goBuyWant' wx:if='{{false}}'>
+  <view class='block-box'>
+    <image class='block-box-img' src='{{userInfo.avatarurl||userInfo.avatarUrl}}'></image>
+    <view class='flex-1 block-name'>
+        <text class='block-name--important'>点击求购</text>
+        <text>闲置宝贝吧~</text>
+    </view>
+    <image src='/images/addnew/arrow.gif' style='width:120rpx;height:90rpx;'></image>
+  </view>
+</view>
+
+<!-- 分类 -->
+<template is="swiper-category" data="{{list:originMenu,...swiperCategory,url:'/pages/info/filter/filter'}}"></template>
+<!-- <view class='b-1px-b'></view> -->
+<view class='info-title fill-reserve' style='padding: 30rpx 30rpx 0rpx 30rpx;font-size:40rpx;'>附近动态</view>
+<!-- 信息 -->
+<block wx:for="{{list.data}}" wx:key="{{index}}">
+   <template is="infos" data="{{...item,index,isIndex:true}}"></template>
+</block>
+<template is="loading" data="{{loading,...list}}"></template>
+<image class='backtop' src='/images/icon/backtop.png' wx:if="{{showTop}}" bindtap='backtop'></image>
+<view class='message-box' bindtap='goUrl' data-url='/pages/ucenter/message/message'>
+  <image class='message' src='/images/icon/message.png'></image>
+  <view class='badge {{userInfo.unread<10?"badge-single":""}}' wx:if="{{userInfo.unread>0}}">{{userInfo.unread}}</view>
+</view>
+
+<mask show="{{showSelectSex}}" hide-on-tap="{{false}}">
+   <view class='mask-body'>
+      <view class='select-sex'>
+        <image class='select-sex-head' src='/images/test/sex-head.png'></image>
+        <view class='select-sex-title'>请选择你的性别</view>
+        <view class='tag-list'>
+          <view class='tag-item {{gender==1?"tag-item-select":""}}' style='margin-right:40rpx;' bindtap='sexChange' data-gender='{{1}}'>
+            <image src='/images/icon/boy.png' style='width:24rpx;height:24rpx;margin-right:20rpx'></image>
+            <view>男</view>
+            <image wx:if="{{gender==1}}" src='/images/icon/checked.png' class='checked-img'></image>
+          </view>
+          <view class='tag-item {{gender==2?"tag-item-select":""}}' bindtap='sexChange' data-gender='{{2}}'>
+            <image src='/images/icon/girl.png' style='width:24rpx;height:24rpx;margin-right:20rpx'></image>
+            <view>女</view>
+            <image wx:if="{{gender==2}}" src='/images/icon/checked.png' class='checked-img'></image>
+          </view>
+        </view>
+      </view>
+      <view class='select-sex-btn' bindtap='selectSex'>确定</view>
+   </view>
+   
+</mask>
+
+<mask show="{{showReleasetip}}" bindtap="hideReleasetip">
+   <view class='mask-body'>
+      <view class='releasetip-box'>
+         <image class='releasetip-head' src='/images/test/release-head.png'></image>
+         <view class='f-34 c-primary mt-30'>亲~首先你要</view>
+         <view class='c-primary' style='font-size:50rpx;'>发布一个免费物品</view>
+         <view style='margin:30rpx 0 70rpx;'>才能得到更多赠品</view>
+         <view class='releasetip-btn' bindtap='goUrl' data-url='/pages/info/add/add'>必须的</view>
+      </view>
+   </view>
+</mask>
+
+</block>
+
+<block wx:if="{{nowPageIndex==2}}">
+<view class='head'>
+   <view class='u-avatar-box mr-20'>
+      <image class='avatar-120 ' src='{{userInfo.avatarurl}}'></image>
+      <image wx:if="{{userInfo.gender==1}}" class='u-info-sex' src='/images/icon/boy.png'></image>
+      <image wx:if="{{userInfo.gender==2}}" class='u-info-sex' src='/images/icon/girl.png'></image>
+    </view>
+    <view class='f-40 flex-1'>{{userInfo.nickname}}</view>
+
+    <view class='flex-y-center' bindtap='goUrl' data-url='/pages/ucenter/edit/edit'>
+       <image src='/images/ucenter/edit.png' class='icon-40'></image>
+       <view class='f-26 c-gray-dark'>编辑</view>
+    </view>
+</view>
+<view style='height:30rpx;'></view>
+<view class='cell-list'>
+  <view class='cell b-1px-b' bindtap='preViewImage'>
+    <image class='icon-40' src='/images/ucenter/u1.png'></image>
+    <view class='flex-1 ml-20'>介绍给朋友</view>
+    <view class='right-arrow'></view>
+  </view>
+  <view class='cell b-1px-b' bindtap='goUrl' data-url='/pages/info/release/release'>
+    <image class='icon-40' src='/images/ucenter/u2.png'></image>
+    <view class='flex-1 ml-20'>我的发布</view>
+    <view class='right-arrow'></view>
+  </view>
+  <view class='cell' bindtap='goUrl' data-url='/pages/info/history/history'>
+    <image class='icon-40' src='/images/ucenter/u3.png' ></image>
+    <view class='flex-1 ml-20'>浏览记录</view>
+    <view class='right-arrow'></view>
+  </view>
+ 
+</view>
+
+<view style='height:30rpx;'></view>
+<view class='cell-list'>
+  <view class='cell b-1px-b' bindtap='goUrl' data-url='/pages/ucenter/about/about'>
+    <image class='icon-40' src='/images/ucenter/u4.png'></image>
+    <view class='flex-1 ml-20'>关于我们</view>
+    <view class='right-arrow'></view>
+  </view>
+  <button class='share-button cell ' open-type='contact'>
+    <image class='icon-40' src='/images/ucenter/u5.png'></image>
+    <view class='flex-1 ml-20' style='text-align:left;font-size:32rpx;color:#353535'>客服</view>
+    <view class='right-arrow'></view>
+  </button>
+ 
+</view>
+
+<!-- <image class='logo' src='/images/ucenter/logo.png'></image> -->
+
+
+<view class='message-box' bindtap='goUrl' data-url='/pages/ucenter/message/message'>
+  <image class='message' src='/images/icon/message.png'></image>
+  <view class='badge {{userInfo.unread<10?"badge-single":""}}' wx:if="{{userInfo.unread>0}}">{{userInfo.unread}}</view>
+</view>
+
+<mask show="{{show}}">
+   <view class='mask-body'>
+      <view class='shareimg-box'>
+         <image style='width:600rpx;border-radius:48rpx;' mode='widthFix' src='{{imagePath}}'></image>
+         <view class='mask-tip'>已保存到相册，可分享朋友圈</view>
+      </view>
+      
+      <image src='/images/icon/close1.png' class='close-img' data-show='{{false}}' bindtap='changeMask'></image>
+   </view>
+   
+</mask>
+
+</block>
+<view hidden='{{!showLittle}}'>
+<template is='littlebox'></template>
+</view>
+<view style='height:200rpx;'></view>
+<!-- 底部导航 -->
+<template is="tabbar" data="{{tabbar,nowPageIndex,isIpx}}"></template>
+
+<painter customStyle=' position: absolute;left:-9999rpx;top:-9999rpx' palette="{{template}}" bind:imgOK="onImgOK"  bindtap="preview"/>

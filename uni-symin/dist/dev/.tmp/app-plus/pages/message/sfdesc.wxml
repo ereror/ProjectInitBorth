@@ -1,0 +1,1 @@
+<block><custombar vue-id="1" name="uni-app" barconfig="{{barconfig}}" data-com-type="wx" bind:__l="__l"></custombar><view class="sfdesc-box"><image class="sfdesc-img1" src="{{sfdesc1}}" mode="widthFix"></image><image class="sfdesc-img2" src="{{sfdesc2}}" mode="widthFix"></image><image class="sfdesc-img3" src="{{sfdesc3}}" mode="widthFix"></image></view></block>

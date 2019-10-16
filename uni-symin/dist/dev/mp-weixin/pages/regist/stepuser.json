@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "资料个人中心页",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "dialogbox": "/wxcomponents/dialog/index",
+    "iptitem": "/wxcomponents/form/index",
+    "toast": "/wxcomponents/toast/index"
+  }
+}

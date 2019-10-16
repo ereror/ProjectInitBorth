@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"content { text-align: center; height: ",[0,400],"; }\n.",[1],"logo{ height: ",[0,200],"; width: ",[0,200],"; margin-top: ",[0,200],"; }\n.",[1],"c-tgreen {color: red;}\n",],undefined,{path:"./pages/tool/index.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/tool/index.wxml') } }));

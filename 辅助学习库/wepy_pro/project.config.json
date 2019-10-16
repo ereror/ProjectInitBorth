@@ -1,0 +1,13 @@
+{
+  "description": "project for win Luck prize",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram",
+  "appid": "wx0734931bf762fbf9",
+  "projectname": "wepy_pro",
+  "miniprogramRoot": "./dist"
+}

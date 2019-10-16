@@ -1,0 +1,392 @@
+<template>
+  <block>
+    <view class='ptb30'>
+    <import src="../../../template/nomsg/nomsg.wxml"/>
+    <view class='pools_dk' wx:if="{{prizeData.length}}">待开奖</view>
+    <view class='listContainer' wx:if="{{prizeData.length}}">
+      <block wx:for='{{prizeData}}' wx:key="{{index}}">
+        <template is='listContainer' data='{{prize_img_icon:prize_img_icon, numberStyle: numberStyle,pagePath: pagePath, ...item, ikey: index, joined: true}}'></template>
+      </block>
+    </view>
+    <view class="pools_dk {{prizeData.length ? 'pools_dkp' : ''}}" wx:if="{{prizeNowData.length}}">已结束</view>
+    <view class='pools_yk' wx:if="{{prizeNowData.length}}">
+      <view class='pools_ad'>
+        <image src='{{ademptyImg}}' class='ademptyImg'>
+      </view>
+      <view class='pools_list'>
+        <block wx:for='{{prizeNowData}}' wx:key="{{index}}">
+          <view class='pools_item flex-between' data-url='/pages/info/detail/detail?id={{item.id}}&prizeId={{item.prize_id}}' data-type='{{item.prize.prize_type}}' data-id="{{item.prize.id}}" data-status='{{item.prize.status}}' bindtap='goUrl'>
+            <view class='flex-1 line-1'>
+              <view class='pools_item_name ellipsis'>奖品：
+                <text wx:if="{{item.prize && item.prize.prize_type === 3}}">随机红包</text>
+                <text wx:if="{{item.prize && item.prize.prize_type !== 3 || !item.prize}}">{{item.title}}</text>
+              </view>
+              <view class='pools_item_time'>{{item.endTime}}</view>
+            </view>
+            <form report-submit='{{true}}' bindsubmit='createFormId'>
+              <button class='buttonreset pools_item_btn' wx:if='{{item.prize && item.prize.status === 0}}' form-type='submit'>领取</button>
+            </form>
+            <view class='pools_item_ylq' wx:if='{{item.prize && item.prize.status != 0 || !item.prize}}'>
+              <text wx:if="{{item.prize.status === 13}}">已过期</text>
+              <text wx:if="{{item.prize.status === 1}}">已领取</text>
+              <text wx:if="{{!item.prize.status}}">未中奖</text>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class='pools_more' wx:if='{{query.current_page !== query.last_page}}' bindtap='checkMore'>
+        <text>加载更多></text>
+      </view>
+      <view class='pools_more' wx:else='{{query.current_page !== query.last_page}}'>
+        <text>我是有底线的~></text>
+      </view>
+    </view>
+    <view wx:if='{{!prizeData.length && !prizeNowData.length && isloaded}}' class='nomsg-detail flex-center'>
+      <template is='nomsg' data="{{data: []}}"></template>
+    </view>
+  <ui-mask show="{{showHb}}" hide-delay="500" bindtap="handleShowMask" effect='scale-out' custom-style='mask' wx:if='{{showHb}}'>
+    <view class='get_hb_box flex-center'>
+      <view class='get_hb_boxs'>
+        <image src='{{hb_imgsrc}}' class='get_hb_boxs_img' />
+        <image src='{{hb_imgsrc2}}' class="get_hb_boxs_img_02 {{isopenhb ? 'get_hb_boxs_img_02_an' : ''}}" />
+        <image src='{{hb_imgsrc3}}' class="get_hb_boxs_img_03 {{isopenhb ? 'get_hb_boxs_img_03_an' : ''}}" />
+        <view class='icon icon-close getgift_close_btn' catchtap='handleShowMask' wx:if='{{isopenhb}}'></view>
+        <view class="get_hb_winbox {{isopenhb ? 'get_hb_winbox_an': ''}}" wx:if='{{isopenhb}}'>
+          <image src='{{hb_icon}}' class='get_hb_winbox_icon' />
+          <view class='get_hb_winbox_title'>陪你抽奖</view>
+          <view class='get_hb_winbox_msg'>恭喜发财，大吉大利</view>
+          <view class='get_hb_winbox_money'>
+            {{money}}
+            <text class='get_hb_winbox_money_s'>元</text>
+          </view>
+          <view class='get_hb_winbox_msg_s'>已存入[零钱]，可提现</view>
+        </view>
+        <view class='get_hb_boxs_msg' wx:if='{{!isopenhb}}'>
+          <view class='get_hb_boxs_msg_01' wx:if='{{!ishowHb_btn}}'>
+            <view class='get_hb_boxs_msg_text01'>恭喜获得红包</view>
+            <view class='get_hb_boxs_msg_text02'>点击下方图片领取</view>
+          </view>
+          <view class="get_hb_boxs_msg_02 {{ishowHb_btn ? 'get_hb_boxs_msg_03' : ''}}">
+            恭喜发财，大吉大利
+          </view>
+          <view class='ad_02' catchtap='clickad' wx:if='{{!ishowHb_btn}}'>
+            <image src='{{hbimgbg}}' class='hbimgbg' />
+          </view>
+          <image src='{{openhb_img}}' class="getgift_open {{ishowHb_btn && iscount ? 'getgift_open_an': ''}}"  wx:if='{{ishowHb_btn && !isopenhb}}' catchtap='openGift' />
+        </view>
+      </view>
+    </view>
+  </ui-mask>
+    <template name='listContainer'>
+      <view class='prize_container' data-url='{{pagePath}}?id={{id}}' data-id='{{id}}' bindtap='goUrl'>
+        <image src="{{prize_img_icon}}" class='isprizing' wx:if="{{joined}}" />
+        <view class='timeconter'>
+          <cc-counttime  target="{{timeend}}" show-day="{{false}}" clear-timer="{{false}}" endDesc='开奖中...' numberStyle="{{numberStyle}}" splitStyle="{{splitStyle}}"></cc-counttime>
+        </view>
+        <view class='prize_img'>
+          <image src="{{icon}}" class='prize_imgs' />
+        </view>
+        <view class='line_01' wx:if="{{false}}"></view>
+        <view class="prize_msg_01 {{!sponsor ? 'pdt-30' : ''}}">
+          <view class='prize_helper flex-l'>
+            <button class="buttonreset prize_helper_btn flex-center {{ikey % 2 == 0 ? 'prize_helper_btn_2n' : ''}}">
+              <view class='icon icon-zzs icon-22'></view>
+              <view class='line-ones'></view>
+              <view class='prize_helper_text'>{{sponsor || "陪我抽奖"}} 赞助</view>
+            </button>
+          </view>
+          <view class="prize_list flex-l" wx:for='{{prizelist}}' wx:key="{{index}}">
+            <view class='ellipsis--2 item_line_height'>
+              <text wx:if='{{prizelist.length > 1}}'>奖品</text>
+              <text wx:if='{{prizelist.length > 1 && index === 0}}'>一: </text>
+              <text wx:if='{{index === 1}}'>二: </text>
+              <text wx:if='{{index === 2}}'>三: </text>
+              <text>{{item.name || '随便抽'}}</text>
+              <text wx:if="{{item.num > 1}}" class='item_line_height_text'> x{{item.num}}份 </text>
+            </view>
+          </view>
+        </view>
+        <view class='prize_msg_02 flex-l'>
+          <view>自动开奖</view>
+          <view class='line_y_01'></view>
+          <view>{{endTime}}</view>
+        </view>
+      </view>
+    </template>
+    </view>
+  </block>
+</template>
+
+<script>
+import info from '../../../api/index'
+import util from '../../../static/utils/index'
+export default {
+  config: {
+    usingComponents: {
+      'cc-counttime': '../../../packages/countTime/index'
+    },
+    navigationBarTitleText: '全部抽奖',
+    backgroundColor: '#ffffff',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    ademptyImg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/adempty2.jpg',
+    hbimgbg: 'https://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/hbimg.png?x-oss-process=style/luck_prize_two',
+    home_imgsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/bg_home_02.png',
+    hb_imgsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/hbg_01.png',
+    openhb_img: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/open_btn.png',
+    hb_imgsrc2: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/hbg_03.png',
+    hb_imgsrc3: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/hbbg_04.png',
+    hb_icon: '../../../images/pmark.png',
+    prizeData: [],
+    prizeNowData: [],
+    prize_img_icon: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/btn_join_01.png',
+    pagePath: '/pages/info/detail/detail',
+    numberStyle: {
+      'background-color': '#292727',
+      'color': '#fff',
+      'padding-left': '4rpx',
+      'padding-right': '4rpx',
+      'margin-left': '12rpx',
+      'margin-right': '12rpx',
+      'border-radius': '4rpx',
+      'font-size':'26rpx',
+      'height': '42rpx',
+      'width': '42rpx',
+      'display':'inline-block',
+      'text-align':'center',
+      'line-height': '42rpx'
+    },
+    splitStyle: {
+      'color': '#292727',
+      'font-size':'26rpx',      
+    },
+    showHb: false,
+    ishowHb_btn: false,
+    isopenhb: false,
+    iscount: false,
+    query: {
+      page: 1,
+      pageSize: 20,
+      current_page: 1,
+      last_page: 1
+    },
+    money: 0.00,
+    type: 0,
+    isloaded: true
+  },
+  onLoad () {
+    this.getMyJoinList()
+  },
+  onShow () {
+  },
+  handleShowMask(){
+    this.data.showHb = false
+    this.data.isopenhb = false
+    this.data.ishowHb_btn = false
+    this.setData({
+      showHb: this.data.showHb,
+      isopenhb: this.data.isopenhb,
+      ishowHb_btn: this.data.ishowHb_btn
+    })
+  },
+  createFormId(e) {
+    if(e.detail.formId) info.sendFormId({ form_id: e.detail.formId })
+  },
+  clickad(){
+    this.data.ishowHb_btn = true
+    this.setData({
+      ishowHb_btn: this.data.ishowHb_btn
+    })
+  },
+  goUrl: util.throttle(function goUrl (e) {
+    let { type, id, status } = util.getData(e)
+    if (type * 1 === 3 && status !== 0 || type * 1 != 3) util.goUrl(e)
+    else {
+      if (status != 0) return
+      this.data.showHb = true
+      this.data.openid = id
+      this.setData({
+        showHb: this.data.showHb
+      })
+    }
+  }, 1500),
+  openGift() {
+    let id = this.data.openid
+    if (!id) return
+    if (this.data.iscount) return
+    this.data.iscount = true
+    this.setData({
+      iscount: this.data.iscount
+    })
+    info.getHb({id: id}).then(res => {
+      this.data.iscount = false
+      if (res.code === 200) {
+        this.data.isopenhb = true
+        this.data.money = res.data && res.data.money
+        this.data.money = this.data.money / 100
+        this.getMyJoinList()
+        getApp().getUserInfo(true, true)
+        this.setData({
+          isopenhb: this.data.isopenhb,
+          iscount: this.data.iscount,
+          money: this.data.money || 0.00
+        })
+      } else {
+        this.setData({
+          iscount: this.data.iscount
+        })
+      }
+    })
+  },
+  getMyJoinList () {
+    // 获取参加的抽奖
+    let query = this.data.query
+    if (!this.data.isloaded) return
+    this.data.isloaded = false
+    util.showLoading('加载中...')
+    info.getMyJoinList(query).then(res => {
+      util.hideAll()
+      this.data.isloaded = true
+      if (res.code === 200) {
+        let result = res.data && res.data.data
+        let prizeData = result.filter(v => {
+          v.endTime = util.formatTime(v.end_time * 1000, 'YY-M-D h:m:s')
+          v.timeend = v.end_time * 1000
+          v.prizelist = JSON.parse(v.prizelist)
+          if(v.sponsor.length > 20) v.sponsor = v.sponsor.substring(0, 20)
+          return v.status === 0
+        })
+        let prizeNowData = result.filter(v => {
+          v.endTime = util.formatTime(v.end_time * 1000, 'YY-M-D h:m:s')
+          return v.status === 1
+        })
+        this.data.prizeNowData = [...this.data.prizeNowData, ...prizeNowData]
+        this.data.prizeData = [...this.data.prizeData, ...prizeData]
+        this.data.query.last_page = res.data.last_page
+        this.data.query.current_page = this.data.query.page
+        // 从全部中奖消息里面提取中奖到中奖池里面
+        getApp().saveListPool(this.data.prizeNowData, '', 'poolprize')
+        this.setData({
+          prizeData: this.data.prizeData || [],
+          prizeNowData: this.data.prizeNowData || [],
+          isloaded: this.data.isloaded,
+          query: this.data.query
+        })
+      }
+    })
+  },
+  onPullDownRefresh: function () {
+    this.getMyJoinList()
+  },
+  checkMore () {
+    let that = this;
+    let { current_page, last_page } = this.data.query
+    if (current_page !== last_page) {
+      this.data.query.page = current_page + 1
+      this.getMyJoinList()
+    }
+  }
+}
+</script>
+
+<style lang="less">
+@import '../../../template/form/form.wxss';
+@import '../../../template/nomsg/nomsg.wxss';
+.prize_helper_btn {overflow:hidden;min-width:100px;}
+.pools_dk {margin:31rpx 24rpx;color:#757373;font-size:24rpx;}
+.pools_dkp {margin-top:0;}
+.listContainer {padding:0 24rpx;}
+.nomsg-detail {margin-top:300rpx;}
+.pools_ad {margin:0rpx 24rpx;width:702rpx;height:220rpx;border-radius:10rpx;background:honeydew;}
+.ademptyImg {width:702rpx;height:220rpx;border-radius:10rpx;box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.2);}
+.pools_list {margin:24rpx 24rpx;}
+.pools_item {height:120rpx;margin-bottom:20rpx;background:rgba(255,255,255,1);box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.2);border-radius:10rpx;padding:0 30rpx;}
+.pools_item_name {font-size:28rpx;color:#292727;font-weight:600;max-width:500rpx;}
+.pools_item_time {margin-top:18rpx;color:#adaaaa;font-size:24rpx;}
+.pools_item_btn {position:relative;width:128rpx;height:54rpx;line-height:54rpx;color:white;background:linear-gradient(90deg,rgba(221,165,56,1),rgba(254,214,134,1));border-radius:27rpx;font-size:24rpx;text-align:center;}
+.pools_item_btn::before {position:absolute;content:'';z-index:2;top:-8rpx;right:10rpx;width:16rpx;height:16rpx;border-radius:50%;background:rgba(255,94,151,1);border:2px solid rgba(255, 255, 255, 1);}
+.pools_item_ylq {width:128rpx;line-height:50rpx;height:54rpx;font-size:24rpx;border:2rpx solid #cac8c8;border-radius:27rpx;color:#adaaaa;text-align:center;font-size:24rpx;}
+.pools_more {padding-top:26rpx;text-align:center;color:#68A3F4;font-size:24rpx;}
+.pools_yk {padding-bottom: 30rpx;}
+.icon-22 {font-size:22rpx;margin:7rpx;}
+.item_line_height {z-index:2;}
+.item_line_height_text {vertical-align:middle;}
+  .line-ones {
+    height:100%;
+    width:1rpx;
+    background: #FF5d78;
+  }
+.ptb30 {padding-bottom:30rpx;}
+  .get_hb_box {
+    position:absolute;
+    top:50%;
+    margin-top:-430rpx;
+    left:50%;
+    margin-left: -325rpx;
+    & .get_hb_boxs {
+      position:relative;
+      overflow:hidden;
+      width: 651rpx;
+      height: 861rpx;
+      border-radius: 20rpx;
+      & .get_hb_boxs_img, & .get_hb_boxs_img_02 , & .get_hb_boxs_img_03{
+        width: 651rpx;
+        height: 861rpx;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index: -3;
+      }
+      & .get_hb_boxs_img_02, & .get_hb_boxs_img_03 {
+        width: 651rpx;
+        height: 569rpx;
+        left: 0rpx;
+        top: 0rpx;
+      }
+      & .get_hb_boxs_img_02 {z-index: -1;}
+      & .get_hb_boxs_img_02_an {animation:hb_02 .5s;animation-fill-mode:forwards;}
+      & .get_hb_boxs_img_03 {z-index: -2;top:0rpx;height: 567rpx;}
+      & .get_hb_boxs_img_03_an {animation:hb_03 .5s;animation-fill-mode:forwards;}
+      & .getgift_close_btn {font-size:32rpx;position:absolute;z-index:22;top:40rpx;right:46rpx;color:#BB3F43;}
+      & .get_hb_boxs_msg {margin-top: 146rpx;line-height:1.5;text-align:center;font-size:36rpx;color:#fed27c;}
+      & .get_hb_boxs_msg_02 {margin-top:94rpx;line-height:1;font-size:52rpx;color:#fed27c;font-weight:600;text-align:center;}
+      & .get_hb_boxs_msg_03 {margin-top:299rpx;}
+      & .ad_02 {box-sizing:content-box;width:500rpx;margin:83rpx auto;height:180rpx;border-radius:10rpx;border:2rpx solid #fbbe74;box-shadow:1rpx 2rpx 8rpx rgba(0,0,0,.2);}
+      & .hbimgbg {width:500rpx;height:180rpx;}
+      & .getgift_open {width:235rpx;height:235rpx;margin-top:124rpx;}
+      & .getgift_open_an {animation:hb_01 1s infinite;}
+
+      & .get_hb_winbox {margin-top:182rpx;display:flex;justify-content: center;flex-wrap:wrap;line-height:1;opacity: 0;
+        & .get_hb_winbox_icon {height:158rpx;width:158rpx;margin:0 auto;border-radius:50%;border:6rpx solid rgba(255, 226, 177, 1);}
+        & .get_hb_winbox_title {margin-top:27rpx;width:100%;text-align:center;font-weight:bold;font-size:36rpx;color:#292727;}
+        & .get_hb_winbox_msg {margin-top:27rpx;width:100%;text-align:center;font-size:28rpx;}
+        & .get_hb_winbox_money {margin-top:77rpx;width:100%;text-align:center;font-weight:bold;font-size:106rpx;vertical-align:baseline;}
+        & .get_hb_winbox_money_s {font-size:32rpx;margin-left:-15rpx;}
+        & .get_hb_winbox_msg_s {margin-top:138rpx;width:100%;text-align:center;font-size:30rpx;color:rgba(104,163,244,1);}
+      }
+      & .get_hb_winbox_an {animation:hb_00 .2s;animation-delay:.5s;animation-fill-mode:forwards;}
+    }
+  }
+
+  @keyframes hb_00 {
+    from {opacity: 0;}
+    to {opacity: 1;}    
+  }
+
+  @keyframes hb_01 {
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(359deg);}
+  }
+
+  @keyframes hb_02 {
+    from {top: 0rpx;}
+    to {top: -300rpx;}
+  }
+
+  @keyframes hb_03 {
+    from {top: 0;height:567rpx}
+    to {top: 150rpx;height:867rpx}
+  }
+</style>

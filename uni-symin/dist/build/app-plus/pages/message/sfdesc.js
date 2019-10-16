@@ -1,0 +1,2 @@
+setCssToHead(["body { background: #6267f9; }\n.",[1],"sfdesc-img1 { width: ",[0,664],"; height: ",[0,648],"; margin: ",[0,6]," 0 0 ",[0,80],"; }\n.",[1],"sfdesc-img2 { width: ",[0,578],"; height: ",[0,412],"; margin: ",[0,-16]," 0 0 ",[0,92],"; }\n.",[1],"sfdesc-img3 { width: ",[0,644],"; height: ",[0,554],"; margin: ",[0,76]," auto; }\n",],undefined,{path:"./pages/message/sfdesc.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/message/sfdesc.wxml') } }));

@@ -1,0 +1,11 @@
+<view class='itemH-box'>
+	<view class='itemH-list itemH-{{lines}}' wx:for='{{itemData}}' wx:key="{{index}}" data-index="{{index}}" data-url='{{item.url}}' bindtap='setValue'>
+		<view class="itemH-icon {{item.isChoose ? 'itemH-a-border' : ''}} {{isClickable ? 'itemH-a-cli' : '34'}}" style="{{item.imgStyleR ? item.imgStyleR: ''}} {{imgStyleR ? imgStyleR: ''}}">
+			<image src='{{item.icon || hicon}}' mode='widthFix' class='itemH-img' style="{{item.imgStyle ? item.imgStyle: ''}}"></image>
+			<view class='itemH-sm-title'  wx:if='{{item.smTitle}}'>
+				<view class='itemH-sm-titlebox' style="{{item.smStyle ? item.smStyle : ''}}">审核中</view>
+			</view>
+		</view>
+		<view class="itemH-text {{item.isChoose ? 'itemH-a-text' : ''}}" style="{{itemTextStyle ? itemTextStyle: ''}}">{{item.text}}</view>
+	</view>
+</view>

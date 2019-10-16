@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "tbar": "/wxcomponents/tbar/index",
+    "itemh": "/wxcomponents/itemH/index",
+    "iptitem": "/wxcomponents/form/index",
+    "uswiper": "/wxcomponents/ui-swiper/index",
+    "tips": "/wxcomponents/tips/index"
+  }
+}

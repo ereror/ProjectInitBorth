@@ -1,0 +1,17 @@
+<view class="{{inputconfig.isBorderR ? 'isborderR': ''}}" style="{{iptStyle ? iptStyle: ''}}" data-type='{{inputconfig.type}}' bindtap='goUrl' data-url='{{inputconfig.url}}' data-key='{{inputconfig.key}}'>
+	<view class='f-box'>
+		<image class='f-icon' src="{{inputconfig.icon || titleicon}}" wx:if='{{inputconfig.icon}}'></image>
+		<view class='f-title' wx:if='{{inputconfig.title.length}}'>
+			<view>{{inputconfig.title}}</view>
+			<view class='f-title-icon' wx:if='{{inputconfig.titleicon.length}}'>
+				{{inputconfig.titleicon}}
+			</view>
+		</view>
+		<view class='f-content' wx:if='{{inputconfig.content.length && !inputconfig.isInput && !inputconfig.selfconf}}'>{{inputconfig.content}}</view>
+		<view class='placeholder text-placeholder' wx:if="{{(inputconfig.type === 'button' || inputconfig.type === 'url') && !inputconfig.content.length}}">{{inputconfig.placeholder}}</view>
+		<input class='f-ipt' placeholder='{{inputconfig.placeholder}}' placeholder-class='placeholder text-placeholder' bindinput='setParam' data-key='{{inputconfig.key}}' value="{{inputconfig.content || ''}}" type="{{inputconfig.type || 'text'}}"  disabled ='{{inputconfig.titleicon.length}}' maxlength='{{inputconfig.size || 50}}' wx:if='{{inputconfig.isInput && !inputconfig.selfconf}}'/>
+		<slot wx:if='{{inputconfig.selfconf}}'></slot>
+		<image class='f-arrow' src='{{arrow}}' wx:if='{{inputconfig.arrow}}'></image>
+	</view>
+	<view class='f-box-line' wx-if='{{!inputconfig.last}}'></view>
+</view>

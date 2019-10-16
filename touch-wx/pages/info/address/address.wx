@@ -1,0 +1,242 @@
+<template>
+  <view>
+    <view class='address_noaddr' wx:if='{{!addrlist.length}}'>
+      <image src='{{address_bg}}' class='address_noaddr_bg' />
+      <view class='address_noaddr_text'>暂无数据</view>
+    </view>
+    <view class='address_box' wx:if='{{addrlist.length}}'>
+      <view class="address_item flex-between {{(ischecked && item.iscount === index || !ischecked) && item.usednow ? '' : 'address_item_gray'}}" wx:for="{{addrlist}}" wx:key="{{index}}" data-index="{{index}}" bindtap='chosebtn' bindtouchstart="addrTouchStart" bindtouchmove="addrTouchMove" bindtouchend="addrTouchEnd">           
+        <view class="address_item_detail {{item.used && item.optbtn ? 'goleft2': (!item.used && item.optbtn ? 'goleft' : '')}}">
+          <view class='address_item_users_msg flex-l'>
+            <view class='address_item_users_name'>{{item.name}}</view>
+            <view class='address_item_users_phone'>{{item.phone}}</view>
+            <view class='address_item_users_tags' wx:if='{{item.used}}'>默认</view>
+          </view>
+          <view class='address_item_adrr ellipsis--2'>地址：{{item.city}}{{item.addr}}</view>
+        </view>
+        <view class="icon icon-edit icon16 addr-icon {{item.used && item.optbtn ? 'goleft2': (!item.used && item.optbtn ? 'goleft' : '')}}" catchtap='checkDetail' data-index="{{index}}"></view>
+        <view class="address_opt_box flex-center {{item.used && item.optbtn ? 'address_opt_box_an2': (!item.used && item.optbtn ? 'address_opt_box_an' : '')}}">
+          <view class='address_opt_box_szmr' catchtap='setAddress' data-index="{{index}}" wx:if='{{!item.used}}'>设为默认</view>
+          <view class='address_opt_box_del' catchtap='delAddress' data-index="{{index}}">删除</view>
+        </view>
+      </view>
+    </view>
+    <view class='address_add'>
+      <button class='buttonreset address_add_btn' bindtap='goUrl' data-url='/pages/info/addressadd/addressadd'>添加收货地址</button>
+    </view>
+  </view>
+</template>
+
+<script>
+import util from '../../../static/utils/index'
+import info from '../../../api/index'
+import toast from '../../../static/utils/toast'
+let app = getApp()
+export default {
+  config: {
+    navigationBarTitleText: '收货地址',
+    backgroundColor: '#F2f3f5',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    address_bg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/icon_nomsg.png',
+    isdata: true,
+    optbtn: false,
+    addrlist: [],
+    isloading: false,
+    interval: {},
+    time: 0,
+    touchDot: 0,
+    id: 0,
+    iscount: 0,
+    chosseObj: {},
+    isdel: false,
+    ischecked: false,
+    type: 'detail'
+  },
+  onLoad (param) {
+    this.data.id = param.id || 0
+    this.data.type = param.type || 0
+  },
+  onShow () {
+    this.getAddrList()
+  },
+  goUrl (e) {
+    if (this.data.addrlist.length >= 5) {
+      toast.show('warn', '最多添加5个地址，请删除不常用的地址！！', 1000)
+      return
+    }
+    util.goUrl(e)
+  },
+  onUnload(){
+    // 设置前面的地址
+    var model = -1
+    if (this.data.type != 'ucenter') {
+      util.getPage(model).setData({
+        address: this.data.chosseObj
+      })
+    }
+  },
+  chosebtn (e) {
+    // 点击处理详情
+    let { index } = util.getData(e)
+    let that = this
+    if (this.data.type === 'ucenter') {
+      return
+    }
+    this.data.addrlist.map((v, i) => {
+      v.usednow = false
+      if (i === index) {
+        v.usednow = true
+        v.iscount = i
+        that.data.chosseObj = v
+      }
+    })
+    this.setData({
+      addrlist: this.data.addrlist
+    })
+    if(this.data.type != 'ucenter') {
+      app.getUserInfo().then(res => {
+        wx.navigateBack()
+      })
+    }
+  },
+  getAddrList () {
+    // 获取地址列表
+    info.getAddrList().then(res => {
+      if (res.code === 200) {
+        this.data.ischecked = false
+        this.data.addrlist = res.data || []
+        this.data.addrlist.map((v, i) => {
+          v.usednow = false
+          if (v.used) v.usednow = true
+          if (v.id === this.data.id * 1) {
+            v.usednow = true
+            v.iscount = i
+            this.data.ischecked = true
+            this.data.chosseObj = v
+          }
+        })
+        if (!this.data.ischecked) {
+          this.data.chosseObj = this.data.addrlist.filter((v, i) => {
+            return v.used != 0
+          })
+        }
+        if (!this.data.addrlist.length && this.data.isdel) {
+          this.data.chosseObj = {}
+          app.globalData.userInfo.addr_list = []
+        }
+        this.setData({
+          addrlist: this.data.addrlist,
+          ischecked: this.data.ischecked
+        })
+      }
+    })
+  },
+  checkDetail: util.throttle(function checkDetail (e) {
+    let { index } = util.getData(e)
+    let param = this.data.addrlist[index]
+    wx.navigateTo({
+      url: `/pages/info/addressadd/addressadd?id=${param.id}&name=${param.name}&phone=${param.phone}&city=${param.city}&addr=${param.addr}&used=${param.used}`
+    })
+  }, 1500),
+  setAddress (e) {
+    if (this.data.isloading) return
+    this.data.isloading = true
+    let { index } = util.getData(e)
+    let param = this.data.addrlist[index]
+    param.used = 1
+    info.editAddr(param).then(res => {
+      this.data.isloading = false
+      if(res.code === 200) {
+        this.getAddrList()
+        toast.show('success', '地址设置成功！！', 1000)
+      } else {
+        toast.show('warn', '地址设置失败！！', 1000)
+      }
+    })
+  },
+  delAddress (e) {
+    if (this.data.isloading) return
+    this.data.isloading = true
+    let { index } = util.getData(e)
+    let id = this.data.addrlist[index].id
+    info.delAddr({id: id}).then(res => {
+      this.data.isloading = false
+      if(res.code === 200) {
+        this.getAddrList()
+        this.data.isdel = true
+        toast.show('success', '地址删除成功！！', 1000)
+      } else {
+        toast.show('warn', '地址删除失败！！', 1000)
+      }
+    })
+  },
+  addrTouchStart (e) {
+    // 滑动了
+    console.log('滑动了')
+    this.data.touchDot = e.touches[0].pageX; // 获取触摸时的原点 
+    // 使用js计时器记录时间
+    let that = this 
+    this.data.interval = setInterval(function () { 
+      that.data.time++
+    }, 100)
+  },
+  addrTouchMove (e) {
+    // 滑动了
+    var touchMove = e.touches[0].pageX
+    let { index } = util.getData(e)
+    if (touchMove - this.data.touchDot <= -40 && this.data.time < 10) {
+      this.data.addrlist[index].optbtn = true
+    }  
+    if (touchMove - this.data.touchDot >= 40 && this.data.time < 10) {
+      this.data.addrlist[index].optbtn = false
+    }
+  },
+  addrTouchEnd (e) {
+    // 滑动了
+    let { index } = util.getData(e)
+    let  optbtn = 'addrlist[' + index + '].optbtn'
+    console.log(optbtn)
+    clearInterval(this.data.interval)
+    this.data.time = 0
+    this.setData({
+      addrlist: this.data.addrlist
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  .address_noaddr {
+    position:relative;margin:319rpx 70rpx;width:610rpx;height:440rpx;overflow:hidden;
+    & .address_noaddr_bg {position:absolute;z-index:-1;width:610rpx;height:440rpx;top:0;left:0;}
+    & .address_noaddr_text {margin-top:313rpx;margin-left:238rpx;font-weight:600;color:#7a7a7a;font-size:34rpx;}
+  }
+  .address_add {position:fixed;bottom:0;left:0;right:0;z-index:10;background:rgba(255,255,255,1);box-shadow:0px -2px 16px rgba(128,128,128,0.16);
+    & .address_add_btn {width:702rpx;height:88rpx;line-height:88rpx;background:linear-gradient(-90deg,rgba(255,94,151,1),rgba(255,153,153,1));border-radius:44px;margin:20rpx 24rpx;font-size:32rpx;color:white;}
+  }
+  .address_box {padding:21rpx 24rpx;}
+  .goleft {transform: translateX(-320rpx);}
+  .goleft2 {transform: translateX(-160rpx);}
+  .address_item {position:relative;height:180rpx;border-left:8rpx solid #ff5e97;border-radius:10rpx;margin-bottom:24rpx;background:white;box-shadow:0px 3px 16px rgba(128,128,128,0.1);padding:0 30rpx 0 38rpx;overflow:hidden;
+    & .address_item_detail {
+      flex:1;line-height:1;
+      transition: all .2s;
+      & .address_item_users_msg {
+        & .address_item_users_name, & .address_item_users_phone {font-size:32rpx;font-weight:600;}
+        & .address_item_users_phone {margin-left:45rpx;}
+        & .address_item_users_tags {margin-left:23rpx;width:74rpx;height:28rpx;background:linear-gradient(-45deg,rgba(255,94,151,1),rgba(255,153,153,1));border-radius:14rpx;color:white;font-size:20rpx;text-align:center;line-height:28rpx;}
+      }
+      & .address_item_adrr{font-size:24rpx;margin-top:17rpx;line-height:1.5;}
+    }
+    & .addr-icon {margin-left: 63rpx;font-size:42rpx;transition: all .2s;}
+    & .address_opt_box {position:absolute;top:0;right:0;z-index:2;width:0rpx;font-size:24rpx;font-weight:600;overflow:hidden;transition:all .2s;height:180rpx;}
+    & .address_opt_box_an {width:320rpx;}
+    & .address_opt_box_an2 {width:160rpx;}
+    & .address_opt_box_szmr {width:180rpx;background:#F7F8FA;height:100%;line-height:180rpx;text-align:center;}
+    & .address_opt_box_del {width:160rpx;background:#E9351E;height:100%;line-height:180rpx;color:white;text-align:center;}
+  }
+  .address_item_gray {border-left:8rpx solid #e0dcdc;}
+</style>

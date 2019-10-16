@@ -1,0 +1,58 @@
+button::after, button::before {
+  border: 0;
+}
+.c-btn {
+	position:relative;
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	box-sizing:border-box;
+	padding:0 30rpx;
+	font-size:28rpx;
+	height:64rpx;
+	line-height:1;
+	text-align:center;
+	text-decoration:none;
+	margin-left:initial;
+	transform:translate(0rpx, 0rpx);
+	margin-right:initial;
+}
+.c-btn:not([class*="bg-"]) {
+	background-color:#f0f0f0;
+}
+
+.c-btn.button-hover {
+	transform:translate(1rpx, 1rpx);
+}
+
+.round {
+	border-radius: 1000rpx;
+}
+
+.c-btn .icon {
+	width:64rpx;
+	height:64rpx;
+	border-radius:500rpx;
+	padding:0;
+}
+
+.c-btn .sm {
+	padding:0 20rpx;
+	font-size:20rpx;
+	height:48rpx;
+}
+.c-btn .lg {
+   padding:0 40rpx;
+   font-size:32rpx;
+   height:80rpx;
+}
+
+.bg-red {
+	background-color:#e54d42;
+	color:#fff;
+}
+
+.bg-red2 {
+	background-color:#f81f5e;
+	color:#fff;
+}

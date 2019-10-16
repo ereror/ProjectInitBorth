@@ -1,0 +1,23 @@
+.nomsg_box {
+  position: relative;
+  width: 610rpx;
+  height: 440rpx;
+  overflow: hidden;
+}
+
+.nomsg_bg {
+  position: absolute;
+  z-index: -1;
+  width: 610rpx;
+  height: 440rpx;
+  top: 0;
+  left: 0;
+}
+
+.nomsg_text {
+  margin-top: 313rpx;
+  margin-left: 238rpx;
+  font-weight: 600;
+  color: #7a7a7a;
+  font-size: 34rpx;
+}

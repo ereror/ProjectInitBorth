@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "资料编辑",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "tbar": "/wxcomponents/tbar/index",
+    "itemh": "/wxcomponents/itemH/index",
+    "iptitem": "/wxcomponents/form/index",
+    "uswiper": "/wxcomponents/ui-swiper/index",
+    "tips": "/wxcomponents/tips/index",
+    "dialogbox": "/wxcomponents/dialog/index",
+    "ui-popup": "/wxcomponents/ui-pop/index"
+  }
+}

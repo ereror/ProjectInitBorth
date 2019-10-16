@@ -1,0 +1,16 @@
+.ui-tab {
+  display: inline-block;
+  /* padding: 0 32rpx; */
+  position: relative;
+  font-size: 32rpx;
+  text-align: center;
+  box-sizing: border-box;
+  /* line-height: 88rpx; */
+}
+.ui-tab.ui-tab-x.active {
+  color: #ff6454;
+  border-bottom: 1px solid #ff6454;
+}
+.ui-tab.border-none {
+  border: 0 !important;
+}

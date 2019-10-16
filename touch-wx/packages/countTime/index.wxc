@@ -1,0 +1,137 @@
+<template>
+  <block>
+    <view class="wx-test flex-c" wx:if='{{resultFormat.length === 1}}'>
+      <view wx:for="{{timeArr}}" wx:for-index='{{qindex}}' wx:key='{{qindex}}' style="{{item === ':' ? selfSplitStyle : selfNumberStyle}}">{{item}}</view>
+    </view>
+    <view class='wx-test' wx:else>{{time}}</view>
+  </block>
+</template>
+<script>
+import objtoStyle from '../../static/libs/objectToStyle.js'
+export default {
+  properties: {
+    target: Number,
+    showDay: Boolean,
+    callback: String,
+    format: Array,
+    clearTimer: Boolean,
+    endDesc: String,
+    splitStyle: {
+      type: [String, Object],
+      value: '',
+      observer: function observer(val) {
+        this.setData({
+          selfSplitStyle: objtoStyle(val)
+        });
+      }
+    },
+    numberStyle: {
+      type: [String, Object],
+      value: '',
+      observer: function observer(val) {
+        this.setData({
+          selfNumberStyle: objtoStyle(val)
+        });
+        console.log(objtoStyle(val))
+      }
+    }
+  },
+  data: {
+    time: '',
+    timeArr: [],
+    resultFormat: [],
+    changeFormat: false,
+    selfSplitStyle: '',
+    selfNumberStyle: ''
+  },
+  attached: function attached() {
+    this.setData({
+      selfSplitStyle: objtoStyle(this.data.splitStyle),
+      selfNumberStyle: objtoStyle(this.data.numberStyle)
+    });
+  },
+  ready () {
+    this.getFormat()
+  },
+  methods: {
+    getFormat() {
+      const data = this.data
+      const len = data.format.length
+      if (!data.showDay) data.resultFormat.push('')
+      if (len >= 3) {
+        for (let i = 0; i < len; i++) {
+          if (data.resultFormat.length >= 4) break
+          if (data.format[i]) {
+            data.resultFormat.push(data.format[i].toString())
+          }
+        }
+        if (data.resultFormat.length >= 4) data.changeFormat = true
+      }
+      this.setData({
+        resultFormat: data.resultFormat
+      })
+      this.getLastTime()
+    },
+    init() {
+      const self = this
+      setTimeout(function() {
+        self.getLastTime.call(self)
+      }, 1000)
+    },
+    getLastTime() {
+      const data = this.data
+      const gapTime = Math.ceil((data.target - new Date().getTime()) / 1000)
+      let result = ''
+      let time = '00:00:00'
+      let timeArr = []
+      let day = '00'
+      const format = data.resultFormat
+      if (gapTime > 0) {
+        day = this.formatNum(parseInt(gapTime / 86400))
+        let lastTime = gapTime % 86400
+        const hour = this.formatNum(parseInt(lastTime / 3600))
+        lastTime = lastTime % 3600
+        const minute = this.formatNum(parseInt(lastTime / 60))
+        const second = this.formatNum(lastTime % 60)
+
+        if (data.changeFormat)
+          time = `${hour}${format[1]}${minute}${format[2]}${second}${format[3]}`
+        else time = `${hour}:${minute}:${second}`
+        timeArr = [hour, ':', minute, ':', second]
+        if (!data.clearTimer) this.init.call(this)
+      } else {
+        this.endfn()
+      }
+      if (data.showDay) {
+        if (data.changeFormat) {
+          result = `${day}${format[0]} ${time}`
+        } else {
+          result = `${day}d ${time}`
+        }
+      } else {
+        result = time
+      }
+      this.setData({
+        time: result,
+        timeArr: timeArr
+      })
+    },
+    formatNum(num) {
+      return num > 9 ? num : `0${num}`
+    },
+    endfn() {
+      this.setData({
+        time: this.data.endDesc || '已结束'
+      })
+      this.triggerEvent('callback', {})
+    }
+  }
+}
+</script>
+<style lang="less">
+.flex-c {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

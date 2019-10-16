@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/info/index/index",
+    "pages/info/detail/detail",
+    "pages/info/users/users",
+    "pages/info/address/address",
+    "pages/info/goodsend/goodsend",
+    "pages/info/getgift/getgift",
+    "pages/info/auth/auth",
+    "pages/info/usercenter/usercenter",
+    "pages/info/coin/coin",
+    "pages/info/coindetail/coindetail",
+    "pages/info/pools/pools",
+    "pages/info/adviceback/adviceback",
+    "pages/info/addressadd/addressadd",
+    "pages/info/problem/problem",
+    "pages/info/goindex/goindex",
+    "pages/info/contact/contact",
+    "pages/info/txaction/txaction",
+    "pages/info/shareimg/shareimg"
+  ],
+  "window": {
+    "backgroundTextStyle": "#ffffff",
+    "backgroundColor": "#F2f3f5",
+    "navigationBarBackgroundColor": "#FF5E97",
+    "navigationBarTitleText": "陪我抽奖",
+    "navigationBarTextStyle": "#ffffff"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "theme": {
+    "theme-color": "#39f"
+  }
+}

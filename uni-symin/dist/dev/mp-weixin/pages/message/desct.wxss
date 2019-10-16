@@ -1,0 +1,37 @@
+
+page {
+	background: #6267f9;
+	overflow: hidden;
+}
+.desc_img_01 {
+	width: 630rpx;
+	height: 592rpx;
+	margin: 80rpx auto;
+}
+.desc_img_02 {
+	width: 350rpx;
+	height: 48rpx;
+	margin: 60rpx auto;
+}
+.desc {
+	margin-top: 60rpx;
+}
+.desc-content {
+	font-size:32rpx;
+	color: white;
+	line-height: 38rpx;
+	text-align: center;
+}
+.desc-btn {
+	position: fixed;
+	bottom: 30rpx;
+	left: 30rpx;
+	margin: 0 auto;
+	width: 690rpx;
+	height: 88rpx;
+	border-rdius: 30rpx;
+	background: #ffb400 !important;
+	color: white;
+	font-size: 32rpx;
+}
+

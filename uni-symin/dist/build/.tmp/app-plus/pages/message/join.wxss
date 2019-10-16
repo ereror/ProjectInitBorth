@@ -1,0 +1,74 @@
+
+page {
+	background: #6267f9;
+	height: 100%;
+	overflow: hidden;
+}
+.j-box {
+	padding: 20rpx 30rpx 40rpx;
+}
+.j-ad {
+	width: 630rpx;
+	height: 592rpx;
+	margin: 0 auto;
+}
+.j-lititle {
+	text-align: center;
+	font-size: 32rpx;
+	line-height: 44rpx;
+	color: white;
+}
+.j-text-box {
+	width: 340rpx;
+	margin: 0 auto;
+	padding: 16rpx 0;
+}
+.j-text {
+	text-align: center;
+	font-size: 24rpx;
+	line-height: 32rpx;
+	color: white;
+}
+.j-text-big {
+	font-size: 32rpx;
+	border-radius: 17rpx;
+	height: 34rpx;
+	line-height: 34rpx;
+	background: #ffb400;
+	color: white;
+	font-weight: 600;
+	padding: 0 .5em;
+}
+.j-icon-box {
+	padding: 40rpx 130rpx 30rpx;
+}
+.j-icon-item {
+	width: 94rpx;
+}
+.j-icon {
+	width: 94rpx;
+	height: 94rpx;
+}
+.j-text {
+	margin-top: 16rpx;
+	text-align: center;
+	font-size: 26rpx;
+	color: white;
+}
+.j-smtitle {
+	font-size: 24rpx;
+	text-decoration: underline;
+	color: white;
+	text-align: center;
+}
+.j-btn {
+	margin-top: 20rpx;
+	width: 690rpx;
+	height: 88rpx;
+	border-radius: 30rpx;
+	background: #ffb400 !important;
+	font-size: 32rpx;
+	color: white;
+	letter-spacing: .1em;
+}
+

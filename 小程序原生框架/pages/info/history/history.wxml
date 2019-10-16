@@ -1,0 +1,17 @@
+<import src="../../../templates/info/info.wxml" />
+<import src="../../../templates/loading/loading.wxml" />
+<!-- 信息 -->
+<block class='' wx:for="{{list}}" wx:key="{{pindex}}" wx:for-index="pindex">
+  <view class='time'>
+      <view class='f-28 c-gray-dark'>{{item.time}}</view>
+      <view class='f-22 c-primary' bindtap='deleteViewByDay' data-time='{{item.time}}' data-pindex='{{pindex}}'>清除记录</view>
+  </view>
+  <block wx:for="{{item.data}}" wx:key="{{index}}">
+    <template is="info" data="{{...item,index,pindex}}"></template>
+  </block>
+</block>
+
+<view wx:if="{{!loading&&list.length<=0}}" class="nodata">
+  <view class='iconfont icon-tongyongzanshimeiyoushuju' style='color:#999;font-size:60rpx;margin-bottom:30rpx;'></view>
+  <view class='c-gray-darker'>暂无数据</view>
+</view>

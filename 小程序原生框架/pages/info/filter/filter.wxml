@@ -1,0 +1,29 @@
+<import src="../../../templates/info/info.wxml" />
+<import src="../../../templates/loading/loading.wxml" />
+
+<!-- tab -->
+<sticky  scroll-top="{{ scrollTop }}" top="{{0}}" wx:if='{{param.type <= 3}}'>
+  <tabs wx:if="{{tabList.length>0}}" ink-bar="{{true}}"  auto-width="{{false}}" ink-bar-style="width:120rpx;" bindchange="tabChange" index="{{tabActiveIndex}}" index="{{tabActiveIndex}}" probe="1" data-key="categoryid">
+    <tab wx:for="{{tabList}}" wx:key="{{index}}" >
+        <view style='line-height:80rpx;width:200rpx;font-size:28rpx;'>
+          {{item.title}}
+        </view>
+    </tab>
+  </tabs> 
+  <view class='b-1px-b'></view>
+  <view slot="sticky">
+    <tabs wx:if="{{tabList.length>0}}" ink-bar="{{true}}"   auto-width="{{false}}" ink-bar-style="width:120rpx;" bindchange="tabChange"  index="{{tabActiveIndex}}" probe="1" data-key="categoryid">
+      <tab wx:for="{{tabList}}" wx:key="{{index}}">
+          <view style='line-height:80rpx;width:200rpx;font-size:28rpx;'>
+            {{item.title}}
+          </view>
+      </tab>
+    </tabs>
+    <view class='b-1px-b'></view>
+  </view> 
+</sticky>
+<!-- 信息 -->
+<block wx:for="{{list.data}}" wx:key="{{index}}">
+   <template is="infos" data="{{...item,index,isFilter:true}}"></template>
+</block>
+<template is="loading" data="{{loading,...list}}"></template>

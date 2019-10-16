@@ -1,0 +1,24 @@
+<view class="ui-index-list" style="height: {{height}}px">
+  <view class="index-list-wrap" style="height: {{height}}px">
+    <view class="index-selector-wrap" catchtouchstart="selectTouchStartHandler" catchtouchmove="selectTouchMoveHandler" catchtouchend="selectTouchEndHandler" style="{{indexSelectorWrapStyle}}" wx:if='{{data.length > 1}}'>
+      <view class="index-selector-item" style="top: {{index * 16}}px" wx:for="{{indexData}}" wx:key="index">{{item}}
+      </view>
+    </view>
+    <scroll-view scroll-y scroll-top="{{scrollTop}}" class="index-list" height="{{height}}" style="{{indexListStyle}}">
+      <view class="index-list-top">
+        <view wx:if="{{showTop}}">
+          <slot></slot>
+        </view>
+      </view>
+      <view class="index-list-block" wx:for="{{data}}" wx:for-item="blockItem" wx:for-index="blockIndex" wx:key="{{blockIndex}}">
+        <view class="index-list-title" wx:if='{{blockItem.index}}'>{{blockItem.index}}</view>
+        <view class="index-list-content" wx:if='{{!blockItem.items.length}}'>当前没有查询到相关市级城市！</view>
+        <view class="index-list-content {{listItem.disabled ? 'index-list-content-disabled' : ''}}" data-name="{{listItem.name}}" data-index="{{listIndex}}" data-city="{{listItem}}" data-block-index="{{blockIndex}}" wx:for="{{blockItem.items}}" wx:for-item="listItem" wx:for-index="listIndex" wx:key="{{listIndex}}" bindtap="selectTapHandler">
+          {{listItem.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="index-float-block" style="{{indexFloatBlockStyle}};{{indexFloatBlockDynamicStyle}}" wx:if='{{bigIndex}}'>{{bigIndex}}</view>
+  <!-- <view>UiIndexList Component</view> -->
+</view>

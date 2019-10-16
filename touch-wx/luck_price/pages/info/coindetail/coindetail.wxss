@@ -1,0 +1,95 @@
+/* 1像素解决方案 */
+/*
+ * 清除1px
+ */
+/*
+ * 清除浮动
+ */
+/*
+ * mobile
+ */
+/*
+ * 1px
+ */
+/*
+ * text
+ */
+/* 垂直居中 */
+/* 水平居中 */
+/* 水平垂直居中 */
+/* 超出部分出省略号 */
+/* 多行文本超出部分省略号 */
+.nomsg_box {
+  position: relative;
+  width: 610rpx;
+  height: 440rpx;
+  overflow: hidden;
+}
+.nomsg_bg {
+  position: absolute;
+  z-index: -1;
+  width: 610rpx;
+  height: 440rpx;
+  top: 0;
+  left: 0;
+}
+.nomsg_text {
+  margin-top: 313rpx;
+  margin-left: 238rpx;
+  font-weight: 600;
+  color: #7a7a7a;
+  font-size: 34rpx;
+}
+.home_box {
+  margin-top: 0;
+}
+.coin-detail {
+  margin-top: 200rpx;
+}
+.home_bg {
+  width: 750rpx;
+  height: 170rpx;
+  position: relative;
+  z-index: -1;
+}
+.coin_d_ad {
+  margin: -130rpx 24rpx;
+  width: 702rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  background: honeydew;
+}
+.ademptyImg {
+  width: 702rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3rpx 8rpx rgba(128, 128, 128, 0.2);
+}
+.coin_d_list {
+  margin: 154rpx 24rpx;
+}
+.coin_d_item {
+  height: 120rpx;
+  margin-bottom: 20rpx;
+  background: #ffffff;
+  box-shadow: 0px 3rpx 8rpx rgba(128, 128, 128, 0.2);
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+}
+.coin_d_item_name {
+  font-size: 28rpx;
+  color: #292727;
+  font-weight: 600;
+}
+.coin_d_item_time {
+  margin-top: 18rpx;
+  color: #adaaaa;
+  font-size: 24rpx;
+}
+.coin_d_count {
+  height: 120rpx;
+  line-height: 120rpx;
+  color: #292727;
+  font-size: 34rpx;
+  font-weight: 600;
+}

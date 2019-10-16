@@ -1,0 +1,134 @@
+
+.messagepage {
+    width: 100%;
+    padding-bottom: 100rpx;
+    overflow: hidden;
+}
+
+/* 会话列表 */
+.sessionlist {
+    width: 690rpx;
+    height: 188rpx;
+    margin: 0 auto;
+    padding-top: 40rpx;
+    /* background-color: #ccc; */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.sessionlist_header {
+    width: 120rpx;
+    height: 120rpx;
+    /* background-color: yellow; */
+    position: relative;
+}
+.sessionlist_icon {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f2f2f2;
+}
+.sessionlist_icon>image {
+    width: 120rpx;
+    height: 120rpx;
+}
+.sessionlist_number {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 38rpx;
+    height: 38rpx;
+    background-color: white;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.sessionlist_number>view {
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 50%;
+    background-color: #6267F9;
+    font-size: 24rpx;
+    color: white;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.sessionlist_text {
+    margin-right: 4rpx;
+    width: 526rpx;
+    height: 146rpx;
+    /* background-color: rgb(221, 207, 207); */
+    border-bottom: 2rpx solid #EFEFEF;
+}
+.sessionlist_text_name {
+    padding-top: 12rpx;
+    padding-bottom: 10rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.sessionlist_text_name>view,
+.sessionlist_text_content {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+.sessionlist_text_name1 {
+    width: 260rpx;
+    font-size: 34rpx;
+    color: #000000;
+    font-weight: bold;
+}
+.sessionlist_text_name2 {
+    width: 266rpx;
+    color: #999999;
+    font-size: 30rpx;
+    text-align: right;
+}
+.sessionlist_text_content {
+    font-size: 30rpx;
+    font-weight: 400;
+    color: #666666;
+    line-height: 44rpx;
+}
+.sessionlist_text_content_new {
+    color: rgba(248, 31, 94, 1);
+}
+

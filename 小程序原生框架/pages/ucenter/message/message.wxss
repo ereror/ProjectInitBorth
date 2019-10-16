@@ -1,0 +1,63 @@
+.message-item{
+  display: flex;
+  align-items: center;
+  height: 140rpx;
+  padding:  0 20rpx;
+  background: #fff;
+}
+.message-img-box{
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+.badge{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.time{
+  line-height: 88rpx;
+  color: #888;
+  background: #f9f9f9;
+  margin-left: 20rpx;
+}
+.noData{
+  padding: 50rpx;
+  text-align: center;
+  color: #888;
+}
+.tip-box{
+  background: white;
+  height: 800rpx;
+  width: 600rpx;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tip-box-head{
+  font-weight: bold;
+  font-size: 32rpx;
+  text-align: center;
+  padding: 20rpx 0;
+}
+.tip-box-content{
+  font-size: 30rpx;
+  padding: 0 30rpx;
+}
+.inputbtnid{
+  background-color:transparent;
+  padding:0;
+  margin:0;
+  display:inline;
+  /* position:static; */
+  border:0;
+  padding-left:0;
+  padding-right:0;     
+  border-radius:0;
+  font-size:0rpx;
+  color:transparent;
+  line-height:1.5;
+  text-align:left;
+}

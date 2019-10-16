@@ -1,0 +1,20 @@
+<template name="prizeresult">
+  <ui-mask show="{{show}}" hide-delay="500" bindtap="handleShowMask" custom-style="{{mask}}">
+    <view class="prizeresult_isover flex-center flex-wrap">
+      <image src="{{isoverimg}}" class="prizeresult_isoverimg" wx:if="{{ismodel == 'isover'}}" />
+      <image src="{{lostbg}}" class="prizeresult_islostimg" wx:if="{{ismodel == 'lost'}}" />
+      <view class="prizeresult_win" wx:if="{{ismodel == 'win'}}">
+        <image src="{{winbg}}" class="prizeresult_iswinimgbg" />
+        <image src="{{winimg}}" class="prizeresult_iswinimg" />
+      </view>
+      <view class="prizeresult_msg">
+        <text wx:if="{{ismodel == 'isover'}}">{{nomsg || '活动结束了~'}}</text>
+        <text wx:if="{{ismodel == 'win'}}">{{hasmsg || '恭喜中奖啦~'}}</text>
+        <text wx:if="{{ismodel == 'lost'}}" style="line-height:1.5;">'SORRY,你未中奖\n 下次再接再厉吧~'</text>
+      </view>
+      <view class="prizeresult_btn_box flex-center" wx:if="{{ismodel !== 'lost'}}">
+        <button class="buttonreset prizeresult_btn flex-center">我知道啦</button>
+      </view>
+    </view>
+  </ui-mask>
+</template>

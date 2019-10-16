@@ -1,0 +1,6 @@
+ <scroll-view scroll-y class='marquee' scroll-top="{{animate?scrollTop:0}}" bindscrolltolower='scrolltolower' scroll-with-animation="{{true}}" lower-threshold="{{10}}" style='height:{{height}}px'>
+  <slot></slot>
+</scroll-view> 
+
+
+

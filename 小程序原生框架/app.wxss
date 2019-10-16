@@ -1,0 +1,69 @@
+@import "./styles/common.wxss";
+@import "./styles/icon.wxss";
+@import "./styles/theme.wxss";
+@import "./templates/loading/loading.wxss";
+page {
+  font-size: 28rpx;
+  color: #353535;
+  line-height: 1.5;
+  font-family: -apple-system,"SF UI Text",Roboto,Noto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  background: white;
+}
+view{
+  box-sizing: border-box;
+}
+.fix-iphonex-button {
+    bottom:68rpx!important;
+}
+.fix-iphonex-button::after {
+    content: ' ';
+    position: fixed;
+    bottom: 0!important;
+    height: 68rpx!important;
+    width: 100%;
+    background: #fff;
+}
+.avatar-80{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.icon-40{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.cell-list{
+  background: white;
+  padding-left: 30rpx;
+}
+.cell{
+  height: 90rpx;
+  padding-right: 30rpx !important;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+.mask-body{
+  display: flex;
+  flex-direction: column;
+  z-index: 10001;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+}
+.share-button{
+  background: white;
+  padding: 0;
+  margin: 0;
+}
+.share-button::after{
+  border: none;
+}

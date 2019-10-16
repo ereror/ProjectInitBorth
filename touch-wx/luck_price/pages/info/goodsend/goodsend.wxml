@@ -1,0 +1,51 @@
+<view class="home_box">
+  <image src="{{home_imgsrc}}" class="home_bg" />
+  <view class="apply_steps flex-center">
+    <view class="apply_steps_pro_imgs">
+      <image src="{{winprizeimg_01}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text">申请发货成功</view>
+    </view>
+    <view class="apply_steps_pro_aline"></view>
+    <view class="apply_steps_pro_imgs">
+      <image src="{{winprizeimg_02}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text">商品已发货</view>
+    </view>
+    <view class="{{!prizesend ? 'apply_steps_pro_halfaline' : 'apply_steps_pro_aline'}}"></view>
+    <view class="apply_steps_pro_imgs" wx:if="{{!prizesend}}">
+      <image src="{{lostprizeimg_04}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text apply_steps_pro_imgs_text_no">奖品未送达</view>
+    </view>
+    <view class="apply_steps_pro_imgs" wx:if="{{prizesend}}">
+      <image src="{{winprizeimg_03}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text apply_steps_pro_imgs_text_no">奖品已送达</view>
+    </view>
+  </view>
+  <view class="apply_deatil">
+    <view class="apply_deatil_header">发货明细</view>
+    <view class="apply_deatil_content flex-l">
+      <image class="apply_deatil_content_img" src="{{applytest}}" />
+      <view class="apply_deatil_content_box">
+        <view class="apply_deatil_content_header">奖品：{{name}}</view>
+        <view class="apply_deatil_content_count">数量x1份</view>
+      </view>
+    </view>
+    <view class="apply_deatil_items">
+      <view class="apply_deatil_item flex-between">
+        <view class="apply_deatil_item_name">收货姓名</view>
+        <view class="apply_deatil_item_content">{{addr.name}}</view>
+      </view>
+      <view class="apply_deatil_item flex-between">
+        <view class="apply_deatil_item_name">联系电话</view>
+        <view class="apply_deatil_item_content">{{addr.phone}}</view>
+      </view>
+      <view class="apply_deatil_item flex-between">
+        <view class="apply_deatil_item_name">收货地址</view>
+        <view class="apply_deatil_item_content">{{addr.city}}{{addr.addr}}</view>
+      </view>
+    </view>
+    <view class="order_line_02"></view>
+    <view class="apply_btn_box">
+      <button class="buttonreset apply_btn" bindtap="sendGoods">完成</button>
+    </view>
+  </view>
+</view>

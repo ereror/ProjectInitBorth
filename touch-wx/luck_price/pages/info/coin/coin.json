@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ui-mask": "../../../packages/touchui-wx-components/ui-mask/dist/index"
+  },
+  "navigationBarTitleText": "零钱",
+  "backgroundColor": "#F2f3f5",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

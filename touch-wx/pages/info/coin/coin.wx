@@ -1,0 +1,228 @@
+<template>
+  <view>
+    <import src="../../../template/adline/adline.wxml"/>
+    <view class='coin_box'>
+      <image src='{{coinbg}}' class='coin_bg'/>
+      <view class='coin_msg'>
+        <view class='coin_text_01' bindtap='goUrl' data-url='/pages/info/coindetail/coindetail'>零钱明细></view>
+        <view class='coin_text_02'>零钱金额</view>
+        <view class='coin_text_03'><text class='coin_text_05'>￥</text>{{money || 0}}</view>
+        <view class='coin_text_04'><text>*零钱超过</text><text class='coin_text_06'>10</text><text>块可提现</text>
+        </view>
+      </view>
+      <view class='coin_txopt'>
+        <view class='coin_txopt_title'>提现选择
+          <text class='coin_txopt_title_01'>*提现需收0.3%的手续费</text>
+        </view>
+        <view class='coin_txopt_box flex-between'>
+          <view class='coin_txopt_box_title'>支付宝账户</view>
+          <view class='flex-center' bindtap='showAccountFunc'>
+            <view class="coin_txopt_box_titled {{account ? 'coin_txopt_box_titleA': ''}}">{{account || '点击添加'}}</view>
+            <view class="icon icon-nextstep coin-icon"></view>
+          </view>
+        </view>
+      </view>
+      <view class='coins-items flex-between flex-wrap'>
+        <view class="coins-item {{txshow == 10 ? 'coins-itemA' : ''}} flex-center" data-money='10' bindtap='setMoney'>
+          <image src='{{txshow == 10 ? coin_choose : coin_choose_no}}' class='coins-item-img'/>
+          <view class='coins-item-test'>10元</view>
+        </view>
+        <view class="coins-item {{txshow == 50 ? 'coins-itemA' : ''}} flex-center" data-money='50' bindtap='setMoney'>
+          <image src='{{txshow == 50 ? coin_choose : coin_choose_no}}' class='coins-item-img'/>
+          <view class='coins-item-test'>50元</view>
+        </view>
+        <view class="coins-item {{txshow == 100 ? 'coins-itemA' : ''}} flex-center" data-money='100' bindtap='setMoney'>
+          <image src='{{txshow == 100 ? coin_choose : coin_choose_no}}' class='coins-item-img'/>
+          <view class='coins-item-test'>100元</view>
+        </view>
+      </view>
+      <view class='coin_msg_btn'>
+        <button class="buttonreset coin_btn {{money > 10 && account ? '' : 'graybtn'}}" bindtap='txfunc'>提现</button>
+      </view>
+    </view>
+    <view class='coin_ad' wx:if='{{false}}'>
+    <template is='adline' data="{{ad_img_01: ad_img_01, ad_img_02: ad_img_02}}"></template>
+    <view class='ad'>
+      <ad></ad>
+    </view>
+    </view>
+    <ui-mask wx:if="{{coin_now_show}}" effect='scale-out' custom-style='mask' show='true'>
+      <view class='coin-account-box flex-center'>
+        <view class='coin-account-content flex-wrap' catchtap='setParam'>
+          <view class='coin-account-title'>现金将汇入您的支付宝账号</view>
+          <view class='coin-input'>
+            <input placeholder='支付宝账号' class="coin-inputs {{account.length ? 'hasvalipt' : ''}}"  data-key='{{1}}' bindinput='setParam' value="{{account || ''}}" />
+          </view>
+          <view class='coin-input2'>
+            <input placeholder='姓名（保密内容，防止汇错）' class="coin-inputs {{name.length ? 'hasvalipt' : ''}}" data-key='{{2}}' bindinput='setParam' value="{{name || ''}}" />
+          </view>
+          <view class='coin-btns flex-between'>
+            <button class='buttonreset coin-btn-cancel' catchtap='showAccountFunc'>取 消</button>
+            <button class='buttonreset coin-btn-sure' catchtap='saveUseInfo'>确 认</button>
+          </view>
+        </view>
+      </view>
+    </ui-mask>
+  </view>
+</template>
+<script>
+import util from '../../../static/utils/index'
+import info from '../../../api/index'
+import toast from '../../../static/utils/toast'
+import usermessage from '../../../api/user'
+let app =  getApp()
+export default {
+  config: {
+    navigationBarTitleText: '零钱',
+    backgroundColor: '#F2f3f5',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'    
+  },
+  data: {
+    coinbg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/coinbg.png',
+    ad_img_01: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_01.png',
+    ad_img_02: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_02.png',
+    coin_choose: '/images/coin-iconA.png',
+    coin_choose_no: '/images/coin-iconD.png',
+    money: 0,
+    txshow: 10,
+    coin_now_show: false, // 添加支付账号
+    account: '', // 账号
+    name: '', // 姓名
+    mask: {
+      height: "100%",
+      width: "100%",
+      position: "fixed",
+      "z-index": "477",
+      background: "rgba(0,0,0,.5)"
+    }
+  },
+  onLoad (param) {
+    let money = param.money
+    this.data.money = money / 100
+    this.data.money = Math.floor(this.data.money * 100) / 100;
+    this.setData({
+      money: this.data.money
+    })
+  },
+  onShow () {
+    let userinfo = app.globalData.userInfo
+    this.data.account = userinfo.zfb_account
+    this.data.name = userinfo.zfb_name
+    this.data.money = userinfo.money
+    this.setData({
+      account: this.data.account,
+      name: this.data.name,
+      money: this.data.money / 100
+    })
+  },
+  goUrl (e) {
+    util.goUrl(e)
+  },
+  setParam (e) {
+    let { key } = util.getData(e)
+    let val = e.detail.value
+    if (key === 1) {
+      this.data.account = val
+    } else if (key === 2) {
+      this.data.name = val
+    }
+  },
+  setMoney (e) {
+    let { money } = util.getData(e)
+    this.data.txshow = money
+    this.setData({
+      txshow: this.data.txshow
+    })
+  },
+  showAccountFunc (e) {
+    this.data.coin_now_show = !this.data.coin_now_show
+    this.setData({
+      coin_now_show: this.data.coin_now_show
+    })
+  },
+  saveUseInfo () {
+    // 保存用户信息
+    if (!this.data.account) toast.show('warn', '支付宝账号不能为空', 1000)
+    if (!this.data.name) toast.show('warn', '需要核对的姓名不能为空', 1000)
+    if (!this.data.account || !this.data.name) return
+    let temp = {
+      zfb_name: this.data.name,
+      zfb_account: this.data.account
+    }
+    usermessage.save(temp).then(resd => {
+      if(resd.code === 200) {
+        toast.show('warn', '支付宝账号操作成功！', 1000)
+        this.data.coin_now_show = false
+        this.setData({
+          account: this.data.account,
+          coin_now_show: false,
+          name: this.data.name
+        })
+      } else {
+        toast.show('warn', '支付宝账号操作失败，请稍后重试！', 1000)
+      }
+    })
+  },
+  txfunc (e) {
+    // 提现
+    let that = this
+    if (this.data.money && this.data.money < 10 || this.data.money < this.data.txshow) {
+      toast.show('warn', '提现余额不足!', 1000)
+      return
+    } else {
+      wx.navigateTo({
+        url: '/pages/info/txaction/txaction?money=' + this.data.txshow + '&account=' + this.data.account
+      })
+    }
+  }
+}
+</script>
+
+<style lang="less">
+  @import '../../../template/adline/adline.wxss';
+  .coin_box {width:750rpx;height:375rpx;line-height:1;}
+  .coin_bg {z-index:-1;width:750rpx;height:375rpx;}
+  .coin_text_01 {margin-top:-345rpx;font-size:24rpx;text-align:right;color:white;padding-right:52rpx;}
+  .coin_text_02 {margin-top:23rpx;font-size:30rpx;color:white;text-align:center;}
+  .coin_text_03 {margin-top:26rpx;font-size:80rpx;color:white;text-align:center;}
+  .coin_text_04 {margin-top:84rpx;font-size:22rpx;color:white;text-align:center;}
+  .coin_text_05 {font-size:48rpx;}
+  .coin_text_06 {color:#ffb173;margin:0 .2em;margin-top:-.6em;}
+
+  .coin_txopt {padding:0 24rpx;color:#292727;margin-top:70rpx;}
+  .coin_txopt_title {line-height:1;margin-top:21rpx;font-size:32rpx;vertical-align: baseline;font-weight:600;}
+  
+  .coin_txopt_title_01 {color:#757373;font-size:22rpx;margin-left:14rpx;font-weight:500;}
+  .coin_txopt_box {margin-top:30rpx;padding:0 30rpx;width:702rpx;height:108rpx;background:rgba(255,255,255,1);box-shadow:0rpx 3rpx 16rpx rgba(128,128,128,0.1);border-radius:10rpx;
+    & .coin_txopt_box_title {font-size:28rpx;}
+    & .coin_txopt_box_titled {font-size:28rpx; color:#adaaaa;margin-right:16rpx;}
+    & .coin_txopt_box_titleA {color:#292727;}
+    & .coin-icon {font-size:28rpx;color:#adaaaa;margin-right:-6rpx;}
+    & .coin-icon_A {font-size:28rpx;color:#292727;}
+  }
+  .coins-items {
+    margin-top:30rpx;padding:0 30rpx;
+    & .coins-item {position:relative;width:218rpx;height:140rpx;background:rgba(255,255,255,1);box-shadow:0rpx 3rpx 16rpx rgba(128,128,128,0.1);border-radius:10rpx;font-size:36rpx;font-weight:600;color:#757373;}
+    & .coins-itemA {border:3rpx solid rgba(255,94,151,1);color:#ff5e97;}
+    & .coins-item-img {width:98rpx;height:103rpx;position:absolute;bottom:0;right:0;display:none;}
+    & .coins-item-test {z-index:2;}
+  }
+
+  .coin-account-box {position:fixed;z-index:666;top:0;left:0;bottom:0;right:0;line-height:1;background:rgba(0,0,0,.5);
+    & .coin-account-content {width:642rpx;height:458rpx;background:rgba(255,255,255,1);border-radius:20rpx;padding:0 61rpx;align-items:flex-start !important;text-align:center;}
+    & .coin-account-title {margin-top:45rpx;font-size:32rpx;color:#1f1f1f;font-weight:600;}
+    & .coin-input {margin-top:42rpx;text-align:center;}
+    & .coin-input2 {margin-top:20rpx;text-align:center;}
+    & .coin-inputs {width:520rpx;height:82rpx;background:rgba(242,243,245,1);border-radius:10rpx;font-size:28rpx;color:#adaaaa;border:none;}
+    & .coin-btns {margin-top:40rpx;width:100%;
+      & .coin-btn-cancel {width:240rpx;height:80rpx;line-height:80rpx;border:2rpx solid rgba(230,230,230,1);border-radius:40rpx;font-size:34rpx;color:#adaaaa;}
+      & .coin-btn-sure { width:240rpx;height:80rpx;line-height:80rpx;background:linear-gradient(90deg,rgba(125,242,117,1),rgba(34,201,97,1));border-radius:40rpx;font-size:34rpx;color:white;}
+    }
+  }
+  .hasvalipt {color: #1f1f1f !important;}
+  .coin_btn {width:702rpx;height:88rpx;text-align:center;line-height:88rpx;color:white;font-size:32rpx;font-weight:600;background:linear-gradient(90deg,rgba(34,201,97,1),rgba(126,242,117,1));border-radius:44rpx;margin:24rpx;}
+  .coin_ad {position:fixed;bottom:0;padding-bottom:80rpx;}
+  .graybtn {background:linear-gradient(90deg,rgba(199,195,195,1),rgba(224,224,224,1));}
+  .coin_msg_btn {position:fixed;width:100%;bottom:0;z-index:22;background:white;overflow:hidden;box-shadow:0px -2rpx 16rpx rgba(128,128,128,0.16);}
+</style>

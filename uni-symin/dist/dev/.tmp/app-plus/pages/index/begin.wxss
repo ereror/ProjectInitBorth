@@ -1,0 +1,90 @@
+
+.be-box {
+		padding: 76rpx 30rpx 40rpx 30rpx;
+}
+.be-adimg {
+		margin: 0 auto;
+		width: 630rpx;
+		height: 620rpx;
+}
+.be-icon {
+		margin: 40rpx auto;
+		height: 226rpx;
+		width: 226rpx;
+/* 		background: gray; */
+}
+.be-icon-text {
+		margin: 20rpx auto;
+		text-align: center;
+		font-size: 56rpx;
+		line-height: 56rpx;
+		color: #000000;
+}
+.be-desc {
+		margin-top: 20rpx;
+		text-align: center;
+		height: 52rpx;
+		line-height: 52rpx;
+		font-size: 24rpx;
+}
+.be-sex {
+		position: relative;
+		margin: 100rpx auto 0;
+		width: 522rpx;
+		height: 522rpx;
+}
+.be-sex::before {
+		display: block;
+		content: ' ';
+		position: absolute;
+		z-index: -1;
+		bottom: 0;
+		top: 0rpx;
+		left: 0rpx;
+		width: 100%;
+		height: 100%;
+		border-radius: 50% 50% 60% 40%;
+		background: #e8f1f8;
+}
+.be-sex-title {
+		height: 50rpx;
+		line-height: 50rpx;
+		font-weight: 600;
+		font-size: 36rpx;
+		color: #000000;
+		text-align: center;
+		margin-top: -25rpx;
+}
+.be-sex-img {
+		width: 246rpx;
+		height: 252rpx;
+}
+.be-sex-box {
+		width: 550rpx;
+		margin-top: 70rpx;
+		margin-left: -14rpx;
+}
+.be-sex-result {
+		margin-top: 40rpx;
+}
+.be-btn {
+		margin-top: 104rpx;
+		width: 690rpx;
+		height: 88rpx;
+		border-radius: 30rpx;
+		background: #F81F5E !important;
+		font-size: 32rpx;
+		color: white;
+		letter-spacing: .1em;
+}
+.be-sex-result-d {
+		width: 138rpx;
+		height: 60rpx;
+		padding: 14rpx 20rpx;
+		border-radius: 30rpx;
+		color: white;
+		font-size: 24rpx;
+}
+.ismanColor {background: #6267f9 !important;}
+.isWomanColor {background: #F81F5E !important;}
+

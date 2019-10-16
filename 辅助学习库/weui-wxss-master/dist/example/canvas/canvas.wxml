@@ -1,0 +1,4 @@
+<!--example/canvas/canvas.wxml-->
+<text>example/canvas/canvas.wxml</text>
+
+<canvas canvas-id='canvas'></canvas>

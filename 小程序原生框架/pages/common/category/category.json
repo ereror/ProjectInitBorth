@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "分类",
+  "disableScroll": true,
+  "usingComponents": {
+    "v-tabs": "/components/v-tabs/v-tabs",
+    "v-tab": "/components/v-tab/v-tab"
+  }
+}

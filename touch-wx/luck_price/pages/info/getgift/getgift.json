@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ui-mask": "../../../packages/touchui-wx-components/ui-mask/dist/index"
+  },
+  "navigationBarTitleText": "中奖记录",
+  "backgroundColorTop": "#FF5E97",
+  "backgroundColorBottom": "#F2F3F5"
+}

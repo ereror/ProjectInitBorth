@@ -1,0 +1,8 @@
+<view class='t-box t-flex'>
+	<view class="t-content t-flex {{toastconfig.type ? toastconfig.type === 1 ? 't-small' : 't-big' : toastconfig.icon ? '' : 't-small'}}">
+		<view class='t-flex2'>
+			<image class='t-icon' src="{{toastconfig.icon ? toastconfig.model === 1 ? icons : toastconfig.model === 2 ? iconf : iconw : ''}}" wx:if='{{toastconfig.icon}}'></image>
+			<view class='t-mess'>操作成功</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,5 @@
+<block  wx:for="{{categoryList}}" wx:key="{{index}}">
+    <view class='cell b-1px-b ' bindtap='categoryChange' data-key="categoryid" data-index='{{index}}'>
+      {{item.title}}
+    </view>
+</block>

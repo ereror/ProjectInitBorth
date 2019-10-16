@@ -1,0 +1,21 @@
+.swiper-ad{
+  width: 710rpx;
+  padding: 0 20rpx;
+  border-radius: 15rpx;
+  height: 360rpx;
+  overflow: hidden;
+  background: white;
+}
+.swiper-ad-item{
+  box-sizing:border-box;
+  width: 100%;
+  height: 100%;
+}
+.swiper-ad__img{
+  width: 100%;
+  height: 100%;
+}
+.img-box{
+  width: 100%;
+  height: 100%;
+}

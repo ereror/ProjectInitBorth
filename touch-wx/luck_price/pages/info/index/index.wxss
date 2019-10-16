@@ -1,0 +1,228 @@
+/* 1像素解决方案 */
+/*
+ * 清除1px
+ */
+/*
+ * 清除浮动
+ */
+/*
+ * mobile
+ */
+/*
+ * 1px
+ */
+/*
+ * text
+ */
+/* 垂直居中 */
+/* 水平居中 */
+/* 水平垂直居中 */
+/* 超出部分出省略号 */
+/* 多行文本超出部分省略号 */
+page {
+  background: #f2f3f5;
+  padding-bottom: 50rpx;
+}
+.home_box {
+  margin-top: 0;
+  padding-bottom: 60rpx;
+}
+.home_bg {
+  width: 750rpx;
+  height: 220rpx;
+  position: relative;
+  z-index: -1;
+}
+.home_h_box {
+  height: 102rpx;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  padding: 26rpx 24rpx;
+}
+.home_h_btn {
+  display: flex;
+  width: 220rpx;
+  height: 54rpx;
+  background: linear-gradient(0deg, #ffe5ee, #ffffff);
+  box-shadow: 0px 3px 12px 0px rgba(242, 47, 107, 0.3);
+  border-radius: 27rpx;
+  color: #FF5E97;
+  line-height: 54rpx;
+  padding-left: 30rpx;
+}
+.home_btn_hb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  height: 120rpx;
+  width: 156rpx;
+}
+.home_h_btn_text {
+  margin-left: 8rpx;
+  font-size: 24rpx;
+}
+.listContainer {
+  margin-top: -144rpx;
+  padding: 24rpx;
+}
+.prize_container {
+  position: relative;
+  padding-bottom: 40rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3rpx 8rpx rgba(128, 128, 128, 0.5);
+  margin-bottom: 30rpx;
+  background: white;
+}
+.prize_container .isprizing {
+  position: absolute;
+  top: 452rpx;
+  right: 0rpx;
+  height: 124rpx;
+  width: 183rpx;
+}
+.prize_container .timeconter {
+  position: absolute;
+  top: 40rpx;
+  left: 19rpx;
+  font-size: 26rpx;
+}
+.prize_container .prize_img {
+  height: 420rpx;
+}
+.prize_container .prize_img .prize_imgs {
+  width: 100%;
+  height: 420rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+.prize_container .line_01 {
+  width: 100%;
+  height: 1rpx;
+  background: #e5e5e5;
+  margin: 1rpx;
+}
+.prize_container .prize_msg_01 {
+  margin-top: 3rpx;
+  line-height: 1;
+  padding: 0rpx 30rpx;
+}
+.prize_container .prize_msg_01 .prize_helper {
+  height: 88rpx;
+  margin: 1rpx;
+}
+.prize_container .prize_msg_01 .prize_helper .prize_helper_btn {
+  height: 36rpx;
+  border-radius: 4rpx;
+  color: #ff5d78;
+  font-size: 22rpx;
+  border: 1rpx solid #FF5D78;
+  margin: 1rpx;
+  min-width: 100px;
+}
+.prize_container .prize_msg_01 .prize_helper .prize_helper_btn .prize_helper_text {
+  line-height: 1;
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+}
+.prize_container .prize_msg_01 .prize_helper .prize_helper_btn_2n {
+  height: 34rpx;
+}
+.prize_container .prize_msg_01 .prize_list {
+  margin-bottom: 18rpx;
+  margin-top: -7rpx;
+  color: #292727;
+  text-align: left;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.prize_container .prize_msg_01 .ispticon {
+  height: 36rpx;
+  width: 36rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  background: #FF5E97;
+  color: white;
+  border-radius: 4rpx;
+  display: inline-block;
+  line-height: 1.2;
+  text-align: center;
+  margin-left: .5em;
+}
+.prize_container .prize_msg_02 {
+  margin-top: 2rpx;
+  color: #adaaaa;
+  font-size: 24rpx;
+  padding: 0rpx 30rpx;
+}
+.prize_container .line_y_01 {
+  width: 2rpx;
+  height: 24rpx;
+  background: #adaaaa;
+  margin: 0 .6em;
+}
+.item_line_height {
+  line-height: 1.2;
+  z-index: 2;
+}
+.item_line_height_text {
+  vertical-align: middle;
+}
+.icon-22 {
+  font-size: 22rpx;
+  margin: 7rpx;
+}
+.icon-46 {
+  font-size: 52rpx;
+  line-height: 1;
+}
+.ad_box {
+  margin-top: -30rpx;
+  padding: 0 24rpx;
+}
+.ad_box .adbox_line {
+  display: inline-block;
+  text-align: center;
+  width: 85rpx;
+  color: #ADAAAA;
+  font-size: 22rpx;
+}
+.ad_box .ademptyImg {
+  width: 702rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  margin-top: 10rpx;
+  box-shadow: 0px 3rpx 8rpx rgba(128, 128, 128, 0.5);
+}
+.ad_box .adbox_img {
+  display: inline-block;
+  width: 309rpx;
+  height: 14rpx;
+}
+.tabbar-box-place {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  z-index: 4;
+  width: 750rpx;
+  height: 98rpx;
+  background: #ffffff;
+  color: '#808080';
+  box-shadow: 0px -2rpx 16rpx 0px rgba(128, 128, 128, 0.16);
+}
+.tabbar-box {
+  color: #757373;
+}
+.tabbar-box-active {
+  color: #FF5E97;
+}
+.tabbar-box-place-text {
+  width: 100%;
+  text-align: center;
+  font-size: 20rpx;
+}
+.line-ones {
+  height: 100%;
+  width: 1rpx;
+  background: #FF5d78;
+}

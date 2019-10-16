@@ -1,0 +1,68 @@
+.avatar-box{
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+}
+.avatar-100{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;	
+}
+.info-sex{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.detail-header {
+	padding:40rpx 20rpx;
+	display:flex;
+	align-items:center;
+	background:white;
+	border-top:1px solid #ebebeb;
+	justify-content:space-between;
+}
+
+.detail-headericonbox, .det-header {
+	display:flex;
+}
+
+.det-header {padding: 20rpx 0;}
+.unamebox {padding: 11rpx 0 8rpx 10rpx;}
+.uname {font-size:30rpx;color:#363636;font-weight:600;}
+.unamelocation {margin-top:6rpx;color:#b2b2b2;font-size:22rpx;}
+.unamelocationimg {height:16rpx;width:12rpx;vertical-align:middle;margin-right:10rpx;}
+.unamelocationdistance {margin-left:40rpx;}
+
+.detail-tag {display:flex;justify-content:flex-end;}
+.detail-tag-img {width:142rpx;height:62rpx;}
+
+.detail-content {margin-top:20rpx;padding:20rpx;background:white;padding-bottom:100rpx;}
+.detail-content-line {width:6rpx;height:32rpx;color:#ff5d5a;border-radius:3px;background:#ff5d5a;margin-right:12rpx;border:2px solid #ff5d5a;}
+.detail-content-title {font-size:34rpx;color:#1e1e1e;line-height:34rpx;}
+.det-content {font-size:28rpx;color:#353535;margin-top:20rpx;line-height:1.5;}
+.detail-content-video {position:relative;width:100%;overflow:hidden;margin-top:10rpx;margin-bottom:10rpx;}
+.detail-content-video-img {width:100%;border-radius:8rpx;}
+.detail-content-video-img2 {width:100%;border-radius:8rpx;margin-top:10rpx;margin-bottom:10rpx;}
+.detail-content-video-imgbg {height:100%;width:100%;position:absolute;z-index:2;display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,.4);top:0;border-radius:8rpx;}
+
+.detail-imgorigan {
+	width:100rpx;height:100rpx;
+}
+
+.detail-price {display:flex;align-items:flex-end;}
+.detail-price1 {font-size:28rpx;color:#363636;}
+.detail-price2 {font-size:28rpx;margin-left:24rpx;color:#ff6454;}
+.detail-price3 {font-size:38rpx;color:#ff6454;line-height:1.2;}
+.detail-price4 {font-size:24rpx;color:#b3b3b3;margin-left:12rpx;}
+.detail-price5 {font-size:20rpx;color:#b3b3b3;}
+
+.detail-btn-boxs {position:fixed;bottom:0;z-index:22;height:98rpx;padding:10rpx;display:flex;justify-content:center;align-items:center;background:white;width:100%;box-shadow:0 -1rpx 18rpx -2rpx #828282;}
+.detail-btn-share {width:200rpx;text-align:center;background:none;border:none;position:static;
+}
+.detail-btn-shareimg {height:36rpx;width:36rpx;margin:0 auto;display:block;}
+.detail-btn-sharebtn {font-size:22rpx;color:#ff6454;line-height:1.5;}
+
+.detail-btn-sharemess {width:500rpx;height:72rpx;line-height:72rpx;text-align:center;font-size:32rpx;color:#ffffff;background:#ff6454;}

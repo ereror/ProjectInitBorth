@@ -1,0 +1,48 @@
+.cho {
+	width: 690rpx;
+	margin: 0 auto;
+}
+.cho-title {
+	height:40rpx;
+	line-height: 40rpx;
+	font-size: 28rpx;
+	color: #000000;
+	margin-bottom: 10rpx;
+}
+.cho-box {
+	width: 690rpx;
+	height: 88rpx;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 30rpx;
+	overflow: hidden;
+}
+
+.cho-item {
+	flex: 1;
+	flex-grow: 1;
+	heiht: 88rpx;
+	line-height: 88rpx;
+	background: #efefef;
+	text-align: center;
+	transition: all .5s;
+}
+
+.cho-text {
+	font-size: 32rpx;
+}
+
+.cho-act {
+	background: #f81f5e;
+	color: white;
+}
+
+.cho-dct {
+	background: #efefef;
+	color: #4A4A4A;
+}
+
+.cho-borderl {
+	border-left: 2px solid #e9e9e9; 
+}
+

@@ -1,0 +1,111 @@
+<!-- 顶部动态导航 -->
+<view class="cu-custom" style="height:{{barconfig.CustomBar}}px;">
+    <view style="width:100%;height:{{barconfig.StatusBar}}px;position: fixed;top:0;left:0;background-color: #f81f5e;"></view>
+    <view class="cu-bar, fixed, {{barconfig.bgset}}" style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;top:{{barconfig.StatusBar}}px;">
+        <navigator class='action' delta="1" open-type="navigateBack" hover-class="none" wx:if='{{barconfig.hiddenTitle === 1}}' style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;">
+            <view style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;"></view>
+            <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAiCAYAAABbXymAAAACPklEQVRIS63W+4tNYRTG8e/jfsv/IyXFuE1GkymX3KYmkSZFyH0GIZNLIz+IEiGU5JqSlERI8n+gcb9kPHpP+0z77Hn3OXufY/942uvT2utda71HtPjYngHsAZZL+lLl1IpreybwAJgOvAAWSvoUzKZh27OA+8C0VHKvgPmShpqCbc8G7gFTM1/8Dpgr6X1p2PYc4A4wJYO+BdokfShdCtttwG1gcgZ9A8yT9LH04dleANwCJmXQ1wk6lP69UClstwM3gYkZ9GVyWJVOKAXb7gBuRNDnSXt9jrVs3YxtdwLXgAmZ4GfAovRAFM7YdhdwFRifCXoKtEv6Wm+4ohnbXgZcBsZlgp8AiyV9azSxo2DbK4GLEfQx0CHpeyN0VB/bXg1cAMZmgh8BSyT9KILWwLa7gXMR9CHQKelnUXQEtt0DnAXGZILDklkq6VcZtALb3gCciaB3gS5Jv8uiVXgQ6I0E90nqbwZNl+IUsPl/4iPtZvs4sCWCH5S0r2zmNX1s+xiwLYIckbSrDB4bkMPAzggyIGl7UTxvpA8AeyPICUlbi+C52832fqAvggxKih10zauN1uZu4FAED33fK8l52Te8QWzvAI5GgDCpG/PwhnAAbYe6DkT+h5wH1sfwQnCCh7qejOBhG/ZI+pv+qsJwgm8CTkfwS0B3Gi8FJ3je0grX2BpJwzX7uEhvVt+ps2avA6sk/SmdcQpfB4TDS9824UYP8HDTcFKW9FV2BVjbUinSZbO9IvzFSjqjUt/w/AOTR8MjVmu2TwAAAABJRU5ErkJggg==" class="actionimage2" />
+        </navigator>
+        <view class='cu-custometitle {{barconfig.tset}}' bindtap="itransformtap">
+            {{barconfig.title}}
+        </view>
+        <view class="chatseting" bindtap="itransformtap" wx:if="{{youchat.account!='service'&&youchat.account!='notice'}}">
+            <view>
+                <view class="{{itransform?'itransform':''}}"></view>
+            </view>
+        </view>
+        <view class="chatseting_itransform" style="display:{{itransform?'flex;':'none;'}}" bindtap="report">
+            <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAAQCAYAAABHjGx4AAAE30lEQVRIS5WXe+zXYxTHX2/MECvMjMVcchmmMZdSiuYyM1Ji0zSXuXWhtTY1Q2JmzFZzqUhsFjWiXDa2TJQiFrMwhJCtxEZYI5dj78+e57fjs++vn84/3+/nOec8z3Nu73MeUSgiBgKP1G/gJeANYApwKrAVmAvcAfQu6xcCBwO/Ac8Bt0j6Ke3R/I2IfYBJwHDgUC8B7wEzJL2c5Yusz630NXA3cDswCNgZWA5MlPRF2b8vcBNwPnAI8DuwCrhf0puWUTJ0IjAzHfAlcFiWKbwFwFDgwLZBwIfAAEk+qBp5EmBj9u8g76Vpku5M8mcAy5Ls98DewK4t/eWShkbEecDTQJ8O+/8DTJY0Mxs6D7i6m8vsyPI4SbOLpw8APtiOkY0YMFDS6qJzI/BADwc6kmcC3t/R3W078n83+ydPvgucvCMWdSO7SNIl5dJPAmP+x55zJV1XdFwe12xH53NgGOBIfwwcmWS3lLX+QK+0/lRjaETsBPwK7JGYrhPXlTda2Erhn0v01wHPAkcnvaWSzokIp/Y3wC6J5/p26t8GXJ7WV0saUO7iyJ6SeBuBsYBr/1bgCkkbI+JK4Ikk9xkwRNLmiHC5OHA1kBuqoUcBnyalv4C+kuw1O2KDvxN/kvO+8O4BpibeQkmXRYQvNyutr5A0pOj4twGJQmslHV8c/ksrGhe0Aavs8XpJ37rH2ZJeSxm6KZXMtmroqBKZKrdKkhHORlrG0c6p0E+Swcp8I3WTdoUacImIRcDFaX2CpIeLzrnAq20nRMQRgFOzklNxX0musy6KCAPPDylbDDozAP9WmgDsXj62VEONek6nSrMkjS+XOhxoYLyQPd5HkkHEhhrG3ZoqjZC0JCLWF6iv6ydKMjBZx3s/lHTmSxoTESNLm6qsrixoGWrUzy0oszv9X1cNXQxclCRukNT01IgYATyfeCslDS4869vreyW+HbMZsENqjbgUeknaVvTaWTBV0r0R4Rqe1snhLUOvB+b0ZF3iv1gNrT2z8k6T9Ha5lA/2BSrNljSu8NrRdop7mDgG+CjprJfkntxQRKwFjkv8pr4iwg61Yyt1ObxlqDHB2FDpmTKAdGf7GkWEo2EUNfKanOe9JXna8aU88TilKo2V1HizQ7Sb2o4I1/dbSecTSccWHf/a0BptT1z7SdoaEUbxfkmvy+EtQ9uRHy8pA5/vZhucbQ3ZUNeX66zSV5IcqYY6HD5IUiMfER7LpifdOZLGRsQJwPtp3WBiZ31XxkzDf6XFkkZGhMHO6V4dbgzwZZ0l/6GIMNA8mBZ91lkePyPCLdJt0endv46kNrSd70skNenT0+EdkLWZiorejz1MLPWejeMiwvP0O905vBVRO8qzciZnxrfAQalDLJA0ukbU6NcgbKHpkpqajAg38aZWC7Wj7VbgllBpsKSVRfdx4Kp2NFrfeSK6Fng08V+QlAGyHVXfqxkyeqBhkpY5op4VT0/CoyS5Lm2o+2N+0fQUbbcdp199sXjvpjY7kIFntKQ/irxT0SlZ6S5JLo2OFBEuLw8Nfj11oj+B+9w23Qpt6IqClFV4uCT3QF/25tao9pikZuCOCCOrR8NKmzz65RMjYs/ynLu09FSD3hpgXnVmlY8Iz7hO30pTJL3SnaHlDkb4yQWpnVl2mp91S91+6jPOsv8C+tgPh1fxdVEAAAAASUVORK5CYII="></image>
+        </view>
+    </view>
+</view>
+<!-- 对话列表 -->
+<scroll-view scroll-y class='chatdetails' scroll-top="{{toviewheight}}" scroll-into-view='{{toView}}' scroll-with-animation="{{true}}" bindscrolltoupper="scrollbindscrolltoupper" bindscrolltolower="scrollbindscrolltolower" bindscroll="scrollbindscroll" style="height:{{toHeight}};background-size:{{backgroundsiez}};">
+    <view id="page">
+        <!-- <view wx:for="{{1000}}" wx:key="index">{{item}}</view> -->
+        <!-- {{lineheightinput}} -->
+        <view wx:for="{{chatmesagenode}}" wx:key="{{index}}" id='msg-{{index}}'>
+            <chatdetails message="{{item}}" me="{{userInfo}}" you="{{youchat}}"></chatdetails>
+        </view>
+        <view class="sendmessagedz"></view>
+         <!-- wx:if="{{youchat.account!='notice'}}" -->
+    </view>
+</scroll-view>
+<!-- 底部用户操作 -->
+<view class="sendmessage" style="bottom:{{inputBottom}};" wx:if="{{youchat.account!='notice'}}">
+    <!-- 发送文字消息 -->
+    <view class="sendmessage_text">
+        <view class="emige">
+            <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAEHUlEQVRYR9WZXYhUVRzAf/+ZVclVMBMpKiQUP6DyIUXtofShUO9sfpQfRSD6ICkuaU8KBtI+rE9GrKhPRigWtUk1M/ugDyv7UIEW+AGm6IOiiLamoJY7rvOXe/bONHP3nHtn7E5NB+Zlzvn/z++ej//XER6j6Q5SzGY2sADlFYRpKM8AYwN1dxCuoZxD+AXo5TjHZQfFeqeTegQ0y7PAJoT3gefqkQWuoBwEdksbV2uVrQlQD/MUI+kA1gGjalXuGDcA7KfAx7Kcm3G6YgE1x2qgC5gQp6zO/n6gXTJ8FSXnBNReWviTLpQP6py4vuHCPkbTLgsYtAlaAfVHnuAPvgG8+mZ77NF5xrNCXuWvsIZhgGbl7vHdvwhXYsrTytLwSg4HzLO34dvqWmhhn3hsqOyuAgwuxJcO+duIOdDngYko7wBTatzUCwjdwA1gKmou3jiH7LuVF6cMGJiS3xy39ScKLJXlZgLTgqPwGbAxBnIPrXxYuXV6mImMNMdonkW2nwLTSybob8Ace6B6eQPh2xSYVglXhlSEPMeA1xyQfXjMF0HD/QHkOcdK7pXM0IcbQOMhhItWI2w5F5WTaY4VwNcOwJWSMdbA2tR93gdQJvsepwTYibDVqkX4SDw+dU7yPS+T5qS1/yEzZQmnIgC3oOyy07NT2tgmxvHP4pLTtwo7xWNbxCRvoBxxfNyb4nE0QrYTdSyM77tPMEk0zxyUnyMO+gVameGy9JplP8Jaxyp8Lm3Gfw9rwSU7G2kJhLk+4FaUztib6LEpfNiD8+ebnpRD3g+vVofPoQ5drt2xFkD8Lc7SjfB2DKDf3UeKLh5wnrSxg+8hrImAK6ksonyBcIiH3GAEUynSHnHzK1G6RXOcBl6sAfC/GHLGB/y9AaFUUh/T7wPeTyAITQoorGfgfwFo32JhFS3kG7U0VXoHWYiaYCLc+n0zcwrlJUtnpJtKElx7WESRHovOM24zI2wWDz9aaXjTnMkSD1gm6nYbasXpBZIm1iwdCNuH6TWG2u3qLkuGSUnDWN1ejl5gvgVwbnSwILwuHn2NhNQ8TwOXUUaE5hkKFvw/NYsr3OqRTGMzO83TgVq2V4NwKwB0B6wplsliE54n3vQHXiBlXG1rSHl1wGog3SH/LdLMk0X44XliTbOMJsUx1BShwq065DeAQ/UXV9J0nRYWy0J+TYJQczwJZldsuYw9aQpW0U8HXWlnAfiE8eyyVQBqBdccHmJy7+cdMva0szQ4IpEpDbmOX0+Bb8Uz5ye2aZYJpHkLZT3KHKdAXOJuVrG+0sc1MEnRWcSU0u5QZJAUY1Hzm4yYWHM6kI75ktpKHwaymYtH5a1u5vJb5VY0bQGzCrKZS8BVoM1aRA/fvqpniCKzys8QwhgzVrlbfoZIceKfPEM8AlsIf8IEfN6yAAAAAElFTkSuQmCC" mode="" bindtap="emojishowis"></image>
+        </view>
+        <view class="inputmsg">
+            <view class="inputmsg_textarea">
+                <!-- focusinput -->
+                <!-- <textarea 
+                bindinput='sendmsgs' 
+                bindfocus='focustextarea' 
+                bindblur='blurtextarea' 
+                fixed="{{true}}" 
+                value="{{sendmsg}}" 
+                placeholder="请输入消息" 
+                adjust-position='{{false}}' 
+                focus='{{true}}' 
+                auto-focus="{{true}}" 
+                show-confirm-bar="{{false}}"
+                wx:if="{{sendmsg != ''}}" 
+                placeholder-class="placeholder_input" 
+                bindkeyboardheightchange="bindkeyboardheightchange" 
+                bindlinechange="bindlinechangefun" 
+                class="{{lineheightinput<=1?'owelineinput':'noowelineinput'}}" 
+                bindblur="bindblurinpuye"></textarea> -->
+                <input placeholder="请输入消息" show-confirm-bar="{{false}}" placeholder-class="placeholder_input" bindinput='sendmsgs' bindfocus='focustextarea' bindblur='blurtextarea' value="{{sendmsg}}" adjust-position='{{false}}' bindblur="bindblurinpuye" />
+                 <!-- wx:if="{{sendmsg == ''}}" -->
+                <!-- auto-focus="{{false}}" 键盘弹起时，是否自动上推页面	 -->
+            </view>
+        </view>
+        <view class="go {{sendmsg == '' ? 'gono' : 'goyes'}}" bindtap="send">
+            <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAEkUlEQVRYR82YTWgcZRjH//93djaZTVQsHvxA60l68eDBiwiFXhQRPOWitLSN7i6RggcRBA8BiSHZhKhpks1kN9mmVaR68KOgKAVBRRD8PKgV1Fo/U7FVSdKdd2beR2ZDNtnUTWY3u2nfy8zsPP//85tn9v2Ylwcz5QcsWnuNnRiZG+efuMoaD6a9PYr4BoIloUwF7Mgdz/P81cLJnh6xrtmlFwF0rkBxCYK8MjpXKHQvXGlQRgCHM95nAO7aALMMMK867eHCC7xioKuAxwAcqFOtZZLTodLDpcnuP3a6ohXA3oz/pMDkNksuwCWC0wnxh1236/edAq0AHsr691HMO3GSRqAKdC2xh1yXbQetAB7Iyi0J0b/EAVyL4SUQM0jYQ7NH+Vtj2vjRFcCVjqL/AmRXfGk1sgxwJmAwNJ9P/dqEflPJGmBWvw+Rvc0nYJlEgUEwVCikGnwb9bOuq2D5KMDHmwesKj2ARRXag4UCtw1aBezN6oyI5FsAuGrhkZw1yh6cm+TPzfpWAQ/1+fcwNB81a7TJS/IAzCUkGHTd1LlG/auAR47ItYue/ptE9bdGzTaNF2gqzsEKB4sTzk9xvWtgDme9sxDsjituMk4DLBmGg6W8c3Yrjw2A/lsQ8+BWotbcpyZwjGE4WCg4P9bzrAHszfjPCczTrQGI7eIDnFe2PVA4ystAawHT3sNCvBTburWBPsnjQntgdoo/rFrXAO7fL10d3f4eE9IBwpSQjiIcI3QU4ETXlOhoHIKOCBwSlSMgKYAOKA4q13BAOJDIazVOEls/E30AJxJiD7guv29Pj61DkU6L3dEB55KCg6VyKrSUYyk6UUEqhVB0lAkdQzpikGTgn6oBjAx8FeyzAC8Moa2EeEEo2hbxTLLDs/xlHYYpT18Pz/kX2nUrT9vWVgP4WJ++Owzlk7gZRSAko4HYg0CDEp1rCKJZxBOIJugJ4YlE5/AEqByBSGc0oDxCohgNAw21cm1MFMevN/Ticp+AE3EB2xUn5KcQyS1eSL5WOw5mvNlo/dquxFv4CiDvEdZwcdo+/b+9+HBGfwXInTsLSB/ESRNipDST/GJj7moFoyHGTul/AFg7A8hFgSmqQMaKxfpz89p6ML18L2h90H44LghlvJPJyakpXtwq3zpA/QQoY1sJtnH/OyUcDbQ9XyqxHNdn3YraOwHgkbjC+HH8GJTcbTcm3+jvp4mvW4lcV0HvDIg7GjWoE28gOAWo3Kxrf7gdzwpgOi3XBfQvAKK2YxYN2NGEHxp7tOTy2216rVXw0ay/z4ipjj2NGhO8aCB5sZIvlibZ0u2Rla2PrP+UiBlqHAznDPm8o+yZyUlGO2Qtb6uAJ0VMTwPuXwowsvum5Cv9/Qwa0DUcurq7Fa1kb99cTQFxGobRH//dhjM1KWA6LTcE9M8DUm9tGFXoVZK5Yj75eZN5mpaxN+PfLzBvX+4QTUUoqoQ9Vpxg7M/EpknqCNmb8Z4R4Nm1+1wQkfFOK95U1GqgjX5RBV8XmIcAnAE52mXb8+PjlUXoVdHYm/VPwpiXb705+WYzU1G7n+I/0SrktrMngKcAAAAASUVORK5CYII=" mode=""></image>
+        </view>
+    </view>
+    <!-- 发送表情 -->
+    <view class="sendmessage_emoji" style="display:{{emojishow?'block':'none'}};">
+        <view class="sendmessage_emoji_con">
+            <view class="sendmessage_emoji_con_title">
+                <view>SMILEYS & PEOPLE</view>
+            </view>
+            <view class="sendmessage_emoji_con_con1" wx:for-item="emojidataitem" wx:for-index="emojidataindex" wx:for="{{emojilist}}" wx:key="{{emojidataindex}}" style="display:{{emojitypeindex==emojidataindex?'block':'none'}};">
+                <swiper indicator-dots='{{false}}' class='sendmessage_emoji_con_con1_swiper'>
+                    <swiper-item class="sendmessage_emoji_con_con1_swiper_item" wx:for-item="emojidataitem1" wx:for-index="emojidataindex1" wx:for="{{emojidataitem}}" wx:key="{{emojidataindex1}}">
+                        <view class='sendmessage_emoji_con_con1_swiper_item_con' wx:for-item="emojidataitem2" wx:for-index="emojidataindex2" wx:for="{{emojidataitem1}}" wx:key="{{emojidataindex2}}" data-emoji='{{emojidataitem2.text}}' bindtap="addinputemoji">
+                            <image src="{{emojidataitem2.imageurl}}"></image>
+                        </view>
+                        <!-- 删除 -->
+                        <view class='sendmessage_emoji_con_con1_swiper_item_con' data-emoji='{{emojidelete.text}}' bindtap="addinputemoji">
+                            <image src="{{emojidelete.imageurl}}"></image>
+                        </view>
+                        <!-- class='{{currentAlbum == "emoji" ? "emoji-content-img-emoji" : "emoji-content-img-other"}}'这里只有一种表情所以添加多种记得动态改变宽高 -->
+                    </swiper-item>
+                </swiper>
+            </view>
+            <view class="sendmessage_emoji_con_con_this">
+                <view class="sendmessage_emoji_con_con_this_item" style="background-color:{{emojitypeindex==0?'rgba(211,217,224,1)':''}};" bindtap="emojitypeclick" data-index="0">
+                    <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAEHUlEQVRYR9WZXYhUVRzAf/+ZVclVMBMpKiQUP6DyIUXtofShUO9sfpQfRSD6ICkuaU8KBtI+rE9GrKhPRigWtUk1M/ugDyv7UIEW+AGm6IOiiLamoJY7rvOXe/bONHP3nHtn7E5NB+Zlzvn/z++ej//XER6j6Q5SzGY2sADlFYRpKM8AYwN1dxCuoZxD+AXo5TjHZQfFeqeTegQ0y7PAJoT3gefqkQWuoBwEdksbV2uVrQlQD/MUI+kA1gGjalXuGDcA7KfAx7Kcm3G6YgE1x2qgC5gQp6zO/n6gXTJ8FSXnBNReWviTLpQP6py4vuHCPkbTLgsYtAlaAfVHnuAPvgG8+mZ77NF5xrNCXuWvsIZhgGbl7vHdvwhXYsrTytLwSg4HzLO34dvqWmhhn3hsqOyuAgwuxJcO+duIOdDngYko7wBTatzUCwjdwA1gKmou3jiH7LuVF6cMGJiS3xy39ScKLJXlZgLTgqPwGbAxBnIPrXxYuXV6mImMNMdonkW2nwLTSybob8Ace6B6eQPh2xSYVglXhlSEPMeA1xyQfXjMF0HD/QHkOcdK7pXM0IcbQOMhhItWI2w5F5WTaY4VwNcOwJWSMdbA2tR93gdQJvsepwTYibDVqkX4SDw+dU7yPS+T5qS1/yEzZQmnIgC3oOyy07NT2tgmxvHP4pLTtwo7xWNbxCRvoBxxfNyb4nE0QrYTdSyM77tPMEk0zxyUnyMO+gVameGy9JplP8Jaxyp8Lm3Gfw9rwSU7G2kJhLk+4FaUztib6LEpfNiD8+ebnpRD3g+vVofPoQ5drt2xFkD8Lc7SjfB2DKDf3UeKLh5wnrSxg+8hrImAK6ksonyBcIiH3GAEUynSHnHzK1G6RXOcBl6sAfC/GHLGB/y9AaFUUh/T7wPeTyAITQoorGfgfwFo32JhFS3kG7U0VXoHWYiaYCLc+n0zcwrlJUtnpJtKElx7WESRHovOM24zI2wWDz9aaXjTnMkSD1gm6nYbasXpBZIm1iwdCNuH6TWG2u3qLkuGSUnDWN1ejl5gvgVwbnSwILwuHn2NhNQ8TwOXUUaE5hkKFvw/NYsr3OqRTGMzO83TgVq2V4NwKwB0B6wplsliE54n3vQHXiBlXG1rSHl1wGog3SH/LdLMk0X44XliTbOMJsUx1BShwq065DeAQ/UXV9J0nRYWy0J+TYJQczwJZldsuYw9aQpW0U8HXWlnAfiE8eyyVQBqBdccHmJy7+cdMva0szQ4IpEpDbmOX0+Bb8Uz5ye2aZYJpHkLZT3KHKdAXOJuVrG+0sc1MEnRWcSU0u5QZJAUY1Hzm4yYWHM6kI75ktpKHwaymYtH5a1u5vJb5VY0bQGzCrKZS8BVoM1aRA/fvqpniCKzys8QwhgzVrlbfoZIceKfPEM8AlsIf8IEfN6yAAAAAElFTkSuQmCC"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 举报+拉黑弹窗 -->
+<view class="reportposhow" class="reportposhow" wx:if="{{reportposhow}}">
+    <view class="reportposhow_content">
+        <view class="reportposhow_content_text" bindtap="goDetail" data-url='/pages/tool/adviceback' data-uid='{{youchat.uid}}'>
+            举报
+        </view>
+        <view class="reportposhow_content_text" bindtap="pullgoos">{{blacklist?'取消拉黑':'拉黑'}}</view>
+        <view class="reportposhow_content_button">
+            <view bindtap="report">取消</view>
+        </view>
+    </view>
+</view>
+<!-- 发消息提醒是否解黑 -->
+<dialogbox bindsurefunc='surefunc' bindcancelfunc='cancelfunc' items='{{items}}' boxconfig='{{boxconfig}}' wx:if='{{showChoosebox}}'></dialogbox>

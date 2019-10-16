@@ -1,0 +1,72 @@
+.ui-calendar {
+  background-color: white;
+}
+.ui-calendar .calendar-title {
+  height: 50px;
+}
+.ui-calendar .calendar-title .calendar-weekday {
+  height: 50px;
+  width: 14.2857%;
+  float: left;
+  line-height: 50px;
+  text-align: center;
+}
+.ui-calendar .calendar-wrap {
+  height: 300px;
+}
+.ui-calendar .calendar-month-body .calendar-month-title {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap {
+  height: 50px;
+  width: 14.2857%;
+  float: left;
+  text-align: center;
+  horizontal-align: middle;
+  line-height: 50px;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .calendar-day-cell {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  margin: 9px auto;
+  border-radius: 16px;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .not-this-month {
+  color: gray;
+  /* display: none; */
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-this-month {
+  color: black;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-holiday {
+  color: red;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-today {
+  background-color: #808080;
+  color: white;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-selected {
+  background-color: #3399ff;
+  color: white;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-selected-left {
+  background-color: #3399ff;
+  color: white;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-selected-right {
+  background-color: red;
+  color: white;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-selected-in-range {
+  background-color: pink;
+  color: white;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-past-days {
+  color: gray;
+}
+.ui-calendar .calendar-month-body .calendar-day-wrap .is-fore-days {
+  color: gray;
+}

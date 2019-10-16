@@ -1,0 +1,4 @@
+<view class="go_index_box">
+  <image src="{{goindex}}" class="go_index_bg" />
+  <button class="buttonreset gochatme_submit" bindtap="goUrl" data-url="/pages/info/contact/contact">联系我们</button>
+</view>

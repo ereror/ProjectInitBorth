@@ -1,0 +1,85 @@
+.d-flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.d-flexb {
+	justify-content: space-between;
+}	
+
+.d-modelbox {
+	position: fixed;
+	z-index: 999;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	overflow: hidden;
+	/* filter:blur(8px); */
+	background:rgba(0,0,0, .1);
+}
+
+.d-model {
+	width: 540rpx;
+	min-height: 310rpx;
+	border-radius: 30rpx;
+	background: rgba(255,255,255,1);
+	padding: 54rpx 40rpx 40rpx;
+	box-shadow: 0 0 40rpx gray;
+}
+.d-title {
+	text-align: center;
+	height:50rpx;
+	font-size:36rpx;
+	font-weight: 600;
+}
+.d-content {
+	text-align:center;
+	line-height: 2;
+	font-size: 28rpx;
+}
+
+.d-btn {
+	color: white;
+}
+
+.d-btn-cancel, .d-btn-sure {
+	width:200rpx;
+	height:88rpx;
+	border-radius:44rpx;
+	font-size: 32rpx;
+	color: white;
+}
+
+
+.d-btn-sureall {
+	width:420rpx;
+	height:88rpx;
+	border-radius:44rpx;
+	font-size: 32rpx;
+	color: white;
+	margin: 0 auto; 
+}
+.d-color-b {
+	background: #6267F9;
+}
+
+.d-color-r {
+	background:rgba(248,31,94,1);
+}
+
+.d-model-01 {
+	display: none;
+}
+
+.d-model-02 {
+	
+}
+
+.choiceitem {
+	line-height:100rpx;
+	font-size:30rpx;
+	text-align:center;
+}

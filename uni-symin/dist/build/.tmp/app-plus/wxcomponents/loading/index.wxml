@@ -1,0 +1,16 @@
+<block>
+	<view>
+		<view  wx:if="{{loadConf.loading}}" class='loading-box'>
+		   <view class='weui-loading'></view>
+		   <text>正在加载</text>
+		</view>
+		<view wx:else class='loading-box'>
+			 <view wx:if="{{loadConf.len && (loadConf.current_page >= loadConf.last_page) && loadConf.current_page >= 2}}">
+				 我是有底线的~
+			 </view>
+			 <view wx:if="{{loadConf.len <= 0}}" class="nodata">
+				 <view>暂无数据</view>
+			 </view>
+		</view>
+	</view>
+</block>

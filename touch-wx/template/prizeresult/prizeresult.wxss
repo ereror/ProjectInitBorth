@@ -1,0 +1,79 @@
+.prizeresult_isover {
+  position: fixed;
+  z-index: 499;
+  top: 379rpx;
+  left: 168rpx;
+  right: 168rpx;
+}
+
+.prizeresult_isoverimg {
+  width: 414rpx;
+  height: 379rpx;
+}
+
+.prizeresult_islostimg {
+  width: 415rpx;
+  height: 295rpx;
+}
+
+.prizeresult_iswinimg {
+  width: 276rpx;
+  height: 371rpx;
+}
+
+.prizeresult_win {
+  position: relative;
+}
+
+.prizeresult_iswinimgbg {
+  width: 750rpx;
+  height: 786rpx;
+  position: absolute;
+  z-index: -1;
+  top: -238rpx;
+  left: -238rpx;
+  animation: winanimate 3s infinite;
+  animation-timing-function: linear;
+}
+
+.prizeresult_msg {
+  line-height: 1;
+  margin: 49rpx 0 71rpx 0;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  font-size: 36rpx;
+  width: 100%;
+}
+
+.prizeresult_btn_box {
+  width: 100%;
+}
+
+.prizeresult_btn {
+  width: 280rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  color: #714c2D;
+  font-size: 32rpx;
+  border: 5rpx solid rgba(255, 153, 7, 1);
+  background: linear-gradient(0deg, rgba(255, 224, 110, 1), rgba(255, 172, 48, 1));
+}
+
+@keyframes winanimate {
+  0% {
+    transform: rotate(0)
+  }
+  25% {
+    transform: rotate(90deg)
+  }
+  50% {
+    transform: rotate(180deg)
+  }
+  75% {
+    transform: rotate(270deg)
+  }
+  100% {
+    transform: rotate(359deg)
+  }
+}

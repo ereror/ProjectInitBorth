@@ -1,0 +1,10 @@
+
+page {
+	background: #F9F9F8;
+}
+.set-box {
+	margin: 40rpx 30rpx;
+	border-radius: 30rpx;
+	overflow: hidden;
+}
+

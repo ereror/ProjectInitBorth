@@ -1,0 +1,143 @@
+
+page {
+	height: 100%;
+	overflow: hidden;
+}
+.vi-box {
+	position: relative;
+	height: 100%;
+	width:100%;
+	overflow: hidden;
+}
+.vi-btnbox {
+	position: absolute;
+	z-index: 2;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	font-size: 40px;
+	color: white;
+}
+.vi-source {
+	height:100%;
+	width: 100%;
+}
+.vi-play {
+	width:104rpx;
+	height: 104rpx;
+	margin: 372rpx 324rpx;
+}
+.vi-bar {
+	position: relative;
+	height: 100%;
+	width:100%;
+}
+.vi-bar-img {
+	margin:168rpx 644rpx;
+	height: 76rpx;
+	width: 76rpx;
+	background: none;
+	border: 0;
+	outline: 0;
+}
+.vi-bar-more {
+	background: none;
+	border: 0;
+	outline: 0;
+}
+.vi-bar-img2 {
+	position:absolute;
+	z-index: 44;
+	right: 30rpx;
+	top: 268rpx;
+	font-size: 32rpx;
+}
+.vi-play-imgd {
+	height: 76rpx;
+	width: 76rpx;
+}
+.vi-mark-text {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-inex: 12;
+	height: 60rpx;
+	line-height: 60rpx;
+	font-size: 28rpx;
+	color: white;
+	padding-left: 30rpx;
+}
+.vi-mark-btn {
+	position: absolute;
+	bottom: 30rpx;
+	right: 30rpx;
+	z-index: 19;
+	width: 152rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	text-align: center;
+	border-top-right-radius: 30rpx;
+	border-bottom-left-radius: 30rpx;
+	font-size: 28rpx;
+	color: white;
+}
+.vi-rz {
+	background: rgba(89, 174, 153, 1);
+}
+.vi-rz2 {
+	background: #09d6a1;
+	-webkit-box-shadow: -10rpx 0 0 rgba(9, 214, 161, .5);
+	        box-shadow: -10rpx 0 0 rgba(9, 214, 161, .5);
+}
+.vi-nrz {
+	background: rgba(248, 31, 94, .8);
+}
+.vi-nrz2 {
+	background: rgba(248, 31, 94, .8);
+	-webkit-box-shadow: -10rpx 0 0 rgba(248, 31, 94, .5);
+	        box-shadow: -10rpx 0 0 rgba(248, 31, 94, .5);
+}
+.vi-opt {
+	position: absolute;
+	top: 50%;
+	left:50%;
+	height: 300rpx;
+	width: 400rpx;
+	margin-top: -150rpx;
+	margin-left: -200rpx;
+	z-index: 2226;
+	border: 1px solid #cccccc;
+	background: white;
+	font-size: 32rpx;
+	border-radius:30rpx;
+}
+.vi-opt-content {
+	padding: 30rpx;
+	height:150rpx;
+	line-height: 150rpx;
+}
+.vi-opt-bar {
+	height: 100rpx;
+	width: 100%;
+}
+.vi-opt-btn-01 {
+	border-right: 2px solid #cccccc;
+}
+.vi-opt-btn {
+	width: 49%;
+	text-align: center;
+}
+.actionimage1 {
+	position: absolute;
+	z-index: 11111;
+	padding: 30rpx 100rpx 30rpx 30rpx;
+	top: 40rpx;
+	left: 0rpx;
+}
+.actionimage1-img {
+	width: 22rpx;
+	height: 36rpx;
+}
+

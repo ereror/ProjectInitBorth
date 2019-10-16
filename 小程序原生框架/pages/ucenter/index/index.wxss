@@ -1,0 +1,68 @@
+@import "../../../templates/tabbar/tabbar.wxss";
+.head{
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  background: white;
+}
+.u-avatar-box{
+  position: relative;
+  width: 120rpx;
+  height: 120rpx;
+}
+.avatar-120{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.u-info-sex{
+  position: absolute;
+  right: 8rpx;
+  bottom: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+.logo{
+  width: 184rpx;
+  height: 48rpx;
+  position: fixed;
+  bottom: 200rpx;
+  left: 283rpx;
+}
+.close-img{
+  width: 70rpx;
+  height: 70rpx;
+}
+.mask-tip{
+  position: absolute;
+  bottom:30rpx;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 30rpx;
+}
+.shareimg-box{
+  position: relative;
+  width:600rpx;
+  margin-bottom:30rpx;
+}
+.message{
+  width: 88rpx;
+  height: 88rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 140rpx;
+}
+.message-box{
+   width: 88rpx;
+  height: 88rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 140rpx;
+}
+.badge{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

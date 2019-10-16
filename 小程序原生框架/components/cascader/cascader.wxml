@@ -1,0 +1,21 @@
+<view class="ui-cascader" style="{{cascaderStyle}}">
+  <view wx:if="{{showTitle}}" class="cascader-name-wrap">
+    <view class="cascader-name-item-wrap {{seqItem.selected ? 'cascader-name-item-wrap-clicked' : ''}} " style="color: {{seqItem.selected ? themeColor: ''}};border-bottom:{{seqItem.selected ? '2px solid ' + themeColor : ''}};" wx:for="{{seqData}}" wx:key="{{seqIndex}}" wx:for-item="seqItem" wx:for-index="seqIndex" data-index="{{seqIndex}}" bindtap="seqItemTapHandler">
+      <!-- <view class="cascader-name-item-name"> -->
+      {{seqItem[nameKey]}}
+      <!-- </view> -->
+    </view>
+    <!-- <view class="cascader-name-underline"></view> -->
+  </view>
+  <view class="cascader-content-view" style="width: {{width}}px; overflow:hidden">
+    <view class="cascader-content-wrap" style="{{cascaderContentWrapStyle}}">
+      <scroll-view class="cascader-block" scroll-y style="{{cascaderBlockStyle}}" wx:for="{{newArray}}" wx:key="{{blockIndex}}" wx:for-item="blockItem" wx:for-index="blockIndex">
+        <view class="cascader-block-item" wx:for="{{blockItem}}" wx:key="{{index}}" wx:for-item="item" wx:for-index="index" data-item="{{item}}" data-index="{{index}}" bindtap="itemTapHandler">
+          <view class="cascader-item {{item.selected ? 'cascader-item-clicked' : ''}} {{   border ? 'cascader-item-border' : ''}}" style="color:{{item.selected ? themeColor : ''}};">
+            {{item[nameKey]}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

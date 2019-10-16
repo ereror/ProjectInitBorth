@@ -1,0 +1,76 @@
+.f-box {
+	display: flex;
+	width: 690rpx;
+	margin: 0 auto;
+	justify-content: space-between;
+	align-items: center;
+	height: 120rpx;
+	background: white;
+	padding: 0 30rpx;
+	flex-wrap: wrap;
+	/* border-bottom: 1rpx solid #eeeeee; */
+}
+.f-box-line {
+	display: block;
+	width: 630rpx;
+	height: 1rpx;
+	background: #eeeeee;
+	margin:0 auto;
+}
+/* .f-box:last-child {
+	border-bottom: 0;
+} */
+.isborderR {
+	border-radius: 30rpx;
+}
+
+.f-icon {
+	height: 42rpx;
+	width: 42rpx;
+	margin-right: 10rpx;
+}
+
+.f-title {
+	font-size: 30rpx;
+	flex: 1;
+	display: flex;
+}
+.f-title-icon {
+	margin: .3em 0 0 1em;
+	font-size: 16rpx;
+	background: #09d6a1;
+	padding: 4rpx 10rpx;
+	line-height: 2;
+	color: white;
+	border-radius: 20rpx;
+}
+.f-content, .f-ipt {
+	font-size: 30rpx;
+	flex-grow: 1;
+	flex: 1;
+	font-weight: 600;
+	padding: 0 10rpx;
+	text-align: right;
+}
+
+.f-ipt {
+	border: 0;
+	background: 0;
+	outline: 0;
+}
+.placeholder {
+	font-weight: 500;
+	padding-right: .1em;
+}
+.text-placeholder {
+	color: #a1a1a1;
+	font-size: 28rpx;
+}
+
+.f-arrow {
+	transform: rotate(180deg);
+	width: 16rpx;
+	height: 25rpx;
+	margin-left: 10rpx;
+	opacity: 0.4;
+}

@@ -1,0 +1,16 @@
+<view class="ui-calendar">
+  <view class="calendar-title">
+    <view wx:for="{{['日', '一', '二', '三', '四', '五', '六']}}" class="calendar-weekday" wx:key="{{index}}">
+      {{item}}
+    </view>
+  </view>
+  <swiper class="calendar-wrap" current="{{monthSwiperIndex}}" bindchange="changeHandler">
+    <swiper-item class="calendar-month-body" wx:for="{{monthsArray}}" wx:for-index="monthIndex" wx:key="monthIndex" wx:for-item="monthItem">
+      <view class="calendar-day-wrap" bindtap="touchStartHandler" wx:for="{{monthItem.data}}" wx:for-index="dayIndex" wx:key="dayIndex" data-month-index="{{monthIndex}}" data-day-index="{{dayIndex}}" data-item="{{dayItem}}" wx:for-item="dayItem">
+        <view class="calendar-day-cell {{disablePastDays && dayItem.isPastDay ? 'is-past-days' : ''}} {{dayItem.isHoliday && dayItem.isThisMonth ? 'is-holiday' : ''}} {{dayItem.isThisMonth ? 'is-this-month' : 'not-this-month'}} {{myItem.value === dayItem.value ? 'is-selected' : ''}} {{dayItem.isRangeLeft ? 'is-selected-left' : ''}} {{dayItem.isRangeRight ? 'is-selected-right' : ''}} {{dayItem.isInRange? 'is-selected-in-range' : ''}}" style="background-color: {{dayItem.isInRange ? rangeColor : dayItem.isRangeLeft ? startRangeColor : dayItem.isRangeRight ? endRangeColor : myItem.value === dayItem.value ? themeColor : ''}} {{}}">
+          {{dayItem.day}}
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

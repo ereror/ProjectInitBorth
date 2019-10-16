@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "筛选",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "iptitem": "/wxcomponents/form/index",
+    "choose": "/wxcomponents/choose/index",
+    "slide": "/wxcomponents/ui-slider/dist/index",
+    "itemh": "/wxcomponents/itemH/index",
+    "dialogbox": "/wxcomponents/dialog/index"
+  }
+}

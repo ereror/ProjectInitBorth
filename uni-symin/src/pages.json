@@ -1,0 +1,357 @@
+{
+  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/begin",
+      "style": {
+        "navigationBarTitleText": "启动页",
+        "navigationStyle": "custom",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "dialogbox": "/wxcomponents/dialog/index"
+        }
+      }
+    },
+    {
+      "path": "pages/index/indexd",
+      "style": {
+        "navigationBarTitleText": "逛一逛首页",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "dialogbox": "/wxcomponents/dialog/index",
+          "toast": "/wxcomponents/toast/index"
+        }
+      }
+    },
+    {
+      "path": "pages/userinfo/edit",
+      "style": {
+        "navigationBarTitleText": "资料编辑",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "itemh": "/wxcomponents/itemH/index",
+          "iptitem": "/wxcomponents/form/index",
+          "uswiper": "/wxcomponents/ui-swiper/index",
+          "tips": "/wxcomponents/tips/index",
+          "dialogbox": "/wxcomponents/dialog/index",
+          "ui-popup": "/wxcomponents/ui-pop/index"
+        }
+      }
+    },
+    {
+      "path": "pages/message/desct",
+      "style": {
+        "navigationBarTitleText": "推荐给朋友",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+		"disableScroll":true,
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index"
+        }
+      }
+    },
+    {
+      "path": "pages/message/join",
+      "style": {
+        "navigationBarTitleText": "会员支付",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index"
+        }
+      }
+    },
+    {
+      "path": "pages/message/sfdesc",
+      "style": {
+        "navigationBarTitleText": "收费描述",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index"
+        }
+      }
+    },
+    {
+      "path": "pages/regist/stepuser",
+      "style": {
+        "navigationBarTitleText": "资料个人中心页",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "dialogbox": "/wxcomponents/dialog/index",
+          "iptitem": "/wxcomponents/form/index",
+          "toast": "/wxcomponents/toast/index"
+        }
+      }
+    },
+    {
+      "path": "pages/regist/stepinfo",
+      "style": {
+        "navigationBarTitleText": "资料详情页",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "dialogbox": "/wxcomponents/dialog/index",
+          "iptitem": "/wxcomponents/form/index",
+          "toast": "/wxcomponents/toast/index"
+        }
+      }
+    },
+    {
+      "path": "pages/regist/stepvideo",
+      "style": {
+        "navigationBarTitleText": "资料介绍页视频",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+           "dialogbox": "/wxcomponents/dialog/index",
+          "custombar": "/wxcomponents/customBar/index"
+        }
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true,
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "loading": "/wxcomponents/loading/index",
+          "uswiper": "/wxcomponents/ui-swiper/index"
+        }
+      }
+    },
+    {
+      "path": "pages/tool/cropper",
+      "style": {
+        "navigationBarTitleText": "图片裁剪页",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/tool/videorz",
+      "style": {
+        "navigationBarTitleText": "视频认证",
+        "navigationStyle": "custom",
+		"disableScroll":true,
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "dialogbox": "/wxcomponents/dialog/index"
+        }
+      }
+    },
+    {
+      "path": "pages/tool/video",
+      "style": {
+        "navigationBarTitleText": "查看视频",
+        "navigationStyle": "custom",
+		"disableScroll":true,
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "dialogbox": "/wxcomponents/dialog/index"
+        }
+      }
+    },
+    {
+      "path": "pages/tool/adviceback",
+      "style": {
+        "navigationBarTitleText": "举报/反馈",
+        "navigationStyle": "custom",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "dialogbox": "/wxcomponents/dialog/index"
+        }
+      }
+    },
+    {
+      "path": "pages/tool/brush",
+      "style": {
+        "navigationBarTitleText": "筛选",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "iptitem": "/wxcomponents/form/index",
+          "choose": "/wxcomponents/choose/index",
+          "slide": "/wxcomponents/ui-slider/dist/index",
+          "itemh": "/wxcomponents/itemH/index",
+          "dialogbox": "/wxcomponents/dialog/index"
+        }
+      }
+    },
+    {
+      "path": "pages/userinfo/vip",
+      "style": {
+        "navigationBarTitleText": "会员中心",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "iptitem": "/wxcomponents/form/index"
+        }
+      }
+    },
+    {
+      "path": "pages/message/visitor",
+      "style": {
+        "navigationBarTitleText": "最近来访",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "iptitem": "/wxcomponents/form/index",
+          "loading": "/wxcomponents/loading/index"
+        }
+      }
+    },
+    {
+      "path": "pages/userinfo/index",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true,
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "itemh": "/wxcomponents/itemH/index",
+          "iptitem": "/wxcomponents/form/index"
+        }
+      }
+    },
+    {
+      "path": "pages/userinfo/detail",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "itemh": "/wxcomponents/itemH/index",
+          "iptitem": "/wxcomponents/form/index",
+          "uswiper": "/wxcomponents/ui-swiper/index",
+          "tips": "/wxcomponents/tips/index"
+        }
+      }
+    },
+    {
+      "path": "pages/userinfo/othersd",
+      "style": {
+        "navigationBarTitleText": "用户中心",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "itemh": "/wxcomponents/itemH/index",
+          "iptitem": "/wxcomponents/form/index",
+          "uswiper": "/wxcomponents/ui-swiper/index",
+          "tips": "/wxcomponents/tips/index",
+          "dialogbox": "/wxcomponents/dialog/index",
+          "ui-popup": "/wxcomponents/ui-pop/index"
+        }
+      }
+    },
+    {
+      "path": "pages/tool/index",
+      "style": {
+        "navigationBarTitleText": "uni-app",
+        "navigationStyle": "custom",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "toast": "/wxcomponents/toast/index",
+          "dialogbox": "/wxcomponents/dialog/index",
+          "tbar": "/wxcomponents/tbar/index",
+          "iptitem": "/wxcomponents/form/index",
+          "choose": "/wxcomponents/choose/index",
+          "slide": "/wxcomponents/ui-slider/dist/index",
+          "itemh": "/wxcomponents/itemH/index",
+          "ubutton": "/wxcomponents/ui-button/index",
+          "uswiper": "/wxcomponents/ui-swiper/index"
+        }
+      }
+    },
+    {
+      "path": "pages/message/index",
+      "style": {
+        "navigationBarTitleText": "消息",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "usingComponents": {
+          "tbar": "/wxcomponents/tbar/index",
+          "custombar": "/wxcomponents/customBar/index",
+          "chatlisttextnode": "/wxcomponents/message/sessiondetails/chatlist_text_node/chatlist_text_node"
+        }
+      }
+    },
+    {
+      "path": "pages/webview/index",
+      "style": {
+        "navigationBarTitleText": "帮助中心"
+      }
+    },
+    {
+      "path": "pages/message/sessiondetails",
+      "style": {
+        "navigationBarTitleText": "消息详情",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "sessiondetails": "/wxcomponents/message/sessiondetails/sessiondetails"
+        }
+      }
+    },
+    {
+      "path": "pages/tool/job",
+      "style": {
+        "navigationBarTitleText": "选择行业/职业",
+        "navigationStyle": "custom",
+		"navigationBarTextStyle": "white",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index"
+        }
+      }
+    },
+    {
+      "path": "pages/seting/setindex",
+      "style": {
+        "navigationBarTitleText": "设置",
+        "navigationStyle": "custom",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "iptitem": "/wxcomponents/form/index"
+        }
+      }
+    },
+    {
+      "path": "pages/seting/setdetail",
+      "style": {
+        "navigationBarTitleText": "隐私设置",
+        "navigationStyle": "custom",
+        "usingComponents": {
+          "custombar": "/wxcomponents/customBar/index",
+          "iptitem": "/wxcomponents/form/index"
+        }
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "51约",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+}

@@ -1,0 +1,103 @@
+.d-flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.d-flexb {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}	
+
+.d-modelbox {
+	position: fixed;
+	z-index: 99999;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	overflow: hidden;
+	/* filter:blur(8px); */
+	background:rgba(255, 255, 255, .4);
+}
+
+.d-model {
+	width: 540rpx;
+	min-height: 310rpx;
+	border-radius: 30rpx;
+	background: rgba(255,255,255,1);
+	padding: 54rpx 40rpx 40rpx;
+	box-shadow: 0 0 40rpx gray;
+}
+.d-model-sm {
+	padding: 0rpx 0rpx 40rpx 0rpx;
+}
+.d-model-sms {
+	padding: 0 40rpx;
+}
+.d-title {
+	text-align: center;
+	height:50rpx;
+	font-size:36rpx;
+	font-weight: 600;
+	padding: 40rpx;
+}
+.d-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 28rpx;
+	line-height:48rpx;
+	font-size:28rpx;
+	min-height:200rpx;
+	line-height:48rpx;
+	width:324rpx;
+	margin:0 auto;
+	color:#333333;
+}
+
+.d-btn {
+	color: white;
+}
+
+.d-btn-cancel, .d-btn-sure {
+	width:200rpx;
+	height:88rpx;
+	border-radius:44rpx;
+	font-size: 32rpx;
+	color: white;
+	line-height: 88rpx;
+}
+
+
+.d-btn-sureall {
+	width:420rpx;
+	height:88rpx;
+	margin: 0 auto;
+	border-radius:44rpx;
+	font-size: 32rpx;
+	color: white;
+	line-height: 88rpx;
+}
+.d-color-b {
+	background: #6267F9;
+}
+
+.d-color-r {
+	background:rgba(248,31,94,1);
+}
+
+.choiceitem {
+	line-height:80rpx;
+	font-size:30rpx;
+	text-align:center;
+}
+
+.timeItem {
+	line-height: 80rpx;
+	font-size:30rpx;
+	text-align:center;
+}

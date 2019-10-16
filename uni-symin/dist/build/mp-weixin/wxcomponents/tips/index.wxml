@@ -1,0 +1,8 @@
+<view class='tip-box' style='{{tipStyleInner}}'>
+	<view class='tip-content'>
+		<view class='tip-text'>你没有视频认证，点击下方视频认证，以免影响体验哦</view>
+		<view class='tip-close'>
+			<slot></slot>
+		</view>
+	</view>
+</view>

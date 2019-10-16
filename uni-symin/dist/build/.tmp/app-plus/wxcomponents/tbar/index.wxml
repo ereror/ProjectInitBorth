@@ -1,0 +1,14 @@
+<view class="tbar-box">
+    <view wx:for="{{tbarconfig}}" class="tar-items" wx:key="{{index}}" data-url='{{item.url}}' data-key='{{index}}' bindtap='goToDistancs'>
+        <view class="unread_nums" hover-class="none" hover-stop-propagation="false">
+            <image class="tar-icon {{index === 2 ? 'tar-icon2': ''}}" src="{{isActiveIndex === item.isActiveIndex ? item.icon_a : item.icon_d}}"></image>
+            <view class="unread" wx:if="{{item.newunread>0}}">
+                <view>{{item.newunread>9?'9+':item.newunread}}</view>
+            </view>
+        </view>
+        <view class="tar-text {{isActiveIndex === item.isActiveIndex ? 'tar-textc-a' : 'tar-textc-d'}}">
+            {{item.text}}
+            <!-- {{item.newunread}} -->
+        </view>
+    </view>
+</view>

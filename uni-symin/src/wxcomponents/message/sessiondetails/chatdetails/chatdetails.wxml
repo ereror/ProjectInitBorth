@@ -1,0 +1,29 @@
+<!-- 聊天消息item -->
+<view class="messageitem">
+    <!-- 间隔时间 -->
+    <view class="messageitem_overtime" wx:if="{{message.displayTimeHeader!=''}}">{{message.displayTimeHeader}}</view>
+    <!-- 对方 -->
+    <view class="messageitem_you" wx:if="{{message.from!=me.account}}">
+        <view class="messageitem_you_header">
+            <view>
+                <image src="{{you.avatar}}"></image>
+            </view>
+        </view>
+        <view>
+            <view class="messageitem_you_meg">
+                <rich-text nodes="{{messagenode}}" space="nbsp"></rich-text>
+                <view class="messageitem_you_meg_ly"></view>
+            </view>
+        </view>
+    </view>
+    <!-- 当前用户 -->
+    <view class="messageitem_me" wx:if="{{message.from==me.account}}">
+        <view></view>
+        <view>
+            <view class="messageitem_me_meg">
+                <rich-text nodes="{{messagenode}}" space="nbsp"></rich-text>
+                <view class="messageitem_me_meg_ly"></view>
+            </view>
+        </view>
+    </view>
+</view>

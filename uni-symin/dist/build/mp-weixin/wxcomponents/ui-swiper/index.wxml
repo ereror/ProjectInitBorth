@@ -1,0 +1,15 @@
+<view class="swiper-container">
+    <swiper class='imgR' circular="{{swiperConf.circular}}" autoplay="{{swiperConf.autoplay}}" interval="{{swiperConf.interval}}" duration="{{swiperConf.duration}}" bindchange="swiperChange" class="swiper" current='{{swiperCurrent}}'>
+        <block wx:for="{{items}}" wx:key="unique">
+            <swiper-item class='imgR'>
+                <image src="{{item.src}}" class="img" mode='widthFix'></image>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="dots">
+        <block wx:for="{{items}}" wx:key="unique">
+            <view class="dot{{index == swiperCurrent ? ' active' : ''}}" data-index="{{index}}" bindtap='setIndex'></view>
+        </block>
+    </view>
+</view>

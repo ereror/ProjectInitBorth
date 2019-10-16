@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>详情页分享</title>
+</head>
+<body>
+	<script>
+		(function(){
+			var id = ''
+			var url = window.location.href
+			var rec = /(?:id=)(\w*)/ig
+			var resultc = url.match(rec)
+			if (resultc && resultc.length) id = resultc[0].substring(3)
+			var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6357f5dafdb1c45d&redirect_uri=http%3a%2f%2fwww.hyjjdyg.com%2f%23%2fdetail%3fid%3d' + id + '%26type%3dpwsq&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+			window.location.href = url
+		})()
+	</script>
+</body>
+</html>

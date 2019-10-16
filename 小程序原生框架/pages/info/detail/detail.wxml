@@ -1,0 +1,62 @@
+<view class='detail-header'>
+	<view class='detail-headericonbox'>
+	<view>
+      <view class='avatar-box mr-20'>
+        <image class='avatar-100' src='{{detail.avatarurl}}'></image>
+        <image class='info-sex' wx:if="{{detail.gender==1}}" src='/images/icon/boy.png'></image>
+        <image class='info-sex' wx:if="{{detail.gender==2}}" src='/images/icon/girl.png'></image>
+      </view>
+	</view>
+	<view class='unamebox'>
+		<view class='uname'>{{detail.nickname}}</view>
+		<view class='unamelocation'>
+			<image src='/images/icon/location.png' class='unamelocationimg'></image>
+			<text>{{detail.address}}</text>
+			<text class='unamelocationdistance'>{{detail.distance}}km</text>
+		</view>
+	</view>
+    </view>
+	<view class='detail-tag'>
+       <image src='/images/icon/mxz.png' class='detail-tag-img'  wx:if='{{detail.type === 3}}'></image>
+       <image src='/images/icon/mfs.png' class='detail-tag-img' wx:if='{{detail.type === 1}}'></image>
+       <image src='/images/icon/sxz.png' class='detail-tag-img' wx:if='{{detail.type === 2 || detail.type === 4}}'></image>
+	</view>
+</view>
+
+<view class='detail-content'>
+	<view class='det-header'>
+		<view class='detail-content-line' wx:if="{{false}}"></view>
+		<view class='detail-content-title'>
+			{{detail.title || '商品介绍'}}
+		</view>
+	</view>
+	<view wx:if='{{detail.type === 3}}' class='detail-price'>
+		<text class='detail-price1'>商品价格</text>
+		<text class='detail-price2'>￥</text>
+		<text class='detail-price3'>{{detail.type_detail.now_money}}</text>
+		<text class='detail-price4'>原价：</text>
+		<text class='detail-price5 text-deleted'>￥{{detail.type_detail.origin_money}}</text>
+	</view>
+	<view class='det-content'>
+		{{detail.content}}
+	</view>
+	<view wx:for='{{detail.imgs}}' wx:index="{{index}}" wx:key="{{index}}">
+		<view class='detail-content-video' wx:if="{{item.type === '.mp4'}}">
+		   <image class='detail-content-video-img' src='{{item.path}}?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast' mode='widthFix'></image>
+		   <view class='detail-content-video-imgbg' bindtap='openVideo' data-src='{{item.path}}'> 
+		   	   <image src='/images/icon/bf.png' class='detail-imgorigan'></image>
+		   </view>
+		</view>
+		<image class='detail-content-video-img2' src='{{item.path}}' mode='widthFix' wx:if="{{item.type !== '.mp4'}}" bindtap='previewImage'></image>
+	</view>
+</view>
+
+<view class='detail-btn-boxs'>
+	<button class='detail-btn-share' open-type='share'>
+		<image src='/images/icon/sharebig.png' class='detail-btn-shareimg'></image>
+		<view class='detail-btn-sharebtn'>推荐给朋友</view>
+	</button>
+    <form report-submit='{{true}}' bindsubmit='createFormid' data-url="/pages/ucenter/chat/chat?uid={{detail.uid}}&&nickname={{detail.nickname}}">
+	<button form-type='submit' class="detail-btn-sharemess" data-url="/pages/ucenter/chat/chat?uid={{detail.uid}}&&nickname={{detail.nickname}}">聊一聊<text wx:if='{{unread}}'>（{{unread}}）</text></button>
+    </form>
+</view>

@@ -1,0 +1,45 @@
+<template name='areamess'>
+	<view style='position:relative;'>
+		<view style='display:flex;font-size:16px;font-weight:800;padding:0 15px;' data-url="/pages/common/selectCity/selectCity" bindtap='chooseLocation'>
+			<image src='/images/icon/index_01.png' style='width:32rpx;height:40rpx;margin-top:4rpx;margin-right:10rpx;'></image>			
+			<view style='color:white;text-shadow: -1px 1px rgba(128, 128, 128, .3);font-size:36rpx;'>{{location}}</view>
+			<image src='/images/icon/index_14.png' style='width:32rpx;height:20rpx;margin-top:15rpx;margin-left:10rpx;'></image>
+		</view>
+		<view style='height:10rpx;'></view>
+		<view>
+			<view style='display:flex;position:relative;'>
+				<view style='position:relative;padding:0 30rpx;max-width:170rpx;min-width:80rpx;margin-left:8rpx;'>
+					 <image style='height:30rpx;width:30rpx;border-radius:50%;border:1px solid white;margin-left:-8rpx;' wx:for="{{imghead}}" wx:key="{{index}}" src='{{item.avatarurl}}' />
+				</view>
+				<view style='position:relative;font-size:20rpx;color:white;text-shadow: -1px 1px rgba(128, 128, 128, .3);line-height:30rpx;margin-left:-30rpx;'>
+					附近<span style='color:#fcd40d;'>{{total || 0}}</span>宝妈在买卖闲置
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<template name='littlebox'>
+	<view style='position:fixed;z-index:99999;top:0;bottom:0;left:0;right:0;'>
+		<view style='position:absolute;z-index:2;top:0;bottom:0;left:0;right:0;background:rgba(255,255,255, .95)'></view>
+		<view style='position:absolute;z-index:3;bottom:218rpx;;display:flex;justify-content:center;align-items:center;height:400rpx;width:100%;'>
+			<view style='box-flex:1;flex-grow:1;display:flex;justify-content:center;align-items:center;'>
+				<view bindtap='goUrl' data-url='/pages/info/addnew/addnew?pagemodel=3&title=免费送' style='text-align:center;'>
+					<image src='/images/addnew/fb_img10.png' style='width:120rpx;height:120rpx;'/>
+					<view style='font-size:30rpx;font-weight:600;text-align:center;margin-top:22rpx;'>免费送</view>
+					<view style='font-size:22rpx;color:#878787;'>有价宝贝，无价赠送</view>
+			    </view>
+			</view>
+			<view style='box-flex:1;flex-grow:1;display:flex;justify-content:center;align-items:center;'>
+				<view bindtap='goUrl' data-url='/pages/info/addnew/addnew?pagemodel=1&title=卖闲置' style='text-align:center;'>
+					<image src='/images/addnew/fb_img12.png' style='width:120rpx;height:120rpx;'/>
+					<view style='font-size:30rpx;font-weight:600;text-align:center;margin-top:22rpx;'>卖闲置</view>
+					<view style='font-size:22rpx;color:#878787;'>闲置好物，轻松换钱</view>
+				</view>
+			</view>
+		</view>
+		<view style='position:absolute;z-index:2;display:flex;justify-content:center;bottom:70rpx;width:100%;'>
+			<view class='iconfont icon-close' style='font-size:60rpx;color:gray' bindtap='clearlittle'></view>
+		</view>
+	</view>
+</template>

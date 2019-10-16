@@ -1,0 +1,22 @@
+
+.ui-v-tabs {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  font-size: 32rpx;
+}
+.ui-v-tabs:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300%;
+  height: 300%;
+  border: 0 #eee solid;
+  box-sizing: border-box;
+  transform-origin: 0 0;
+  transform: scale(0.33333333);
+  pointer-events: none;
+  z-index: 0;
+  border-right-width: 1px;
+}

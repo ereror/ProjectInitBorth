@@ -1,0 +1,262 @@
+/* 1像素解决方案 */
+/*
+ * 清除1px
+ */
+/*
+ * 清除浮动
+ */
+/*
+ * mobile
+ */
+/*
+ * 1px
+ */
+/*
+ * text
+ */
+/* 垂直居中 */
+/* 水平居中 */
+/* 水平垂直居中 */
+/* 超出部分出省略号 */
+/* 多行文本超出部分省略号 */
+.ad {
+  margin-top: 10rpx;
+}
+.ad_box {
+  padding: 0 24rpx;
+  color: #ADAAAA;
+}
+.ad_box .adbox_line {
+  display: inline-block;
+  text-align: center;
+  width: 85rpx;
+  color: #ADAAAA;
+  font-size: 22rpx;
+}
+.ad_box .adbox_img {
+  display: inline-block;
+  width: 309rpx;
+  height: 14rpx;
+}
+.ademptyImg {
+  width: 702rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3rpx 8rpx rgba(128, 128, 128, 0.2);
+}
+.coin_box {
+  width: 750rpx;
+  height: 375rpx;
+  line-height: 1;
+}
+.coin_bg {
+  z-index: -1;
+  width: 750rpx;
+  height: 375rpx;
+}
+.coin_text_01 {
+  margin-top: -345rpx;
+  font-size: 24rpx;
+  text-align: right;
+  color: white;
+  padding-right: 52rpx;
+}
+.coin_text_02 {
+  margin-top: 23rpx;
+  font-size: 30rpx;
+  color: white;
+  text-align: center;
+}
+.coin_text_03 {
+  margin-top: 26rpx;
+  font-size: 80rpx;
+  color: white;
+  text-align: center;
+}
+.coin_text_04 {
+  margin-top: 84rpx;
+  font-size: 22rpx;
+  color: white;
+  text-align: center;
+}
+.coin_text_05 {
+  font-size: 48rpx;
+}
+.coin_text_06 {
+  color: #ffb173;
+  margin: 0 .2em;
+  margin-top: -0.6em;
+}
+.coin_txopt {
+  padding: 0 24rpx;
+  color: #292727;
+  margin-top: 70rpx;
+}
+.coin_txopt_title {
+  line-height: 1;
+  margin-top: 21rpx;
+  font-size: 32rpx;
+  vertical-align: baseline;
+  font-weight: 600;
+}
+.coin_txopt_title_01 {
+  color: #757373;
+  font-size: 22rpx;
+  margin-left: 14rpx;
+  font-weight: 500;
+}
+.coin_txopt_box {
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+  width: 702rpx;
+  height: 108rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 3rpx 16rpx rgba(128, 128, 128, 0.1);
+  border-radius: 10rpx;
+}
+.coin_txopt_box .coin_txopt_box_title {
+  font-size: 28rpx;
+}
+.coin_txopt_box .coin_txopt_box_titled {
+  font-size: 28rpx;
+  color: #adaaaa;
+  margin-right: 16rpx;
+}
+.coin_txopt_box .coin_txopt_box_titleA {
+  color: #292727;
+}
+.coin_txopt_box .coin-icon {
+  font-size: 28rpx;
+  color: #adaaaa;
+  margin-right: -6rpx;
+}
+.coin_txopt_box .coin-icon_A {
+  font-size: 28rpx;
+  color: #292727;
+}
+.coins-items {
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+}
+.coins-items .coins-item {
+  position: relative;
+  width: 218rpx;
+  height: 140rpx;
+  background: #ffffff;
+  box-shadow: 0rpx 3rpx 16rpx rgba(128, 128, 128, 0.1);
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #757373;
+}
+.coins-items .coins-itemA {
+  border: 3rpx solid #ff5e97;
+  color: #ff5e97;
+}
+.coins-items .coins-item-img {
+  width: 98rpx;
+  height: 103rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: none;
+}
+.coins-items .coins-item-test {
+  z-index: 2;
+}
+.coin-account-box {
+  position: fixed;
+  z-index: 666;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+.coin-account-box .coin-account-content {
+  width: 642rpx;
+  height: 458rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 0 61rpx;
+  align-items: flex-start !important;
+  text-align: center;
+}
+.coin-account-box .coin-account-title {
+  margin-top: 45rpx;
+  font-size: 32rpx;
+  color: #1f1f1f;
+  font-weight: 600;
+}
+.coin-account-box .coin-input {
+  margin-top: 42rpx;
+  text-align: center;
+}
+.coin-account-box .coin-input2 {
+  margin-top: 20rpx;
+  text-align: center;
+}
+.coin-account-box .coin-inputs {
+  width: 520rpx;
+  height: 82rpx;
+  background: #f2f3f5;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #adaaaa;
+  border: none;
+}
+.coin-account-box .coin-btns {
+  margin-top: 40rpx;
+  width: 100%;
+}
+.coin-account-box .coin-btns .coin-btn-cancel {
+  width: 240rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 2rpx solid #e6e6e6;
+  border-radius: 40rpx;
+  font-size: 34rpx;
+  color: #adaaaa;
+}
+.coin-account-box .coin-btns .coin-btn-sure {
+  width: 240rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(90deg, #7df275, #22c961);
+  border-radius: 40rpx;
+  font-size: 34rpx;
+  color: white;
+}
+.hasvalipt {
+  color: #1f1f1f !important;
+}
+.coin_btn {
+  width: 702rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color: white;
+  font-size: 32rpx;
+  font-weight: 600;
+  background: linear-gradient(90deg, #22c961, #7ef275);
+  border-radius: 44rpx;
+  margin: 24rpx;
+}
+.coin_ad {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 80rpx;
+}
+.graybtn {
+  background: linear-gradient(90deg, #c7c3c3, #e0e0e0);
+}
+.coin_msg_btn {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 22;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0px -2rpx 16rpx rgba(128, 128, 128, 0.16);
+}

@@ -1,0 +1,17 @@
+.col {
+  text-align: center;
+  height: 100px;
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon {
+  display: block;
+  margin: 15px 0;
+  color: rgba(69, 90, 100, .8);
+}
+
+.text {
+  font-size: 14px;
+}

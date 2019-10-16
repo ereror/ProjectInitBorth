@@ -1,0 +1,6 @@
+<block>
+  <view class="wx-test flex-c" wx:if="{{resultFormat.length === 1}}">
+    <view wx:for="{{timeArr}}" wx:for-index="{{qindex}}" wx:key="{{qindex}}" style="{{item === ':' ? selfSplitStyle : selfNumberStyle}}">{{item}}</view>
+  </view>
+  <view class="wx-test" wx:else="">{{time}}</view>
+</block>

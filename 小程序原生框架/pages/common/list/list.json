@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "体验都江堰",
+  "disableScroll": true,
+  "usingComponents": {
+    "tabs": "/components/tabs/tabs",
+    "tab": "/components/tab/tab",
+    "check-list": "/components/check-list/check-list"
+  }
+}

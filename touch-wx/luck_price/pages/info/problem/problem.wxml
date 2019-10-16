@@ -1,0 +1,14 @@
+<view class="problem_box">
+  <block wx:for="{{proList}}" wx:key="{{index}}">
+    <template is="problem_item" data="{{...item}}" />
+  </block>
+  <button class="buttonreset deladdr" open-type="contact">仍有问题？联系客服</button>
+  <template name="problem_item">
+    <view class="problem_detail">
+      <view class="problem_title">{{title}}</view>
+      <view class="problem_content">
+        <text>{{content}}</text>
+      </view>
+    </view>
+  </template>
+</view>

@@ -1,0 +1,105 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": false,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.1",
+	"appid": "wxd70b89da4d9ec6b3",
+	"projectname": "%E9%99%AA%E6%88%91%E6%8A%BD%E5%A5%96%E6%B5%8B%E8%AF%95%E7%89%88",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "详情",
+					"pathName": "pages/info/detail/detail",
+					"query": "id=1144"
+				},
+				{
+					"id": 1,
+					"name": "全部参与用户",
+					"pathName": "pages/info/users/users",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "申请发货",
+					"pathName": "pages/info/goodsend/goodsend",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "红包列表",
+					"pathName": "pages/info/getgift/getgift",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "地址列表",
+					"pathName": "pages/info/address/address",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/info/usercenter/usercenter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "零钱",
+					"pathName": "pages/info/coin/coin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "零钱明细",
+					"pathName": "pages/info/coindetail/coindetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新增收货地址",
+					"pathName": "pages/info/addressadd/addressadd",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "生成分享图",
+					"pathName": "pages/info/shareimg/shareimg",
+					"query": ""
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/info/index/index",
+    "pages/info/add/add",
+    "pages/info/addnext/addnext",
+    "pages/info/release/release",
+    "pages/info/filter/filter",
+    "pages/info/free/free",
+    "pages/info/history/history",
+    "pages/info/addnew/addnew",
+    "pages/info/detail/detail",
+    "pages/info/details/details",
+    "pages/ucenter/index/index",
+    "pages/ucenter/edit/edit",
+    "pages/ucenter/chat/chat",
+    "pages/ucenter/message/message",
+    "pages/ucenter/about/about",
+    "pages/common/filter/filter",
+    "pages/common/addFilter/addFilter",
+    "pages/common/selectFilter/selectFilter",
+    "pages/common/selectCity/selectCity",
+    "pages/common/cropper/cropper",
+    "pages/common/webview/webview",
+    "pages/common/auth/auth",
+    "pages/common/camera/camera",
+    "pages/common/areaSelect/areaSelect",
+    "pages/common/list/list",
+    "pages/common/form/form",
+    "pages/common/category/category",
+    "pages/common/categoryOne/categoryOne"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ff6454",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "闲小宝",
+    "backgroundColor": "#f9f9f9",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  }
+}

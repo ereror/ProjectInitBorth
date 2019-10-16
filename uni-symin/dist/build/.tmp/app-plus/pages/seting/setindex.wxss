@@ -1,0 +1,34 @@
+
+page {
+	background: #F9F9F8;
+}
+.set-box {
+	padding: 40rpx 30rpx;
+}
+.set-boxR {
+	border-radius:30rpx;
+	overflow: hidden;
+}
+.fixbtn {
+	position: fixed;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	bottom: 40rpx;
+	z-index: 99;
+	width: 100%;
+}
+.job_btn {
+	width: 690rpx;
+	height: 88rpx;
+	margin: 0 auto;
+	border-radius: 30rpx;
+	background: #f81f5e !important;
+	color: white;
+}
+

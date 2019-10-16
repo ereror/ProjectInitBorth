@@ -1,0 +1,32 @@
+
+<view class='form-box'>
+   <view class='form-label' style='margin-bottom:0'>
+      <view class='f-32'>上传头像</view>
+   </view>
+   <view class='img-list'>
+      <view class='img-item img-item-circle' wx:if="{{userInfo.avatarurl}}">
+        <image src='{{userInfo.avatarurl}}' class='img-180'></image>
+        <image src='/images/icon/close.png' class='close-img' bindtap='delImage'></image>
+      </view>
+      <view class='img-item' wx:if="{{!userInfo.avatarurl}}" bindtap='chooseImage'>
+        <image src='/images/icon/add.png' class='add-img'></image>
+      </view>
+   </view>
+   <view class='form-label'>
+      <view class='f-32'>编辑昵称</view>
+   </view>
+
+  <input placeholder='输入昵称' class='form-item' value='{{userInfo.nickname}}' bindinput='setParam' data-key='nickname'></input>
+   <view class='form-label'>
+      <view class='f-32'>个人性别</view>
+      <view class='f-28 c-gray-dark ml-20'>(不可编辑)</view>
+   </view>
+   <view class='sex-box'>
+      <image wx:if="{{userInfo.gender==1}}" src='/images/icon/boy.png' style='width:24rpx;height:24rpx;margin-right:30rpx;'></image>
+      <image wx:if="{{userInfo.gender==2}}" src='/images/icon/boy.png' style='width:24rpx;height:24rpx;margin-right:30rpx;'></image>
+      <view wx:if="{{userInfo.gender==1}}">男</view>
+      <view wx:if="{{userInfo.gender==2}}">女</view>
+   </view>
+</view>
+
+<button type='primary' hover-class='none' bindtap='submit'>确定</button>

@@ -1,0 +1,21 @@
+.ui-swipe-out {
+  position: relative; 
+  height: 100rpx;
+  width: 100%;
+}
+
+
+.ui-swipe-out .content{
+ position: absolute;
+ background: white;
+ width: 100%;
+ z-index: 2;
+}
+
+
+.operate{
+ position: absolute;
+ right: 0;
+ height: 100rpx;
+ width: 100%;
+}

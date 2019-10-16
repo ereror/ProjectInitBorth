@@ -1,0 +1,6 @@
+<view class='cho' style="{{choStyle}}">
+	<view class='cho-title'>{{choTitle}}</view>
+	<view class='cho-box'>
+		<view class="cho-item cho-text {{isAcount === index ? 'cho-act' : ''}} {{index > 0 ? 'cho-borderl' : ''}}" wx:for="{{choArr}}" wx:key='{{index}}' data-index="{{index}}" bindtap='setValue'>{{item.text}}</view>
+	</view>
+</view>

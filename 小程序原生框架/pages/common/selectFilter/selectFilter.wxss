@@ -1,0 +1,70 @@
+@import '../../../templates/form/form.wxss';
+.filter-title{
+  background: white;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  color: #000;
+  font-size: 32rpx;
+}
+.filter-list{
+  background: white;
+  padding: 0 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter-item{
+  width: 210rpx;
+  height: 70rpx;
+  background: #f8f8f8;
+  border-radius: 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0rpx 30rpx 30rpx 0;
+  color: #666;
+  font-size: 26rpx;
+}
+.filter-item-input{
+  width: 690rpx;
+  margin-right: 0;
+  padding-left: 30rpx;
+}
+.filter-item:nth-child(3n){
+  margin-right: 0;
+}
+.filter-btn{
+  height: 100%;
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+}
+.filter-btn--submit{
+  color: white;
+  background: #ff9000;
+}
+.btn{
+  width: 360rpx;
+  height: 66rpx;
+  border-radius: 10rpx;
+  margin:0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  background: #ff9000;
+  color: white;
+}
+.btn-resete{
+  background: #fff;
+  color: black;
+  border:1px solid #e5e5e5;
+  width: 300rpx;
+  margin-right: 0;
+}
+.btn-select{
+  width: 690rpx;
+}

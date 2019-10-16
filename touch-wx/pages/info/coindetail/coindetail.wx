@@ -1,0 +1,98 @@
+<template>
+  <block>
+    <import src="../../../template/nomsg/nomsg.wxml"/>
+    <view class='home_box'>
+      <image src='{{home_imgsrc}}' class='home_bg'/>
+      <view class='coin_d_ad'>
+        <image src='{{ademptyImg}}' class='ademptyImg'>
+      </view>
+      <view class='coin_d_list' wx:if='{{hb_list.length}}'>
+        <view class='coin_d_item flex-between' wx:for='{{hb_list}}' wx:key="{{index}}">
+          <view class='flex-1 line-1'>
+            <view class='coin_d_item_name'>{{item.reason === 'hb' ? '红包' : (item.reason === 'tx' ? '提现申请': '购买消费方式')}}</view>
+            <view class='coin_d_item_time'>{{item.opttime}}</view>
+          </view>
+          <view class='coin_d_count'>{{item.addmoney > 0 ? '+' + item.addmoney / 100 : item.addmoney / 100}}</view>
+        </view>
+      </view>
+      <view wx:if='{{!hb_list.length && isloaded}}' class='coin-detail flex-center'>
+        <template is='nomsg' data="{{data: hb_list, nomsg_bg : img_bg}}"></template>
+      </view>
+    </view>
+  </block>
+</template>
+
+<script>
+import info from '../../../api/index'
+import util from '../../../static/utils/index'
+export default {
+  config: {
+    navigationBarTitleText: '零钱明细'
+  },
+  data: {
+    ademptyImg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/adempty2.jpg',
+    home_imgsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/bg_home_02.png',
+    img_bg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/icon_nomsg.png',
+    hb_list: [],
+    dong: [],
+    query: {
+      pool_id: '',
+      page: 1,
+      pageSize: 10,
+      current_page: 1,
+      last_page: 1
+    },
+    isloaded: false
+  },
+  onShow(){
+    this.getMoneyChgList()
+  },
+  checkMore () {
+    let that = this;
+    let { current_page, last_page } = this.data.query
+    if (current_page !== last_page) {
+      this.data.query.page = current_page + 1
+      this.getMoneyChgList()
+    }
+  },
+  onReachBottom () {
+    this.checkMore()
+  },
+  getMoneyChgList () {
+    this.data.isloaded = false
+    util.showLoading('加载中...')
+    info.getMoneyChgList().then(res => {
+      util.hideAll()
+      this.data.isloaded = true
+      if(res.code === 200) {
+        console.log(res)
+        let newData = res.data.data
+        newData.map(v => {
+          v.opttime = util.formatTime(v.addtime * 1000, 'YY-M-D h:m:s')
+        })
+        this.data.hb_list = [...this.data.hb_list, ...res.data.data]
+        this.data.query.last_page = res.data.last_page
+        this.data.query.current_page = this.data.query.page
+        this.setData({
+          hb_list: this.data.hb_list,
+          isloaded: this.data.isloaded
+        })
+      }
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  @import '../../../template/nomsg/nomsg.wxss';
+  .home_box {margin-top:0;}
+  .coin-detail {margin-top:200rpx;}
+  .home_bg {width:750rpx;height:170rpx;position:relative;z-index:-1};
+  .coin_d_ad {margin:-130rpx 24rpx;width:702rpx;height:220rpx;border-radius:10rpx;background:honeydew;}
+  .ademptyImg {width:702rpx;height:220rpx;border-radius:10rpx;box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.2)}
+  .coin_d_list {margin:154rpx 24rpx;}
+  .coin_d_item {height:120rpx;margin-bottom:20rpx;background:rgba(255,255,255,1);box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.2);border-radius:10rpx;padding:0 30rpx;}
+  .coin_d_item_name {font-size:28rpx;color:#292727;font-weight:600;}
+  .coin_d_item_time {margin-top:18rpx;color:#adaaaa;font-size:24rpx;}
+  .coin_d_count {height:120rpx;line-height:120rpx;color:#292727;font-size:34rpx;font-weight:600;}
+</style>

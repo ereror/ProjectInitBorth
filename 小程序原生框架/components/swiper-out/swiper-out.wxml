@@ -1,0 +1,8 @@
+<view class="ui-swipe-out" style="height:{{height}}rpx">
+  <view class="content" style="transform: translate3d({{offsetX}}rpx, 0px, 0px);transition:{{tScript}}" bindtouchstart="{{canSwipe?'touchStartHandler':''}}" bindtouchmove="{{canSwipe?'touchMoveHandler':''}}" bindtouchend="{{canSwipe?'touchEndHandler':''}}">
+    <slot name="content"></slot>
+  </view>
+  <view  style="{{operateStyle}}" class="operate">
+    <slot name="operate"></slot>
+  </view>
+</view>

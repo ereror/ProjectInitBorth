@@ -1,0 +1,138 @@
+
+page {
+		background: #F9F9Fb;
+}
+.uinfo-d-head {
+		position: relative;
+		width: 690rpx;
+		border-radius: 30rpx;
+		margin: 30rpx auto 0;
+		overflow: hidden;
+}
+.uinfo-d-user {
+		margin: 0 auto;
+		width: 690rpx;
+		height: 284rpx;
+		background: white;
+		border-radius: 0 0 30rpx 30rpx;
+		padding-bottom: 10rpx;
+}
+.uinfo-d-user-msg {
+		background: white;
+		height:184rpx;
+		border-radius: 0 0 30rpx 30rpx;
+		padding-top: 40rpx;
+}
+.uinfo-d-user-rz {
+		width: 630rpx;
+        height: 80rpx;
+		line-height: 48rpx;
+		border-radius: 30rpx;
+		margin: 0 auto;
+        font-size: 34rpx;
+		padding: 16rpx 0;
+        color: white;
+        text-align: center;
+		background: #999999;
+}
+.isrz {
+		background: #09d6a1;
+}
+.isrzf {
+		background: #ffb400;
+}
+.uinfo-d-user-rz-img {
+		height: 36rpx;
+		width: 38rpx;
+		margin-left:20rpx;
+}
+.uinfo-d-user-rz-img-02 {
+		width: 48rpx;
+		height: 36rpx;
+}
+.uinfo-d-user-rz-img-03 {
+		width: 36rpx;
+		height: 36rpx;
+}
+.uinfo-d-user-name-box, .uinfo-d-user-status-box {
+		padding: 0 30rpx;
+		font-size: 34rpx;
+		font-weight: 500;
+		color: #000000;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: start;
+		-webkit-justify-content: flex-start;
+		    -ms-flex-pack: start;
+		        justify-content: flex-start;
+}
+.uinfo-d-user-constellation {
+		margin-left: 30rpx;
+}
+.uinfo-d-user-status-box {
+		margin-top: 20rpx;
+		font-size: 26rpx;
+}
+.uinfo-d-user-status-dest {
+		margin-left: 20rpx;
+}
+.uinfo-d-box {
+		width: 690rpx;
+		border-radius: 30rpx;
+		overflow: hidden;
+		background: white;
+		margin: 40rpx auto 0;
+		padding-bottom: 120rpx;
+}
+.I-d-rz {
+		position:absolute;
+		top: 0;
+		right: 0;
+		z-index: 23;
+		width: 152rpx;
+		height: 60rpx;
+		line-height: 60rpx;
+		background: #09d6a1;
+		border-radius: 0 30rpx 0 30rpx;
+		-webkit-box-shadow: -2rpx -2rpx 0 2rpx rgb(147, 229, 208);
+		        box-shadow: -2rpx -2rpx 0 2rpx rgb(147, 229, 208);
+		font-size: 28rpx;
+		text-align: center;
+		color: white;
+}
+.uinfo-d-btnbox {
+		position:fixed;
+		bottom: 0;
+		z-index: 478;
+		background: white;
+		padding:10rpx 30rpx;
+}
+.uinfo-d-btn, .uinfo-d-btn2 {
+		width: 690rpx;
+		border-radius: 30rpx;
+		background: #f81f5e !important;
+		color: white;
+}
+.uinfo-d-btn2 {
+		backgruond: white;
+		color: #f81f5e;
+}
+.lg {
+	   padding:0 40rpx;
+	   font-size:32rpx;
+	   height:88rpx;
+}
+.uinfo-check-btn {
+		font-size: 24rpx;
+		line-height: 34rpx;
+		border-radius:32rpx;
+		height: 60rpx;
+		min-width: 138rpx;
+		border-radius: 30rpx;
+		padding: 13rpx 20rpx;
+		background: #f7f7f7 !important;
+		color: #f81f5e;
+}
+

@@ -1,0 +1,176 @@
+<template>
+  <page></page>
+</template>
+
+<script>
+// <view wx:if="{{item.type !== 'split'}}">{{item.value < 10 && item.value ? '0' + item.value : item.value}}</view>
+import system from './static/utils/system'
+import util from './static/utils/index'
+import usermessage from './api/user'
+console.log(usermessage)
+export default {
+  config: {
+    usingComponents: {},
+    pages: [
+      'pages/info/index/index',
+      'pages/info/detail/detail',
+      'pages/info/users/users',
+      'pages/info/address/address',
+      'pages/info/goodsend/goodsend',
+      'pages/info/getgift/getgift',
+      'pages/info/auth/auth',
+      'pages/info/usercenter/usercenter',
+      'pages/info/coin/coin',
+      'pages/info/coindetail/coindetail',
+      'pages/info/pools/pools',
+      'pages/info/adviceback/adviceback',
+      'pages/info/addressadd/addressadd',
+      'pages/info/problem/problem',
+      'pages/info/goindex/goindex',
+      'pages/info/contact/contact',
+      'pages/info/txaction/txaction',
+      'pages/info/shareimg/shareimg'
+    ],
+    window: {
+      backgroundTextStyle: '#ffffff',
+      backgroundColor: '#F2f3f5',
+      navigationBarBackgroundColor: '#FF5E97',
+      navigationBarTitleText: '陪我抽奖',
+      // navigationStyle: "custom", //是否隐藏导航栏
+      navigationBarTextStyle: '#ffffff'
+    },
+    networkTimeout: {
+      request: 10000
+    },
+    theme: {
+      'theme-color': '#39f'
+    }
+  },
+  globalData: {
+    imgbaseUrl: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize',
+    home_imgsrc: '/images/bg_home_01.png',
+    home_hbsrc: '/images/btn_hb_01.png',
+    prize_img_icon: '/images/btn_join_01.png',
+    prize_img_01: 'https://jdgamess.oss-cn-shanghai.aliyuncs.com/sxs.jpg',
+    ad_img_01: '/images/line_01.png',
+    ad_img_02: '/images/line_02.png',
+    pagePath: '/pages/info/detail/detail',
+    prizeData: [],
+    winlist: {
+      haslist: [],
+      uselist: []
+    }
+  },
+  //获取全局用户信息
+  getUserInfo: function(refrensh = false, getMoney = false) {
+    let that = this
+    let userInfo = that.globalData.userInfo
+    return new Promise((resove, reject) => {
+      //如果已经获取了,并且不刷新
+      if (userInfo && !refrensh) {
+        resove(userInfo)
+      } else {
+        // 判断时间记录 是否获取最新用户消息 1分钟
+        let nowtime = new Date().getTime()
+        if (userInfo && userInfo.reqTime && (nowtime - userInfo.reqTime < 60 * 1000) && !getMoney) {
+          return
+        }
+
+        usermessage
+          .getUserinfo()
+          .then(d => {
+            let userInfo = d.data
+            userInfo.reqTime = new Date().getTime()
+            that.globalData.userInfo = userInfo
+            if (!userInfo.nickname || !userInfo.nickname.length) {
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success: function(res) {
+                  let userInfos = res.userInfo
+                  usermessage.save(userInfos).then(resd => {
+                    console.log(resd)
+                    let userinfo2 = resd.data
+                  })
+                  userInfos.reqTime = new Date().getTime()
+                  that.globalData.userInfo = userInfos
+                  resove(userInfos)
+                },
+                fail: function(res) {
+                  wx.navigateTo({
+                    url: '/pages/info/auth/auth'
+                  })
+                }
+              })
+            } else {
+              resove(userInfo)
+            }
+          })
+          .catch(e => {
+            resove(userInfo)
+          })
+      }
+    })
+  },
+  saveListPool (list = [], id, prize) {
+    // prize 是否中奖控制，存在按中奖来，没有则不中奖来。控制是否显示没中奖动画 prize = poolprize 无限制中奖
+    let that = this
+    id = id || ''
+    if (id) {
+      // id表示已打开过
+      let idindex = this.globalData.winlist.uselist.indexOf(id)
+      if (idindex > -1) {
+        this.globalData.winlist.uselist.splice(idindex, 1)
+      }
+      return
+    }
+    if (!list.length) return
+    let haslist = this.globalData.winlist.haslist
+    if (!prize) {
+      list.map(v => {
+        if (v.pool_id && !~haslist.indexOf(v.pool_id * 1)) {
+          // 添加进入
+          haslist.push(v.pool_id * 1)
+          if (!v.status) that.globalData.winlist.uselist.push(v.pool_id * 1)
+        }
+      })
+    } else {
+      list.map(v => {
+        if (v.id && !~haslist.indexOf(v.id * 1)) {
+          // 添加进入
+          haslist.push(v.id * 1)
+          if (v.prize && !v.prize.status && prize != 'poolprize') that.globalData.winlist.uselist.push(v.id * 1)
+          else if (prize === 'poolprize') that.globalData.winlist.uselist.push(v.id * 1)
+        }
+      })
+    }
+    wx.setStorage({
+      key: "winlist",
+      data: this.globalData.winlist
+    })
+  },
+  onLaunch() {
+    system.attachInfo()
+    // 缓存里面保存有中奖记录，主要用于首次打开的情况
+    this.globalData.winlist = wx.getStorageSync('winlist')
+    if (!this.globalData.winlist) {
+      this.globalData.winlist = {
+        haslist: [],
+        uselist: []
+      }
+    }
+  },
+  onShow() {
+    console.log(usermessage)
+  },
+  onHide() {}
+}
+</script>
+
+<style lang="less">
+@import './static/styles/index.less';
+
+page {
+  background: rgb(242, 243, 245);
+  height: auto;
+}
+</style>

@@ -1,0 +1,30 @@
+<view>
+  <import src="../../../template/form/form.wxml" />
+  <view class="addressadd-box">
+    <template is="inputmsg" data="{{...goodsman}}" />
+    <template is="inputmsg" data="{{...phonenum}}" />
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+      <view class="addressadd_isnullbox">
+        <view class="addressadd_alltop"></view>
+        <view class="addressadd_allbottom">
+          <template is="inputmsg" data="{{...area}}" />
+          <view>
+          </view>
+        </view>
+      </view>
+    </picker>
+    <template is="inputmsg" data="{{...areadetail}}" />
+    <view class="flex-between addressadd_set">
+      <view class="addressadd_title">设置为默认地址</view>
+      <view>
+        <button class="buttonreset switchbtn {{isnow ? 'switchbtnbg': ''}}" bindtap="setNow">
+          <view class="btnicons {{isnow ? 'btniconsbg': ''}}"></view>
+        </button>
+      </view>
+    </view>
+    <view>
+      <button class="buttonreset saveaddr isright {{goodsman.val.length && phonenum.val.length && region.length && areadetail.val.length ? '': 'graybtn'}}" bindtap="saveAddr">保存地址</button>
+      <button class="buttonreset deladdr" wx:if="{{id}}" bindtap="delAddr">删除</button>
+    </view>
+  </view>
+</view>

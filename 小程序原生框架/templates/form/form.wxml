@@ -1,0 +1,155 @@
+  
+
+<!-- 重定向类型 -->
+<template name='redirect'>
+  <view class='cell b-1px-t' data-key="{{key}}" bindtap="goUrl" data-url='{{url}}' wx:if="{{show}}">
+    <view class='cell-label' wx:if="{{title}}">
+      <text>{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+    </view>
+    <view class="flex-1" >{{param[key]||placeholder}}</view>
+    <view class='right-arrow'></view>
+  </view>
+</template>
+<!-- 文本域类型 -->
+<template name='textarea'>
+  <view class='cell-row b-1px-t'>
+    <view wx:if="{{title}}" class='cell-row-label'>
+        <text>
+          <text>{{title}}</text>
+          <text class='c-yellow' wx:if="{{must}}">*</text>
+        </text>  
+    </view>
+    <view style='position:relative;z-index:1; height:300rpx;padding-top:26rpx;'>
+    <view hidden='{{!ismask}}' class="{{!inputval.length ? 'textarea-placeholder' : ''}}">
+      <view wx:if='{{inputval.length}}' class='ismaskcontent'>{{inputval}}</view>
+      <view wx:if='{{!inputval.length}}' class='ismasktext'>{{placeholder}}</view>
+    </view>
+    <textarea class='cell-textarea' placeholder='{{placeholder}}' bindinput='setParam' data-key='{{key}}' maxlength='{{size||600}}' value='{{inputval ||""}}' style='position:absolute;z-index: -1;' hidden='{{ismask}}'></textarea>
+    </view>
+    <view class='f-26 c-gray-dark text-right textarea-text'>{{inputval.length}} / {{size}}</view>
+  </view>
+</template>
+<!-- 图片上传类型 -->
+<template name='image'>
+  <view class='cell-row b-1px-t'>
+    <view class='cell-row-label'>
+      <text  wx:if="{{title}}" >
+        <text>{{title}}</text> 
+        <text class='c-yellow' wx:if="{{must}}">*</text>
+      </text>
+     
+      <text class='f-26 c-gray-dark'>
+        <text class='mr-10'>{{placeholder}}</text>
+        <text>{{param[key].length}}/{{size}}</text>
+      </text>
+    </view>
+    <scroll-view scroll-x class='scroll-x'>
+      <view class='scroll-x-item' wx:for="{{param[key]||[]}}" wx:key="{{index}}">
+          <image  src="{{item.path}}" class='scroll-x-item__img'></image>
+          <view class='del-image' bindtap='delImage' data-index='{{index}}' data-key='{{key}}'>x</view>
+          <!-- <view class='uploading-image'>上传中...</view> -->
+      </view>
+      
+      <view class='scroll-x-item'>
+          <view  class='weui-uploader__input-box ' bindtap='chooseImage' wx:if="{{param[key].length<size}}" data-key='{{key}}' data-size="{{size}}"></view>
+      </view>
+      
+    </scroll-view>
+  </view>
+</template>
+
+<!-- 文本类型 -->
+<template name='text'>
+  <view class='cell text-input' style='padding-right: 0 !important;font-size:30rpx;font-weight:600;'>
+    <view class='cell-label' wx:if="{{title}}">
+      <text>{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+    </view>
+    <input class="flex-1 text-ipting" placeholder='{{placeholder}}' placeholder-class='placeholder text-placeholder' bindinput='setParam' data-key='{{key}}' maxlength='{{size || 20}}' value='{{val || ""}}'></input>
+    <view class='f-26 c-gray-dark text-right textarea-text' wx:if="{{showsize}}">{{20 - val.length}}</view>
+  </view>
+</template>
+<!-- 数字类型 -->
+<template name='number'>
+  <view class='cell b-1px-t'>
+    <view class='cell-label' wx:if="{{title}}">
+      <text>{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+    </view>
+    <input class="flex-1" placeholder='{{placeholder}}' placeholder-class='placeholder' type="number" bindinput='setParam' data-key='{{key}}' maxlength='{{size||20}}' value='{{param[key]||""}}'></input>
+  </view>
+</template>
+<!-- 数字类型,带小数 -->
+<template name='digit'>
+  <view class='cell b-1px-t digit-1px'>
+    <view class='cell-label digit-title' wx:if="{{title}}">
+      <text>{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+    </view>
+    <input class="flex-1" placeholder='{{placeholder}}' placeholder-class='placeholder digit-placeholder' type="digit" bindinput='digitsetParam' data-key='{{key}}' maxlength='{{size || 20}}' focus='{{focus}}' value='{{val || ""}}' cursor-spacing='106'></input>
+  </view>
+</template>
+<!-- 多选类型 -->
+<template name='checkbox'>
+  <view class='cell-row b-1px-t'>
+    <view class='cell-row-label'>
+      <text  wx:if="{{title}}" >{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+      <!-- <text class='f-26 c-gray-dark'>{{placeholder}}</text> -->
+    </view>
+    <checkbox-group class="checkgroup" bindchange="setFacilitiy" data-key="facilities">
+        <checkbox  class="checkgroup-item" wx:for="{{facilitiesList}}" wx:key="{{index}}" value="{{item.id}}" checked='{{item.checked}}'>{{item.name}}</checkbox>
+    </checkbox-group>
+  </view>
+</template>
+<!-- 地址类型 -->
+<template name='address'>
+  <view class='cell b-1px-t' data-show="{{ true }}" bindtap="chooseLocation" data-key='{{key}}'>
+    <view class='cell-label' wx:if="{{title}}">
+      <text>{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+    </view>
+    <view class="flex-1 ellipsis {{param.address?'':'placeholder'}} " >{{param.address||'点击定位'}}</view>
+    <view class='iconfont icon-coordinates_fill' style='color:#888'></view>
+  </view>
+</template>
+
+<!-- 重定向类型 -->
+<template name='textagin'>
+  <view class='cell' data-key="{{type}}" data-type="{{type}}" bindtap="dealform">
+    <view class='cell-label textagin-label' wx:if="{{title}}">
+      <image src='{{path}}' class='mr-20' wx:if='{{path}}' style='height:30rpx;width:24rpx;vertical-align:middle;'/>
+      <text>{{title}}</text>
+      <text class='c-yellow' wx:if="{{must}}">*</text>
+    </view>
+    <view class="flex-1 text-right textagin-text {{val? 'isvaltext' : ''}}">{{val || placeholder}}</view>
+    <view class='right-arrow' wx:if="{{isarrow}}"></view>
+  </view>
+</template>
+
+<template name='newalertbox'>
+  <view class='mask-body '>
+    <view class='newalertbox'>
+       <view class='newalertboxbg'>
+          <image src='/images/addnew/fb_img16.png' class='newalertboximg'/>
+       </view>
+       <view class='newalertboxcontent'>
+         <view class='newalertboxcontentmess'>{{result}}</view>
+         <button class='isknow' bindtap='clearsurebtn'>知道啦</button>
+       </view>
+    </view>
+  </view>
+</template>
+
+
+<template name='location'>
+  <view class='cell' data-key="{{type}}" bindtap="chooseLocation">
+    <view class='cell-label textagin-label'>
+      <image src='/images/icon/addnew_01.png' class='mr-20' style='height:30rpx;width:24rpx;vertical-align:middle;'/>
+      <text>定位</text>
+    </view>
+    <view class="flex-1 text-right textagin-text">{{param.address || '请选择定位消息'}}</view>
+    <view class='right-arrow'></view>
+  </view>
+</template>

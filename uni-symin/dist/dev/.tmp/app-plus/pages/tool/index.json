@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "toast": "/wxcomponents/toast/index",
+    "dialogbox": "/wxcomponents/dialog/index",
+    "tbar": "/wxcomponents/tbar/index",
+    "iptitem": "/wxcomponents/form/index",
+    "choose": "/wxcomponents/choose/index",
+    "slide": "/wxcomponents/ui-slider/dist/index",
+    "itemh": "/wxcomponents/itemH/index",
+    "ubutton": "/wxcomponents/ui-button/index",
+    "uswiper": "/wxcomponents/ui-swiper/index",
+    "mask": "/components/mask"
+  }
+}

@@ -1,0 +1,330 @@
+<block>
+  <import src="../../../template/prizeresult/prizeresult.wxml" />
+  <import src="../../../static/libs/wxParse/wxParse.wxml" />
+  <view class="pdt" id="pdt">
+    <swiper vertical="{{true}}" interval="{{2000}}" duration="{{500}}" style="height:{{wxHeight - 66}}px;overflow:hidden;" bindchange="nextDelFunc" current="{{isCurrent}}">
+      <swiper-item wx:for="{{moreData}}" wx:key="{{qindex}}" wx:for-index="qindex" wx:for-item="detailData" style="position:relative;overflow:auto;height:{{wxHeight - 66}}px;" skip-hidden-item-layout="{{true}}">
+        <scroll-view scroll-y style="height:{{wxHeight - 66}}px;overflow:hidden;" bindscrolltolower="textForBtn" data-id="{{detailData.id}}" scroll-top="{{isCurrentTop}}">
+          <view class="detail_imgbox">
+            <view class="detail_img">
+              <image class="prize_imgs" src="{{detailData.icon}}" mode="widthFix" />
+            </view>
+          </view>
+          <view class="detail_contentmsg">
+            <view class="detail_join">
+              <image src="{{prize_joined}}" class="isprizing" wx:if="{{isJson}}" />
+            </view>
+            <view class="detail_zzs flex-l">
+              <view class="detail_zzs_btn flex-center">
+                <view class="icon icon-zzs icon-22"></view>
+                <view class="line-ones"></view>
+                <view class="detail_zzs_text">{{detailData.sponsor || '陪我抽奖'}} 赞助</view>
+              </view>
+              <view></view>
+            </view>
+            <view class="flex-l detail_title">
+              <view class="ellipsis--6 detail_title_view" wx:for="{{detailData.prizelist}}" wx:key="{{index}}">
+                <text>
+                  <text>奖品</text>
+                  <text wx:if="{{detailData.prizelist && detailData.prizelist.length > 1 && index === 0}}">一</text>
+                  <text wx:if="{{index === 1}}">二</text>
+                  <text wx:if="{{index === 2}}">三</text>
+                  <text>{{': ' + item.name || ''}}</text>
+                  <text wx:if="{{item.num}}" class="item_line_height_text"> x{{item.num}}份 </text>
+                </text>
+              </view>
+            </view>
+            <view class="detail_startTime {{detailData.introduce ? 'detail_startTime_01' : ''}}">
+              <text>开奖时间 | </text>
+              <text>{{detailData.endTime}}</text>
+            </view>
+            <view class="detail_zzs_msg" wx:if="{{detailData.introduce}}">
+              <view class="detail_zzs_msg_header flex-between">
+                <view class="detail_zzs_name">抽奖说明</view>
+                <view class="detail_zzs_go"></view>
+              </view>
+              <view class="detail_box_more">
+                <view class="detal_more_msg">
+                  <view class="icon icon-yinhao-copy icon-yinhao-view"></view>
+                  <view>
+                    {{detailData.introduce || '点击赞助商[ 陪我抽奖 ]，可获得新人专享红包：1、专享新人160元现金红包 2、全场包邮权益数量有限，先到先得。'}}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="{{!prizeResult ? 'detail_box_01' : ''}}" wx:if="{{detailData.bt_pos || !detailData.bt_pos * 1 && !prizeResult}}">
+            <view class="join_prize flex-l {{isJson && touchAction ? 'json_prizego' : ''}}" wx:if="{{!prizeResult}}" bindtouchstart="detailTouchStart" bindtouchmove="detailTouchMove" bindtouchend="detailTouchEnd">
+              <form report-submit="{{true}}" bindsubmit="createFormId">
+                <button form-type="submit" class="buttonreset join_btn {{!isJson ? 'join_btn_an_before' : ''}} {{isJson && touchAction ? 'btnScale': ''}} flex-center flex-wrap" bindtap="joinActivity">
+                  <view wx:if="{{!isJson}}" class="join_prize_zindex">参与抽奖</view>
+                  <view wx:if="{{isJson}}" class="flex-center flex-wrap">
+                    <view class="isJson_text"> 待开奖 </view>
+                    <view class="timeconter">
+                      <cc-counttime target="{{detailData.openTime}}" show-day="{{false}}" clear-timer="{{false}}" endDesc="开奖中..." numberStyle="{{timeStyle}}" splitStyle="{{splitStyle}}" _pid="{{_pid}}"></cc-counttime>
+                    </view>
+                  </view>
+                </button>
+              </form>
+              <view class="dots flex-between" wx:if="{{isJson}}">
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+              </view>
+              <button class="buttonreset join_btn_03 flex-center {{!touchAction ? 'btnScale': ''}} flex-wrap" wx:if="{{isJson}}" open-type="share">
+                <view class="flex-center flex-wrap join_prize_box">
+                  <image src="{{sharefriend}}" class="join_prize_zdimg" />
+                  <view wx:if="{{false}}">
+                    <view class="isJson_text">去组队</view>
+                    <view class="join_prize_box_msg_01" wx:if="{{!detailData.group_lists.length}}">一人中奖全队中奖</view>
+                    <view class="join_prize_box_msg_02 flex-center" wx:if="{{detailData.group_lists.length}}">{{detailData.group_lists.length}}/{{detailData.g_max}}</view>
+                  </view>
+                  <view class="flex-center flex-wrap">
+                    <view class="goshare_text">去分享</view>
+                    <view class="goshare_text_msg">朋友中奖，你也中奖</view>
+                  </view>
+                </view>
+              </button>
+            </view>
+            <view class="json_person {{showIslost ? 'json_person_lost': ''}}">
+              <view class="json_person_msg">已有{{jointotal || detailData.join_count || 0}}人参加，
+                <text class="json_person_url" bindtap="checkDetail" data-url="{{usersPath}}" data-id="{{id}}">查看全部></text></view>
+              <view class="json_person_img flex-center">
+                <image src="{{item.avatarurl}}" class="imgitem" wx:for="{{joinData}}" wx:key="{{index}}" />
+              </view>
+            </view>
+            <view class="shareimgbox" wx:if="{{!prizeResult}}">
+              <image class="shareimgboximg" src="{{shareimgfriend}}" />
+            </view>
+          </view>
+          <view class="detail_box">
+            <!-- <view class='detail_zzsmsg'>
+         <view class='detail_zzsmgs_h'>赞助商介绍</view>
+         <view class='detail_zzsmgs_c'>寺库奢侈品(SECOO)-Devoted To You！寺库奢侈品业务涵盖奢侈品网上销售、奢侈品线下实体体验中心、奢侈品鉴定、奢侈品养护等。线下体验中心已登录北京、上海、成都、青岛、天津，厦门、香港、纽约、米兰、马来西亚、东京。奢品海外直发，专业奢侈品鉴定团队，正品保证。</view>
+       </view> -->
+            <view class="detail_msg">
+              <view class="detail_msg_h">奖品介绍</view>
+              <view class="detail_msg_c">
+                <template is="wxParse" data="{{wxParseData: content.nodes}}" />
+              </view>
+            </view>
+            <view class="linkprogram" wx:if="{{false}}">此处链接小程序广告</view>
+            <view class="copy_gzh">
+              <view class="copy_gzh_h">关注公众号，获取更多资讯</view>
+              <view class="copy_gzh_t">陪我抽奖</view>
+              <view class="copy_gzh_btn flex-center">
+                <button class="buttonreset copy_gzh_btn_copy" bindtap="copyContent" data-namestr="{{detailData.namestr || '陪我抽奖'}}">点击一键复制</button>
+              </view>
+            </view>
+          </view>
+          <view class="prize_penal" wx:if="{{prizeResult}}" id="winAll">
+            <view wx:if="{{false}}">
+              <view class="prize_lost_header flex-l">
+                <image src="{{lostsad}}" class="prize_lost_header_img" />
+                <view class="prize_lost_header_text">SORRY,你未中奖!</view>
+              </view>
+              <view class="prize_lost_header_msg">不过您将获得如下随机红包，可在
+                <text class="mycoin">我的零钱</text>提现
+              </view>
+              <view class="prize_lost_hbox">
+                <image src="{{hb_bg}}" class="prize_lost_hbox_img" />
+                <view class="prize_lost_hbox_msg flex-center flex-wrap">
+                  <view class="aline">恭喜获得红包</view>
+                  <view class="aline">点击下方图片领取</view>
+                </view>
+                <view class="prize_lost_hbox_title">恭喜发财，大吉大利</view>
+                <view class="prize_lost_adimg">此处为广告</view>
+              </view>
+            </view>
+            <view wx:if="{{!detailData.joined || mession.ismodel === 'lost'}}">
+              <view class="flex-center">
+                <view class="prize_lost_btn flex-center">已开奖</view>
+              </view>
+            </view>
+            <view class="prize_win" wx:if="{{mession.ismodel === 'win'}}">
+              <view class="prize_lost_header flex-wrap">
+                <image src="{{winprize_bg}}" class="prize_lost_header_img" />
+                <view class="prize_lost_header_text">恭喜，您已中奖！</view>
+                <view class="prize_win_name">奖品: {{detailData.prize.prize_name}}</view>
+              </view>
+              <view class="prize_win_adrr" wx:if="{{prizeType === 1}}">
+                <view class="prize_win_adrr_header">默认地址</view>
+                <view class="prize_win_adrr_box flex-between" data-url="/pages/info/address/address" bindtap="checkDetailAddr" wx:if="{{address.id}}" data-id="{{address.id}}">
+                  <view class="prize_win_box_detail">
+                    <view class="prize_win_box_users_msg flex-l">
+                      <view class="prize_win_box_users_name">{{address.name}}</view>
+                      <view class="prize_win_box_users_phone">{{address.phone}}</view>
+                      <view class="prize_win_box_users_tags" wx:if="{{!!address.used}}">默认</view>
+                    </view>
+                    <view class="prize_win_box_adrr ellipsis">地址：{{address.city}}{{address.addr}}</view>
+                  </view>
+                  <view class="icon icon-nextstep icon16 addr-icon"></view>
+                </view>
+                <view class="prize_win_newadrr_box flex-center" wx:if="{{!detailData.prize.status && !address.id}}" data-type="addrdetail" data-url="/pages/info/address/address" bindtap="goUrl">
+                  <view class="prize_win_newadrr_box_inner">
+                    <view class="icon icon-dizhi icon16"></view>
+                    <view class="prize_win_newadrr_box_text">填写收货地址</view>
+                  </view>
+                </view>
+              </view>
+              <view class="prize_win_pro" wx:if="{{detailData.prize.status}}">
+                <view class="prize_win_pro_header">中奖情况</view>
+                <view class="prize_win_pro_box flex-center">
+                  <view class="prize_win_pro_imgs">
+                    <image src="{{winprizeimg_01}}" class="prize_win_pro_img" />
+                    <view class="prize_win_pro_imgs_text">申请发货成功</view>
+                  </view>
+                  <view class="prize_win_pro_aline"></view>
+                  <view class="prize_win_pro_imgs">
+                    <image src="{{winprizeimg_02}}" class="prize_win_pro_img" />
+                    <view class="prize_win_pro_imgs_text">商品已发货</view>
+                  </view>
+                  <view class="{{!prizesend ? 'prize_win_pro_halfaline' : 'prize_win_pro_aline'}}"></view>
+                  <view class="prize_win_pro_imgs" wx:if="{{detailData.prize.status === 1}}">
+                    <image src="{{lostprizeimg_04}}" class="prize_win_pro_img" />
+                    <view class="prize_win_pro_imgs_text prize_win_pro_imgs_text_no">奖品未送达</view>
+                  </view>
+                  <view class="prize_win_pro_imgs" wx:if="{{detailData.prize.status === 2}}">
+                    <image src="{{winprizeimg_03}}" class="prize_win_pro_img" />
+                    <view class="prize_win_pro_imgs_text prize_win_pro_imgs_text_no">奖品已送达</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="prize_win_list">
+              <view class="prize_win_list_header">中奖者名单</view>
+              <view class="prize_win_box">
+                <view class="prize_win_item" wx:for="{{detailData.prize_list}}" wx:key="{{pindex}}" wx:for-index="pindex">
+                  <view class="prize_win_item_header ellipsis">
+                    <text wx:if="detailData.prize_list.length >1">{{pindex === 0 ? '奖项一：': (pindex === 1 ? '奖项二：' : '奖项三：')}}</text>{{item[0].prize_name}}</view>
+                  <view class="prize_win_item_imgs flex-between flex-wrap">
+                    <view class="prize_win_item_imgs_box flex-center flex-wrap flex-1 {{item.length === 2 ? 'prize_win_item_imgs_box_50' : (item.length >= 3 ? 'prize_win_item_imgs_box_30' : '')}}" wx:for="{{item}}" wx:for-item="items" wx:key="{{index}}" wx:if="{{items.showmore || index <= 3}}">
+                      <image src="{{items.avatarurl}}" class="prize_ps_img" />
+                      <view class="prize_ps_title ellipsis">{{items.nickname}}</view>
+                    </view>
+                  </view>
+                  <view class="prize_win_item_checkmore" data-index="{{index}}" data-pindex="{{pindex}}" wx:if="{{item.length > 3}}">还有{{item.length - 3}}位中奖者</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="{{!prizeResult ? 'detail_box_01' : ''}}" wx:if="{{detailData.bt_pos && detailData.bt_pos * 1 || prizeResult}}">
+            <view class="join_prize flex-l {{isJson && touchAction ? 'json_prizego' : ''}}" wx:if="{{!prizeResult}}" bindtouchstart="detailTouchStart" bindtouchmove="detailTouchMove" bindtouchend="detailTouchEnd">
+              <form report-submit="{{true}}" bindsubmit="createFormId">
+                <button form-type="submit" class="buttonreset join_btn {{!isJson ? 'join_btn_an_before' : ''}} {{isJson && touchAction ? 'btnScale': ''}} flex-center flex-wrap" bindtap="joinActivity">
+                  <view wx:if="{{!isJson}}" class="join_prize_zindex">参与抽奖</view>
+                  <view wx:if="{{isJson}}" class="flex-center flex-wrap">
+                    <view class="isJson_text"> 待开奖 </view>
+                    <view class="timeconter">
+                      <cc-counttime target="{{detailData.openTime}}" show-day="{{false}}" clear-timer="{{false}}" endDesc="开奖中..." numberStyle="{{timeStyle}}" splitStyle="{{splitStyle}}" _pid="{{_pid}}"></cc-counttime>
+                    </view>
+                  </view>
+                </button>
+              </form>
+              <view class="dots flex-between" wx:if="{{isJson}}">
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+                <view class="dot"></view>
+              </view>
+              <button class="buttonreset join_btn_03 flex-center {{!touchAction ? 'btnScale': ''}} flex-wrap" wx:if="{{isJson}}" open-type="share">
+                <view class="flex-center flex-wrap join_prize_box">
+                  <image src="{{sharefriend}}" class="join_prize_zdimg" />
+                  <view wx:if="{{false}}">
+                    <view class="isJson_text">去组队</view>
+                    <view class="join_prize_box_msg_01" wx:if="{{!detailData.group_lists.length}}">一人中奖全队中奖</view>
+                    <view class="join_prize_box_msg_02 flex-center" wx:if="{{detailData.group_lists.length}}">{{detailData.group_lists.length}}/{{detailData.g_max}}</view>
+                  </view>
+                  <view class="flex-center flex-wrap">
+                    <view class="goshare_text">去分享</view>
+                    <view class="goshare_text_msg">朋友中奖，你也中奖</view>
+                  </view>
+                </view>
+              </button>
+            </view>
+            <view class="json_person {{showIslost ? 'json_person_lost': ''}}">
+              <view class="json_person_msg">已有{{jointotal || detailData.join_count || 0}}人参加，
+                <text class="json_person_url" bindtap="checkDetail" data-url="{{usersPath}}" data-id="{{id}}">查看全部></text></view>
+              <view class="json_person_img flex-center">
+                <image src="{{item.avatarurl}}" class="imgitem" wx:for="{{joinData}}" wx:key="{{index}}" />
+              </view>
+            </view>
+            <view class="shareimgbox" wx:if="{{!prizeResult}}">
+              <image class="shareimgboximg" src="{{shareimgfriend}}" />
+            </view>
+          </view>
+          <view class="ad_box">
+            <image src="{{ad_img_01}}" class="adbox_img" />
+            <view class="adbox_line">广告</view>
+            <image src="{{ad_img_02}}" class="adbox_img" />
+            <view class="ad">
+              <image src="{{ademptyImg}}" class="ademptyImg" />
+            </view>
+          </view>
+          <view class="sharef">
+            <button class="buttonreset share_btn share_btn_newbg" bindtap="sharefunc" wx:if="{{prizeType !== 1 && prizeType !== 2 && !prizeResult}}" data-type="share">分享给朋友们 朋友中奖你也中奖</button>
+            <button class="buttonreset share_btn share_btn_newbg" bindtap="goDirect" wx:if="{{prizeType !== 1 && prizeResult}}">返回首页，选择商品，继续抽奖</button>
+            <button class="buttonreset share_btn sendgoods_btn {{!detailData.prize.status && !address.id ? 'graybtn': ''}}" wx:if="{{(prizeType === 1 || prizeType === 2) && detailData.prize && detailData.prize.status == 0}}" data-url="/pages/info/goodsend/goodsend" bindtap="checkDetailFh">申请发货</button>
+            <view class="godown flex-center flex-wrap">
+              <view class="icon icon-up godownicon" wx:if="{{false}}"></view>
+              <view class="gonext">继续上滑，参与下一个抽奖</view>
+            </view>
+          </view>
+          <ui-mask show="{{showIsjoin}}" hide-delay="500" bindtap="handleShowMask1" custom-style="mask" wx:if="{{showIsjoin}}" _pid="{{_pid}}">
+            <view class="isjoin">
+              <button class="buttonreset join_btn_02 flex-center">祝好运</button>
+            </view>
+          </ui-mask>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <template is="prizeresult" data="{{...mession}}" wx:if="{{detailData.prize && !detailData.prize.status && prizeType != 3 || mession.ismodel != 'origin'}}" />
+  <!-- 打开红包 -->
+  <ui-mask show="{{prizeType === 3 && detailData.prize && !detailData.prize.status}}" hide-delay="500" bindtap="handleShowMask" effect="scale-out" custom-style="mask" wx:if="{{false}}" _pid="{{_pid}}">
+    <view class="get_hb_box flex-center">
+      <view class="get_hb_boxs">
+        <image src="{{hb_imgsrc}}" class="get_hb_boxs_img" />
+        <image src="{{hb_imgsrc2}}" class="get_hb_boxs_img_02 {{isopenhb ? 'get_hb_boxs_img_02_an' : ''}}" />
+        <image src="{{hb_imgsrc3}}" class="get_hb_boxs_img_03 {{isopenhb ? 'get_hb_boxs_img_03_an' : ''}}" />
+        <view class="icon icon-close getgift_close_btn" catchtap="handleShowMask"></view>
+        <view class="get_hb_winbox {{isopenhb ? 'get_hb_winbox_an': ''}}">
+          <image src="{{hb_icon}}" class="get_hb_winbox_icon" />
+          <view class="get_hb_winbox_title">陪你抽奖</view>
+          <view class="get_hb_winbox_msg">恭喜发财，大吉大利</view>
+          <view class="get_hb_winbox_money">
+            {{money}}
+            <text class="get_hb_winbox_money_s">元</text>
+          </view>
+          <view class="get_hb_winbox_msg_s">已存入[零钱]，可提现</view>
+        </view>
+        <view class="get_hb_boxs_msg" wx:if="{{!isopenhb}}">
+          <view class="get_hb_boxs_msg_01" wx:if="{{!ishowHb_btn}}">
+            <view class="get_hb_boxs_msg_text01">恭喜获得红包</view>
+            <view class="get_hb_boxs_msg_text02">点击下方图片领取</view>
+          </view>
+          <view class="get_hb_boxs_msg_02 {{ishowHb_btn ? 'get_hb_boxs_msg_03' : ''}}">
+            恭喜发财，大吉大利
+          </view>
+          <view class="ad_02" catchtap="clickad" wx:if="{{!ishowHb_btn}}"></view>
+          <image src="{{openhb_img}}" class="getgift_open {{ishowHb_btn && iscount ? 'getgift_open_an': ''}}" wx:if="{{ishowHb_btn && !isopenhb}}" catchtap="openGift" />
+        </view>
+      </view>
+    </view>
+  </ui-mask>
+
+  <ui-popup show="{{showshare}}" position="bottom" height="170" _pid="{{_pid}}" mask-style="{{popmaskStyle}}" hide-on-tap="{{true}}" wx:if="{{showshare}}">
+    <view>
+      <button class="buttonreset sharepopbtn" bindtap="handleShow2" open-type="share">邀请微信好友</button>
+      <button class="buttonreset sharepopbtn" bindtap="goshareimg">生成分享图</button>
+      <button class="buttonreset sharepopbtn" bindtap="handleShow2" wx:if="{{false}}">嵌入到公众号文章</button>
+      <button class="buttonreset sharepopbtn clearpopbtn" bindtap="sharefunc">取消</button>
+    </view>
+  </ui-popup>
+</block>

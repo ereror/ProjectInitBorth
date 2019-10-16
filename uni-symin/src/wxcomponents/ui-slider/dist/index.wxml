@@ -1,0 +1,42 @@
+<view class="ui-slider" style="position: relative;{{sliderStyle}}">
+  <!-- 值的列表  -->
+  <view wx:if="{{showValue}}" style="{{valueStyle}}" class="value">
+    {{unlimited ? value > max - step ? '不限' : value : value}}</view>
+  <view wx:if="{{showMaxValue}}" style="{{maxValueStyle}}" class="value">
+    {{unlimited ? '不限' : max}}</view>
+  <!-- slider的外部 -->
+
+  <view class="slider-line-touch" bindtap="touchStartLineHandler" style="{{sliderLineTouchStyle}}">
+    <view class="slider-line-background" style="{{sliderLineBackgroundStyle}}"></view>
+    <view class="slider-buffer-line" style="{{sliderBufferLineStyle}}"></view>
+
+    <view class="slider-line" style="{{sliderLineStyle}};{{sliderLineDynamicStyle}};{{sliderBarAnimateStyle}}"></view>
+    <view class="slider-scale-line-wrap" style="{{sliderLineScaleWrapStyle}}">
+      <view wx:if="{{scaleLine}}" class="slider-scale-line" wx:for="{{scaleLine ? (max - min) / scaleLine + 1 : 0}}" wx:key="{{index}}" style="{{sliderLineScaleStyle}};transform: translate({{index * (width - valueAlignWidth) / ((max - min) / scaleLine)}}rpx, {{scaleMargin}}rpx) rotate({{scalePosition === 'under' ? 0 : 180}}deg); transform-origin:0 {{-sliderWeight / 2}}rpx">
+      </view>
+      <view wx:if="{{keyScaleLine}}" class="slider-key-line-scale" wx:for="{{keyScaleLine ? (max - min) / keyScaleLine + 1 : 0}}" wx:key="{{index}}" style="{{sliderLineScaleStyle}};transform: translate({{index * (width - valueAlignWidth) / ((max - min) / keyScaleLine)}}rpx, {{scaleMargin}}rpx) rotate({{scalePosition === 'under' ? 0 : 180}}deg); transform-origin:0 {{-sliderWeight / 2}}rpx">
+      </view>
+
+
+      <view wx:if="{{keyScaleLine}}" class="slider-key-line-scale-number" wx:for="{{keyScaleLine ? (max - min) / keyScaleLine + 1 : 0}}" wx:key="{{index}}" style="{{sliderLineScaleStyle}};transform: translate({{index * (width - valueAlignWidth) / ((max - min) / keyScaleLine) - 50}}rpx, {{scalePosition === 'under' ? scaleMargin : scaleMargin - sliderWeight - 18 - 18 - 10}}rpx)">
+        {{unlimited ? (index + 1 !== (keyScaleLine ? (max - min) / keyScaleLine + 1 : 0))? minNum + index * keyScaleLine : '不限' : minNum + index * keyScaleLine}}
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <view class="slider-line-key-scale"></view> -->
+
+
+  <view class="slider-bar-wrap1" id="wrap1" wx:if="{{showDoubleBarWrap}}" catchtouchmove="touchMoveHandler" catchtouchend="touchEndHandler" catchtouchstart="touchStartHandler" style="{{sliderBarWrapStyle}};{{sliderBarWrapDynamicStyle}};{{sliderBarAnimateStyle}}">
+    <view class="tooltip" style="{{tooltipStyle}};{{tooltipCustomStyle}};" wx:if="{{showTooltip}}">{{unlimited ? (showDoubleBarWrap ? value[0] : value) > max - step ? '不限' : (showDoubleBarWrap ? value[0] : value) : (showDoubleBarWrap ? value[0] : value)}}</view>
+    <view class="slider" style="{{sliderBarStyle}};{{thumbCustomStyle}};{{sliderBarAnimateStyle}};{{thumbDownCustomStyle}}"></view>
+  </view>
+
+
+  <view class="slider-bar-wrap2" id="wrap2" catchtouchmove="touchMove2Handler" catchtouchstart="touchStart2Handler" catchtouchend="touchEnd2Handler" style="{{sliderBarWrapStyle}};{{sliderBarWrap2DynamicStyle}};{{sliderBarAnimateStyle}}">
+    <view class="tooltip" style="{{tooltipStyle}};{{tooltipCustomStyle}};" wx:if="{{showTooltip}}">{{unlimited ? (showDoubleBarWrap ? value[1] : value) > max - step ? '不限' : (showDoubleBarWrap ? value[1] : value) : (showDoubleBarWrap ? value[1] : value)}}</view>
+    <view class="slider" style="{{sliderBarStyle}};{{thumbCustomStyle}};{{sliderBarAnimateStyle}};{{thumbDownCustomStyle}}">
+    </view>
+  </view>
+</view>

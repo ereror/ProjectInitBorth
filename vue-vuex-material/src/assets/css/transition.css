@@ -1,0 +1,55 @@
+/*fade 过渡*/
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .7s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+.animation-delay-half {
+  animation-delay: .5s;
+}
+
+.animation-delay-1 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2 {
+  animation-delay: 2s;
+}
+
+.animation-delay-3 {
+  animation-delay: 3s;
+}
+
+.animation-delay-4 {
+  animation-delay: 4s;
+}
+
+.animation-delay-5 {
+  animation-delay: 5s;
+}
+
+.fast-animated {
+  animation-duration: .5s;
+}
+
+
+/*list-complete*/
+
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.list-complete-leave-active {
+  position: absolute;
+}

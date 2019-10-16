@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "闲小宝",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#ff6454",
+  "usingComponents": {
+    "mask": "/components/mask/mask",
+    "painter": "/components/painter/painter"
+  }
+}

@@ -1,0 +1,8 @@
+.goods-class {
+	color: red;
+}
+
+	.title {
+		font-size: 46upx;
+		color: #8f8f94;
+	}

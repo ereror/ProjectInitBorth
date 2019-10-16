@@ -1,0 +1,42 @@
+<view class='d-modelbox d-flex'>
+	<view class="d-model d-model-01 {{local_boxconfig.model === 1 ? 'd-model-sm': ''}}">
+		<!-- 普通弹框 -->
+		<block wx:if='{{local_boxconfig.model === 1}}'>
+			<view class='d-title' wx:if="{{local_boxconfig.title.length}}">{{local_boxconfig.title}}</view>
+			<slot></slot>
+			<view class='d-content' wx:if="{{local_boxconfig.content.length}}">{{local_boxconfig.content}}</view>
+		</block>
+		
+		<!-- 列表选择 -->
+		<block wx:if='{{local_boxconfig.model === 2}}'>
+			<picker-view indicator-style="height: 40px;" style="width: 100%; height: 300rpx;" value="{{chooseVal}}" bindchange="chooseChange">
+				<picker-view-column>
+				  <view wx:for="{{choices}}" class='choiceitem' wx:key="{{index}}">{{item.text}}</view>
+				</picker-view-column>
+			</picker-view>
+		</block>
+		
+		<!-- 日期选择 -->
+		<block wx:if='{{local_boxconfig.model === 3}}'>
+			 <picker-view indicator-style="height: 40px;" style="width: 100%; height: 300px;" value="{{timeChoose}}" bindchange="timeChange">
+				<picker-view-column>
+				  <view wx:for="{{years}}" class='timeItem' wx:key="{{index}}">{{item}}年</view>
+				</picker-view-column>
+				<picker-view-column>
+				  <view wx:for="{{months}}" class='timeItem' wx:key="{{index}}">{{item}}月</view>
+				</picker-view-column>
+				<picker-view-column>
+				  <view wx:for="{{days}}" class='timeItem' wx:key="{{index}}">{{item}}日</view>
+				</picker-view-column>
+			 </picker-view>
+		</block>
+		<!-- 底部按钮 -->
+		<form report-submit='{{true}}' bindsubmit='createFormId'>
+			<view class="d-btn {{local_boxconfig.btn.cancolor && local_boxconfig.btn.okcolor ? 'd-flexb' : ''}} {{local_boxconfig.model === 1 ? 'd-model-sms': ''}}" wx:if='local_boxconfig.btn'>
+				<button form-type='submit' class='d-btn-cancel d-color-b {{local_boxconfig.btn.cancolor}}' wx:if='{{local_boxconfig.btn.cancel}}' bindtap='cancelbtn' data-key='{{local_boxconfig.key}}'>{{local_boxconfig.btn.cancel || "辅助操作"}}</button>
+				<button form-type='submit' class='d-btn-sure d-color-r {{local_boxconfig.btn.okcolor}}' wx:if='{{local_boxconfig.btn.ok && local_boxconfig.btn.cancel}}' bindtap='surebtn' data-key='{{local_boxconfig.key}}'>{{local_boxconfig.btn.ok || '主操作'}}</button>
+				<button form-type='submit' class='d-btn-sureall {{local_boxconfig.btn.okcolor}}' wx:if='{{local_boxconfig.btn.ok && !local_boxconfig.btn.cancel}}' bindtap='surebtn' data-key='{{local_boxconfig.key}}'>{{local_boxconfig.btn.ok || '主操作'}}</button>
+			</view>
+		</form>
+	</view>
+</view>

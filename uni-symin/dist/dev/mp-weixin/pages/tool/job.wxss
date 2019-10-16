@@ -1,0 +1,57 @@
+
+.job-box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	padding:0 78rpx 200rpx 78rpx;
+	margin-left: -42rpx;
+}
+.job_item {
+	margin: 40rpx 0 0 42rpx;
+	padding: 24rpx 30rpx;
+	min-width: 116rpx;
+	height: 88rpx;
+	border-radius: 30rpx !important;
+}
+.job-box::after {
+	content: '';
+	-webkit-box-flex: 1;
+	-webkit-flex: auto;
+	    -ms-flex: auto;
+	        flex: auto;
+}
+.fixbtn {
+	position: fixed;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	bottom: 40rpx;
+	z-index: 99;
+	width: 100%;
+}
+.job_btn {
+	width: 690rpx;
+	height: 88rpx;
+	margin: 0 auto;
+	border-radius: 30rpx;
+	background: #f81f5e !important;
+	color: white;
+}
+.job_btn_checked {
+	background: #F81F5E !important;
+	color: white;
+}
+

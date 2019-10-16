@@ -1,0 +1,16 @@
+<view class="swiper-container {{swiperConf.model === 1 ? 'swiperReset': ''}} ">
+    <swiper circular="{{swiperConf.circular}}" autoplay="{{swiperConf.autoplay}}" interval="{{swiperConf.interval}}" duration="{{swiperConf.duration}}" bindanimationfinish="swiperChange" class="swiper {{swiperConf.model === 1 ? 'swiperli': ''}}" current='{{swiperCurrent}}'>
+        <block wx:for="{{items}}" wx:key="unique">
+            <swiper-item class='imgR'>
+                <image src="{{item.src}}" data-src='{{item.src}}' data-url='{{item.jump_url}}' data-remark='{{item.remark}}' class="img" mode='{{swiperConf.mode}}' bindtap='checkImg'></image>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="dots {{swiperConf.model === 1 ? 'dotIndex': ''}}" wx:if='{{items.length > 1}}'>
+        <block wx:for="{{items}}" wx:key="unique">
+            <view class="dot{{index == swiperCurrent ? ' active' : ''}}" data-index="{{index}}" bindtap='setIndex'></view>
+        </block>
+    </view>
+	<!-- <cover-view class='corner'></cover-view> -->
+</view>

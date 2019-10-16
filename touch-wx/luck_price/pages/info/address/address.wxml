@@ -1,0 +1,26 @@
+<view>
+  <view class="address_noaddr" wx:if="{{!addrlist.length}}">
+    <image src="{{address_bg}}" class="address_noaddr_bg" />
+    <view class="address_noaddr_text">暂无数据</view>
+  </view>
+  <view class="address_box" wx:if="{{addrlist.length}}">
+    <view class="address_item flex-between {{(ischecked && item.iscount === index || !ischecked) && item.usednow ? '' : 'address_item_gray'}}" wx:for="{{addrlist}}" wx:key="{{index}}" data-index="{{index}}" bindtap="chosebtn" bindtouchstart="addrTouchStart" bindtouchmove="addrTouchMove" bindtouchend="addrTouchEnd">
+      <view class="address_item_detail {{item.used && item.optbtn ? 'goleft2': (!item.used && item.optbtn ? 'goleft' : '')}}">
+        <view class="address_item_users_msg flex-l">
+          <view class="address_item_users_name">{{item.name}}</view>
+          <view class="address_item_users_phone">{{item.phone}}</view>
+          <view class="address_item_users_tags" wx:if="{{item.used}}">默认</view>
+        </view>
+        <view class="address_item_adrr ellipsis--2">地址：{{item.city}}{{item.addr}}</view>
+      </view>
+      <view class="icon icon-edit icon16 addr-icon {{item.used && item.optbtn ? 'goleft2': (!item.used && item.optbtn ? 'goleft' : '')}}" catchtap="checkDetail" data-index="{{index}}"></view>
+      <view class="address_opt_box flex-center {{item.used && item.optbtn ? 'address_opt_box_an2': (!item.used && item.optbtn ? 'address_opt_box_an' : '')}}">
+        <view class="address_opt_box_szmr" catchtap="setAddress" data-index="{{index}}" wx:if="{{!item.used}}">设为默认</view>
+        <view class="address_opt_box_del" catchtap="delAddress" data-index="{{index}}">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="address_add">
+    <button class="buttonreset address_add_btn" bindtap="goUrl" data-url="/pages/info/addressadd/addressadd">添加收货地址</button>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+    <template name='nomsg'>
+      <view class='nomsg_box' wx:if='{{!data.length}}'>
+        <image src="{{nomsg_bg || 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/icon_nomsg.png'}}" class='nomsg_bg' />
+        <view class='nomsg_text'>暂无数据</view>
+      </view>
+    </template>

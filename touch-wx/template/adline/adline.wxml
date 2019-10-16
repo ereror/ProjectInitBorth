@@ -1,0 +1,10 @@
+    <template name='adline'>
+    <view class='ad_box'>
+      <image src='{{ad_img_01}}' class='adbox_img' />
+      <view class='adbox_line'>广告</view>
+      <image src='{{ad_img_02}}' class='adbox_img' />
+      <view class='ad' wx:if='{{ademptyImg.length}}'>
+        <image src='{{ademptyImg}}' class='ademptyImg'>
+      </view>
+    </view>
+    </template>

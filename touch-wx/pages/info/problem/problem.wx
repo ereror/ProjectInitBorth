@@ -1,0 +1,64 @@
+<template>
+  <view class='problem_box'>
+    <block wx:for='{{proList}}' wx:key="{{index}}">
+      <template is='problem_item' data="{{...item}}"></template>
+    </block>
+    <button class="buttonreset deladdr" open-type="contact">仍有问题？联系客服</button>
+    <template name='problem_item'>
+      <view class='problem_detail'>
+        <view class='problem_title'>{{title}}</view>
+        <view class='problem_content'>
+          <text>{{content}}</text>
+        </view>
+      </view>
+    </template>
+  </view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: '常见问题',
+    backgroundColor: '#F2f3f5',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    proList: [{title: 'Q: 未收到奖品?', content: '奖品是由抽奖发起人提供的，直接寄送到你提供的地址，陪我抽奖暂不进行物流跟踪，通常到货时间在两周内，请确保地址在有效期内已填写，并满足发起者在奖品界面填写的要求说明，如遇虚假抽奖，请进入客服投诉链接填写信息，我们会酌情对发起者处罚。'},
+    {title: 'A: 三种开奖方式!', content: '按时间自动开奖：时间范围在7天内，到达设置时间会自动开奖。\r\n\r\n 按人数自动开奖：免费版人数设置不可超过1024人。如3天内未到达指定人数，则会在3天后自动开奖。\r\n\r\n 手动开奖：由发起者手动点击进行开奖，有效期3天。如未开奖，则自动3天后失效。'},
+    {title: 'Q: 我经常参与抽奖，为什么从来没有中奖过?', content: '陪我抽奖：作为第三方抽奖平台，所有抽奖均由程序随机抽取，我们不会指定中奖，黑箱操作，如果经常参与抽奖没有中奖，不如试试发起一个抽奖，邀请朋友们参与，也很有乐趣。'}]
+  }
+}
+</script>
+
+<style lang="less">
+.problem_box {
+  padding:0rpx 24rpx 30rpx 24rpx;
+}
+.problem_detail {
+  width:702rpx;
+  min-height: 294rpx;
+  height: auto;
+  padding: 0 30rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 3rpx 16rpx rgba(128,128,128,0.1);
+  border-radius:10rpx;
+  margin-top: 24rpx;
+  overflow: hidden;
+}
+.problem_title {
+  height:108rpx;
+  line-height:108rpx;
+  font-size: 30rpx;
+  color: #FF5E97;
+  border-bottom: 2rpx dashed #E6E6E6;
+  font-weight: 600;
+}
+.problem_content {
+  padding: 33rpx 0;
+  color: #757373;
+  font-size:28rpx;
+  line-height:1.5;
+}
+.deladdr {margin:65rpx auto;width:702rpx;height:88rpx;background:#575757;border-radius:44rpx;color:white;line-height:88rpx;text-align:center;font-size:32rpx;}
+</style>

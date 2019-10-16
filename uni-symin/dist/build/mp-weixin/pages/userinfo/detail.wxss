@@ -1,0 +1,84 @@
+
+page {
+	background: #F9F9Fb;
+}
+.uinfo-d-head {
+	width: 690rpx;
+	overflow: hidden;
+	border-radius: 30rpx;
+	margin: 30rpx auto 0;
+}
+.uinfo-d-user {
+	margin: 0 auto;
+	width: 690rpx;
+	height: 284rpx;
+	background: white;
+	border-radius: 0 0 30rpx 30rpx
+}
+.uinfo-d-user-msg {
+	background: white;
+	height:184rpx;
+	border-radius: 0 0 30rpx 30rpx;
+	padding-top: 40rpx;
+}
+.uinfo-d-user-rz {
+	height: 100rpx;
+	line-height: 100rpx;
+	font-size: 34rpx;
+	color: white;
+	text-align: center;
+}
+.isrz {
+	background: #09d6a1;
+}
+.isrzf {
+	background: yellowgreen;
+}
+.uinfo-d-user-name-box, .uinfo-d-user-status-box {
+	padding: 0 30rpx;
+	font-size: 34rpx;
+	font-weight: 500;
+	color: #000000;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+}
+.uinfo-d-user-constellation {
+	margin-left: 30rpx;
+}
+.uinfo-d-user-status-box {
+	margin-top: 20rpx;
+	font-size: 26rpx;
+}
+.uinfo-d-user-status-dest {
+	margin-left: 20rpx;
+}
+.uinfo-d-box {
+	width: 690rpx;
+	border-radius: 30rpx;
+	overflow: hidden;
+	background: white;
+	margin: 40rpx auto 0;
+}
+.uinfo-d-btnbox {
+	width: 690rpx;
+	margin: 40rpx auto 62rpx;
+}
+.uinfo-d-btn {
+	width: 100%;
+	border-radius: 30rpx;
+	background: #f81f5e !important;
+	color: white;
+}
+.lg {
+   padding:0 40rpx;
+   font-size:32rpx;
+   height:88rpx;
+}
+
+page::after{position:fixed;content:'';left:-1000px;top:-1000px;-webkit-animation:shadow-preload .1s;-webkit-animation-delay:3s;animation:shadow-preload .1s;animation-delay:3s}@-webkit-keyframes shadow-preload{0%{background-image:url(https://cdn.dcloud.net.cn/img/shadow-grey.png)}100%{background-image:url(https://cdn.dcloud.net.cn/img/shadow-grey.png)}}@keyframes shadow-preload{0%{background-image:url(https://cdn.dcloud.net.cn/img/shadow-grey.png)}100%{background-image:url(https://cdn.dcloud.net.cn/img/shadow-grey.png)}}

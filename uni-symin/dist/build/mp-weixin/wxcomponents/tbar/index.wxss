@@ -1,0 +1,41 @@
+.tbar-box {
+	width:750rpx;
+	height:98rpx;
+	position:fixed;
+	z-index: 8888;
+	bottom:0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow:0 -1rpx 2rpx #a1a1a1;
+	background:rgba(255,255,255,1);
+}
+.tar-icon {
+	width: 40rpx;
+	height: 40rpx;
+	margin: 5rpx;
+}
+
+.tar-items {
+	display: flex;
+	width: 100%;
+	padding: 0 10rpx;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	text-align: center;	
+}
+
+.tar-text {
+	font-size: 22rpx;
+	line-height: 32rpx;
+	width: 100%;
+}
+
+.tar-textc-a {
+	color: #000000;
+}
+
+.tar-textc-d {
+	color: #6267F9;
+}

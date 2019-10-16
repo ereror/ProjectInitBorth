@@ -1,0 +1,8 @@
+<view class='tip-box' style="{{tipStyleInner ? tipStyleInner: ''}}">
+	<view class='tip-content'>
+		<view class='tip-text'>{{tipContent}}</view>
+		<view class='tip-close'>
+			<slot></slot>
+		</view>
+	</view>
+</view>

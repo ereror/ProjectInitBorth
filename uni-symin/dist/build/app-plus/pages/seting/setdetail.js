@@ -1,0 +1,2 @@
+setCssToHead(["body { background: #F9F9F8; }\n.",[1],"set-box { margin: ",[0,40]," ",[0,30],"; border-radius: ",[0,30],"; overflow: hidden; }\n",],undefined,{path:"./pages/seting/setdetail.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/seting/setdetail.wxml') } }));

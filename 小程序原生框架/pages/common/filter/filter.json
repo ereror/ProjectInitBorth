@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "筛选",
+  "usingComponents": {
+    "tabs": "/components/tabs/tabs",
+    "tab": "/components/tab/tab",
+    "dialog": "/components/dialog/dialog",
+    "popup": "/components/popup/popup",
+    "fixed": "/components/fixed/fixed",
+    "sticky": "/components/sticky/sticky",
+    "mask": "/components/mask/mask"
+  }
+}

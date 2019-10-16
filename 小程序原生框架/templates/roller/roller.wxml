@@ -1,0 +1,17 @@
+<template name="roller">
+    <!-- 滚动 -->
+    <view class='roller-box ellipsis' style='height:{{height}}rpx;font-size:{{fontSize}}rpx'>
+       
+       <swiper  class="roller"   indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" circular="{{circular}}" previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}"  vertical="true" display-multiple-items="{{list.length<2?1:displayMultipleItems}}">
+        <block >
+            <swiper-item wx:for="{{list}}" wx:key="{{index}}" class="roller-item" > 
+              
+              <view class='ellipsis roller-title'> 
+               {{item.content}}
+              </view>
+            </swiper-item>
+        </block>
+    </swiper>
+    </view>
+    
+</template>

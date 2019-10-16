@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/userinfo/detail",
+    "pages/userinfo/index",
+    "pages/tool/index",
+    "pages/message/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "甜不辣",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "123"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

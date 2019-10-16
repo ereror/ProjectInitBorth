@@ -1,0 +1,20 @@
+<template>
+  <view>
+    <view>这里是首页内容真的假的呀</view>
+  </view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: ""
+  },
+  data: {
+    imgsrc: '/images/109951163651954808.jpg',
+    url2: 'http://images.uileader.com/20180321/ce7dcb1c-5d37-485b-a429-95be5d10edbe.jpg'
+  }
+};
+</script>
+
+<style lang="less">
+</style>

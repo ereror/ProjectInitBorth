@@ -1,0 +1,340 @@
+<template>
+  <view class='home_box'>
+    <image src='{{home_imgsrc}}' class='home_bg'/>
+    <image src='{{home_hbsrc}}' class='home_btn_hb' bindtap='goUrl' data-url='/pages/info/getgift/getgift?type=3'/>
+    <view class='home_h_box'>
+      <button class='buttonreset home_h_btn' bindtap='goUrl' data-url='/pages/info/goindex/goindex'>
+        <view class='icon icon-goindex icon-28'></view>
+        <text class='home_h_btn_text'>我要上首页</text>
+      </button>
+    </view>
+    <view class='listContainer'>
+      <block wx:for='{{prizeData}}' wx:key="{{index}}">
+        <template is='listContainer' data='{{prize_img_icon:prize_img_icon, numberStyle: numberStyle,pagePath: pagePath, ...item, ikey: index}}'></template>
+      </block>
+    </view>
+    <view class='ad_box' wx:if='{{isShowA}}'>
+      <image src='{{ad_img_01}}' class='adbox_img'/>
+      <view class='adbox_line'>广告</view>
+      <image src='{{ad_img_02}}' class='adbox_img'/>
+      <view class='ad'>
+        <image src='{{ademptyImg}}' class='ademptyImg'>
+      </view>
+    </view>
+    <template is='tabbar'></template>
+    <template name='listContainer'>
+      <view class='prize_container' data-url='{{pagePath}}' data-id='{{id}}' data-idsarr='{{ids}}' bindtap='checkDetail'>
+        <image src="{{prize_img_icon}}" class='isprizing' wx:if="{{joined}}"/>
+        <view class='timeconter' wx:if='{{joined}}'>
+          <cc-counttime  target="{{timeend}}" show-day="{{false}}" clear-timer="{{false}}" endDesc='开奖中...' numberStyle="{{numberStyle}}" splitStyle="{{splitStyle}}" bindticallback='getList'></cc-counttime>
+        </view>
+        <view class='prize_img'>
+          <image src="{{icon}}" class='prize_imgs' />
+        </view>
+        <view class='line_01'></view>
+        <view class="prize_msg_01 {{!sponsor ? 'pdt-30' : ''}}">
+          <view class='prize_helper flex-l'>
+            <button class="buttonreset prize_helper_btn flex-center {{ikey % 2 == 0 ? 'prize_helper_btn_2n' : ''}}">
+              <view class='icon icon-zzs icon-22'></view>
+              <view class='line-ones'></view>
+              <view class='prize_helper_text'>{{sponsor || '陪我抽奖'}} 赞助</view>
+            </button>
+          </view>
+          <view class="prize_list flex-l" wx:for='{{prizelist}}' wx:key="{{index}}">
+            <view class='ellipsis--2 item_line_height'>
+              <text wx:if='{{prizelist.length > 1}}'>奖品</text>
+              <text wx:if='{{prizelist.length > 1 && index === 0}}'>一: </text>
+              <text wx:if='{{index === 1}}'>二: </text>
+              <text wx:if='{{index === 2}}'>三: </text>
+              <text>{{item.name || '随便抽'}}</text>
+              <text wx:if="{{item.num > 1}}" class='item_line_height_text'> x{{item.num}}份 </text>
+            </view>
+          </view>
+        </view>
+        <view class='prize_msg_02 flex-l'>
+          <view>自动开奖</view>
+          <view class='line_y_01'></view>
+          <view>{{endTime}}</view>
+        </view>
+      </view>
+    </template>
+    <template name="tabbar">
+        <view class='tabbar-box-place flex-center'>
+           <view class='tabbar-box flex-center flex-wrap flex-1 tabbar-box-active'>
+             <view class='icon icon-indexA icon-46'></view>
+             <view class='tabbar-box-place-text'>首页</view>
+           </view>
+           <view class='tabbar-box flex-center flex-wrap flex-1' data-url='/pages/info/usercenter/usercenter' data-type='menu' bindtap='goUrl'>
+             <view class='icon icon-usercenterD icon-46'></view>
+             <view class='tabbar-box-place-text'>我的</view>
+           </view>
+        </view>
+    </template>
+  </view>
+</template>
+
+<script>
+import util from '../../../static/utils/index'
+import info from '../../../api/index'
+export default {
+  config: {
+    usingComponents: {
+      'cc-counttime': '../../../packages/countTime/index'
+    },
+    navigationBarTitleText: "陪我抽奖",
+    enablePullDownRefresh: true,
+    backgroundColorTop: '#FF5E97',
+    backgroundColorBottom: '#F2F3F5'
+  },
+  data: {
+    isShowA: false,
+    ademptyImg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/adempty2.jpg',
+    home_imgsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/bg_home_01.png',
+    home_hbsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/btn_hb_01.png',
+    prize_img_icon: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/btn_join_01.png',
+    prize_joined: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/prize_joined.png',
+    prize_img_01: 'https://jdgamess.oss-cn-shanghai.aliyuncs.com/sxs.jpg',
+    ad_img_01: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_01.png',
+    ad_img_02: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_02.png',
+    pagePath: '/pages/info/detail/detail',
+    numberStyle: {
+      'background-color': '#292727',
+      'color': '#fff',
+      'padding-left': '4rpx',
+      'padding-right': '4rpx',
+      'margin-left': '12rpx',
+      'margin-right': '12rpx',
+      'border-radius': '4rpx',
+      'font-size':'26rpx',
+      'height': '42rpx',
+      'width': '42rpx',
+      'display':'inline-block',
+      'text-align':'center',
+      'line-height': '42rpx'
+    },
+    splitStyle: {
+      'color': '#292727',
+      'font-size':'26rpx',      
+    },
+    prizeData: [],
+    ids: '',
+    idsarr: [],
+    isNewOj: false,
+    isFirstLoad: false
+  },
+  checkDetail (e) {
+    let {url, id, idsarr} = util.getData(e)
+    if (!idsarr) idsarr = this.data.ids
+    wx.navigateTo({
+      url: url + '?id=' + id + '&ids=' + idsarr
+    })
+  },
+  goUrl: util.throttle(function goUrl(e) {
+    let { type, url } = util.getData(e)
+    if (type == 'menu') {
+      wx.redirectTo({url: url})
+    } else {
+      util.goUrl(e)
+    }
+  }, 1500),
+  getList () {
+    if (this.data.isFirstLoad) util.showLoading('加载中...')
+    info.getList().then(res => {
+      if (this.data.isFirstLoad) util.hideAll()
+      if (res.code === 200) {
+        let prizeData = res.data
+        let idsarr = []
+        let isNewOjStatus = true
+        if (this.data.isNewOj) {
+          isNewOjStatus = this.setDataForm(prizeData)
+          if (isNewOjStatus) {
+            return
+          } else {
+            this.data.prizeData = prizeData
+          }
+          this.data.isNewOj = false
+        } else {
+          this.data.prizeData = prizeData
+        }
+        this.data.prizeData.map(v => {
+          v.prizelist = v.prizelist && JSON.parse(v.prizelist) || []
+          // v.timeend = (v.end_time * 1000 - new Date().getTime()) / 1000
+          v.timeend = v.end_time * 1000
+          v.endTime = util.formatTime(v.end_time * 1000, 'YY-M-D h:m:s')
+          if(v.sponsor.length > 20) v.sponsor = v.sponsor.substring(0, 20)
+          idsarr.push(v.id)
+        })
+        this.data.idsarr = idsarr
+        this.data.ids = idsarr.join(',')
+        getApp().globalData.prizeData = Object.assign([], this.data.prizeData)
+        this.setData({
+          prizeData: this.data.prizeData,
+          ids: this.data.ids,
+          isShowA: true
+        })
+      }
+    })
+  },
+
+  onLoad (param) {
+    // console.log('加载成功')
+    let scene = decodeURIComponent(param.scene) || ''
+    let type = param.fromtype || ''
+    this.data.prizeData = Object.assign([], getApp().globalData.prizeData) || []
+    let anlyObj = {}
+    if (this.data.prizeData.length) {
+      this.setData({
+        prizeData: this.data.prizeData
+      })
+    } else {
+      this.data.isFirstLoad = true
+    }
+    if(scene && scene != 'undefined') {
+      scene = decodeURI(scene)
+      anlyObj = util.getQueryParams(scene)
+    }
+    if (anlyObj.type == 1 && anlyObj.id && anlyObj.up) {
+      wx.navigateTo({
+        url: '/pages/info/detail/detail?id=' + anlyObj.id * 1 + '&&adviser=' + anlyObj.up * 1
+      })
+      return
+    }
+    if (param.id) {
+      wx.navigateTo({
+        url: '/pages/info/detail/detail?id=' + param.id
+      })
+      return
+    }
+    if (param.poolid && param.adviser) {
+      wx.navigateTo({
+        url: '/pages/info/detail/detail?id=' + param.poolid + '&&adviser=' + param.adviser
+      })
+      return
+    }
+    if (type && type === 'center') {
+      this.data.isNewOj = true
+    }
+    this.getList()
+    console.log('加载')
+  },
+  onShow() {
+    let app = getApp()
+    app.getUserInfo(true)
+  },
+  onPullDownRefresh: function () {
+    this.data.isNewOj = true
+    this.getList()
+  },
+  onShareAppMessage (e) {
+    let name = getApp().globalData.userInfo && getApp().globalData.userInfo.nickname || '小陪'
+    let title = name + '正在抽奖！快来试试手气！'
+    let imageUrl = 'https://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/sharepwcj.jpg'
+    return {
+      title: title,
+      path: '/pages/info/index/index',
+      imageUrl: imageUrl,
+      success(d) {
+        // 成功回调
+        console.log('success')
+      }
+    }
+  },
+  setDataForm (prizeData) {
+    let idsarr = this.data.idsarr
+    let isnew = false
+    prizeData.map((v, i) => {
+      if (!~idsarr.indexOf(v.id)) isnew = true
+    })
+    return isnew
+  }
+};
+</script>
+
+<style lang="less">
+  page {background:rgb(242, 243, 245);padding-bottom:50rpx;}
+  .home_box {margin-top:0;padding-bottom:60rpx;}
+  .home_bg {width:750rpx;height:220rpx;position:relative;z-index:-1};
+  .home_h_box {height:102rpx;position:absolute;z-index:2;top:0;padding:26rpx 24rpx;};
+  .home_h_btn {display:flex;width:220rpx;height:54rpx;background:linear-gradient(0deg,rgba(255,229,238,1),rgba(255,255,255,1));box-shadow:0px 3px 12px 0px rgba(242,47,107,0.3);border-radius:27rpx;color:#FF5E97;line-height:54rpx;padding-left:30rpx;};
+  .home_btn_hb{position:absolute;top:0;right:0;z-index:3;height:120rpx;width:156rpx;}
+  .home_h_btn_text {margin-left:8rpx;font-size:24rpx;}
+  .listContainer {margin-top:-144rpx;padding:24rpx;}
+  .prize_container {position:relative;padding-bottom:40rpx;border-radius:10rpx;box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.5);margin-bottom:30rpx;background:white;
+    & .isprizing {position:absolute;top:452rpx;right:0rpx;height:124rpx;width:183rpx;}
+    & .timeconter {position:absolute;top:40rpx;left:19rpx;font-size:26rpx;}
+    & .prize_img {height:420rpx;
+      & .prize_imgs {width:100%;height:420rpx;border-radius: 10rpx 10rpx 0 0;}
+    }
+    & .line_01 {width:100%;height:1rpx;background:#e5e5e5;margin:1rpx;}
+    & .prize_msg_01 {margin-top:3rpx;line-height:1;padding:0rpx 30rpx;
+      & .prize_helper {height:88rpx;margin:1rpx;
+        &  .prize_helper_btn {height:36rpx;border-radius:4rpx;color:#ff5d78;font-size:22rpx;border:1rpx solid #FF5D78;margin:1rpx;min-width:100px;
+          &  .prize_helper_text {line-height:1;padding-left:14rpx;padding-right:14rpx;}
+        }
+        &  .prize_helper_btn_2n{height:34rpx;}
+      }
+      & .prize_list {margin-bottom:18rpx;margin-top:-7rpx;color:#292727;text-align:left;font-size:32rpx;font-weight:600;}
+      & .ispticon {height:36rpx;width:36rpx;font-size:26rpx;font-weight:600;background:#FF5E97;color:white;border-radius:4rpx;display:inline-block;line-height:1.2;text-align:center;margin-left:.5em;}
+    }
+    & .prize_msg_02 {margin-top:2rpx;color:#adaaaa;font-size:24rpx;padding:0rpx 30rpx;padding-bottom:20rpx;}
+    & .line_y_01 {width:2rpx;height:24rpx; background: #adaaaa;margin:0 .6em;}
+  }
+  .item_line_height {
+    line-height:1.2;
+    z-index:2;
+  }
+  .item_line_height_text {vertical-align:middle;}
+  .icon-22 {
+    font-size: 22rpx;
+    margin: 7rpx;
+  }
+  .icon-46 {
+    font-size:52rpx;
+    line-height:1;
+  }
+  .ad_box {
+    margin-top:-30rpx;
+    padding: 0 24rpx;
+    & .adbox_line {
+      display:inline-block;
+      text-align:center;
+      width:85rpx;
+      color: #ADAAAA;
+      font-size: 22rpx;
+    }
+    .ademptyImg {width:702rpx;height:220rpx;border-radius:10rpx;margin-top:10rpx;box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.5)}
+    &  .adbox_img {
+      display:inline-block;
+      width:309rpx;
+      height:14rpx;
+    }
+  }
+
+  .tabbar-box-place {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    z-index: 4;
+    width:750rpx;
+    height:98rpx;
+    background:rgba(255,255,255,1);
+    color: '#808080';
+    box-shadow:0px -2rpx 16rpx 0px rgba(128,128,128,0.16);
+  }
+  .tabbar-box {
+    color: #757373;
+  }
+  .tabbar-box-active {
+    color:#FF5E97;
+  }
+  .tabbar-box-place-text {
+    width:100%;
+    text-align:center;
+    font-size:20rpx;
+  }
+  .line-ones {
+    height:100%;
+    width:1rpx;
+    background: #FF5d78;
+  }
+</style>

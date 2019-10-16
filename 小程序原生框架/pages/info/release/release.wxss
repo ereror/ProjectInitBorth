@@ -1,0 +1,7 @@
+@import "../../../templates/info/info.wxss";
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+  border-color: #008aff;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+    background-color: #008aff;
+}

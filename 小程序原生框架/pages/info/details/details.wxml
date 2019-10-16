@@ -1,0 +1,132 @@
+<view class='detail-header'>
+	<view class='detail-headericonbox'>
+	<view>
+      <view class='avatar-box mr-20'>
+        <image class='avatar-100' src='{{detail.avatarurl}}'></image>
+      </view>
+	</view>
+	<view class='unamebox'>
+		<view class='uname'>{{detail.nickname}}</view>
+		<view class='unamelocation'>
+			<image src='/images/icon/location.png' class='unamelocationimg'></image>
+			<text class='mr-10'>{{detail.address}}</text>
+			<text>{{detail.distance}}km</text>
+		</view>
+	</view>
+    </view>
+	<view class='detail-tag'>
+		<text>{{detail.last_time}}</text>
+	</view>
+</view>
+
+<view class='details-content'>
+	<view class="details-header">{{detail.title}}</view>
+	<view class='details-price' wx:if="{{detail.type === 3 || detail.type === 1}}">
+		<text class='details-price2'>￥</text>
+		<text class='details-price3'>{{detail.type_detail.now_money || 0}}</text>
+		<text class='details-price4 text-deleted' >原价：</text>
+		<text class='details-price5 text-deleted'>￥{{detail.type_detail.origin_money || 0}}</text>
+		<view class='f-20 ml-20 infos-discount' style='background:url(/images/icon/index_13.png);background-size:100% 100%;'>{{discount}} 折</view>
+	</view>
+	<view class='details-fbday'>
+		<view class='details-type'>#{{textmodel}}</view>
+		<view>发布于 {{detail.create_time}}</view>
+		<view class='ml-10 mr-10'>|</view>
+		<view>浏览量 {{detail.view}}</view>
+	</view>
+	<view class='details-content-box'>
+	   <view>{{detail.content}}</view>
+       <view class="info-img-list {{detail.imgs.length === 4 ? 'four-modle-img': ''}}">
+          <form report-submit='{{true}}'  wx:for="{{detail.imgs}}" wx:for-index="imgindex" wx:key="{{imgindex}}">
+            <button form-type='submit' class='inputbtnid'>
+             <view wx:if="{{item.type == '.mp4'}}">
+                 <view>
+                    <image src='{{item.path}}?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast' class="info-videomg-item" mode='widthFix'/>
+                 </view>
+                 <view class='info-videomgbox' data-index='{{index}}' bindtap='checkdetail' data-src='{{item.path}}' data-url='/pages/info/details/details'>
+                     <image src='http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/index_12.png' class='img-item-videoimgs'/>
+                 </view>
+            </view>
+            <view class='info-video' wx:if="{{item.type !== '.mp4'}}">
+              <image class="{{imgs.length === 1 ? 'one-modle-img': 'info-img-item'}}"  src="{{item.path}}{{imgs.length === 1 ? '': '!info_list_cover'}}" data-index='{{index}}' bindtap='previewImage' data-pindex='{{pindex}}' mode='widthFix'></image>
+            </view>
+            </button>
+          </form>
+       </view>
+		<view class='details-glove' style='display:flex;'>
+			<view class='imgbox-zan'>
+				<image src="{{detail.zan ? 'http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/index_11.png': '/images/icon/zan_01.png'}} " class='imgboxzan' data-zan='{{detail.zan || 0}}' data-index="{{0}}" data-id='{{detail.id}}' data-type="1" bindtap='setzan'/>
+				<view class='imgbox-text'>{{detail.zan_count || 0}}</view>
+			</view>
+			<view class='imgbox-list'>
+				<image wx:for='{{detail.zans}}' wx:key='{{index}}' src='{{item.avatarurl}}' class='imgboxitem'/>
+				<image src='/images/icon/more.png' class='imgboxitem'/>
+			</view>
+		</view>
+	</view>
+</view>
+<view style='height:20rpx;background:#f2f2f5;'></view>
+
+<view class='details-comments'>
+	<view class='det-coms-head'>
+		<view class="{{showallcoms == 0 ? 'det-coms-head-01': 'det-coms-head-02'}}" data-index='0' bindtap='checkdetModel'>全部评论
+			<text>（{{commentList.length}}）</text>
+		</view>
+		<view class="{{showallcoms == 1 ? 'det-coms-head-01': 'det-coms-head-02'}}" style='margin-left:20rpx;' data-index='1' bindtap='checkdetModel'>只看楼主
+			<text>（{{others}}）</text>
+		</view>
+	</view>
+	<view class="det-coms-line {{showallcoms == 1 ? 'det-coms-linel': ''}}"></view>
+	<view class='det-coms-user'>
+		<image class='det-coms-user-head' src="{{userInfo.avatarurl}}" />
+		<view class='det-coms-user-content' bindtap='cleaript'>快写下你的评论吧~</view>
+	</view>
+	<view class='details-comments-list' wx:for="{{commentList}}" wx:key="{{index}}" wx:if="{{showallcoms == 0 || ((showallcoms == 1) && (item.uid === detail.uid))}}">
+		<view style='display:flex;'>
+			<image class='details-comments-head' src="{{item.avatarurl}}"/>
+			<view class='details-comments-headmss'>
+				<view class='details-comments-nick'>{{item.nickname}}</view>
+				<view class='details-comments-age'>
+					<text>女宝3岁</text>
+					<text class='ml-10 mr-10'>  |  </text>
+					<text>{{index + 1}}楼</text>
+				</view>
+			</view>
+	    </view>
+		<view class='details-comments-box'>
+			{{item.comment}}
+		</view>
+		<view class='details-comments-time'>
+			<view class='det-coms-time'>{{item.create_time}}</view>
+			<view class='det-coms-zan'>{{item.zan_count}} 获赞</view>
+		</view>
+		<image src="http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/{{item.zan ? 'index_11.png': 'index_08.png'}}" data-zan='{{item.zan || 0}}' data-index="{{index}}" data-id='{{item.id}}' data-type="2" class='det-coms-zanbtn' bindtap='setzan' />
+	</view>
+</view>
+
+<view class='det-optbtn'>
+	<view class='det-optbtn-item' bindtap='cleaript'>
+		<image src='/images/icon/det_03.png' class='det-img-btn'/>
+		<text>评论</text>
+	</view>
+	<view class='det-optbtn-item' wx:if="{{userInfo.id != detail.uid}}" data-url="/pages/ucenter/chat/chat?uid={{detail.uid}}&&nickname={{detail.nickname}}">
+		<image src='/images/icon/det_04.png' class='det-img-btn'/>
+		<text>私信（{{unread}}）</text>
+	</view>
+	<view class='det-optbtn-item' wx:if="{{userInfo.id == detail.uid}}">
+		<image src='/images/icon/det_04.png' class='det-img-btn'/>
+		<text>我的评论</text>
+	</view>
+	<view class='det-optbtn-item'>
+	<button class='det-optbtn-item' open-type='share' style='background:none;border:none;outline:none;box-shadow:none;width:200rpx;'>
+		<image src='/images/icon/det_02.png' class='det-img-btn'/>
+		<text>分享</text>
+	</button>
+    </view>
+</view>
+
+<view class='det-inputbox' wx:if='{{showinput}}' bindtap='cleaript'>
+	<view style="height:110rpx;width:100%;background:white;padding-top:20rpx;line-height:110rpx;" wx:if='{{showinput}}'>
+	  <input placeholder='快写下你的评论吧~' placeholder-class='place-class' focus='true' class='det-input' catchtap='setParam' confirm-type='确定' bindconfirm='setcontent' cursor-spacing='30' adjust-position='false' wx:if='{{showinput}}'/>
+    </view>
+</view>

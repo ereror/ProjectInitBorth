@@ -1,0 +1,112 @@
+<template>
+  <block>
+    <import src="../../../template/adline/adline.wxml"/>
+    <view class='pdt-30'>
+      <template is='adline' data="{{ad_img_01: ad_img_01, ad_img_02: ad_img_02, ademptyImg: ademptyImg}}"></template>
+    </view>
+    <view class='users_titale flex-center'>
+      <view class='icon icon-joiner joiner-l'></view>
+      <view>{{total}}位参与者</view>
+    </view>
+    <view class='users_imghead'>
+       <view class='flex-l flex-wrap userdetail'>
+         <view class='imgbox flex-center' wx:for='{{imgData}}' wx:key='{{index}}'>
+          <image src='{{item.avatarurl}}'/>
+         </view>
+       </view>
+       <view class='flex-center user_checkmore' wx:if="{{query.current_page !== query.last_page}}" bindtap='checkMore'>
+         <view class='icon24p'>加载更多</view>
+         <view class='icon icon-nextstep icon24p' wx:if='{{false}}'></view>
+       </view>
+       <view class='flex-center user_checkmore' wx:if="{{query.current_page === query.last_page}}" bindtap='checkMore'>
+         <view class='icon24p ihdx'>我是有底线的~</view>
+       </view>
+    </view>
+  </block>
+</template>
+
+<script>
+import info from '../../../api/index'
+import util from '../../../static/utils/index'
+let app =  getApp()
+export default {
+  config: {
+    navigationBarTitleText: '全部参与用户',
+    backgroundColor: '#ffffff',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    ademptyImg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/adempty2.jpg',
+    ad_img_01: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_01.png',
+    ad_img_02: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_02.png',
+    query: {
+      pool_id: '',
+      page: 1,
+      pageSize: 84,
+      current_page: 1,
+      last_page: 1
+    },
+    total: 0,
+    imgData: []
+  },
+  onLoad (param) {
+    this.data.query.pool_id = param.id || ''
+  },
+  onShow () {
+    if (this.data.query.pool_id) {
+      this.getUsers()
+    }
+  },
+  checkMore () {
+    let that = this;
+    let { current_page, last_page } = this.data.query
+    if (current_page !== last_page) {
+      this.data.query.page = current_page + 1
+      this.getUsers()
+    }
+  },
+  getUsers () {
+    let query = this.data.query
+    if (!query.pool_id) return
+    util.showLoading()
+    info.getHeaderList(query).then(res => {
+      if (res.code === 200) {
+        util.hideAll()
+        this.data.imgData = this.data.imgData.concat(res.data.data)
+        this.data.query.last_page = res.data.last_page
+        this.data.query.current_page = this.data.query.page
+        this.data.total = res.data.total
+        if (this.data.imgData.length) {
+          this.setData({
+            imgData: this.data.imgData,
+            total: this.data.total,
+            query: this.data.query
+          })
+        }
+      }
+    })
+  }
+}
+</script>
+
+<style lang="less">
+ @import '../../../template/adline/adline.wxss';
+ .pdt-30 {
+   padding: 30rpx 0;
+ }
+ .users_titale {color:#757373;padding:30rpx 0;margin-top:-10rpx;line-height:1;}
+ .users_imghead {margin:0 24rpx;padding:26rpx 0rpx;background:white;margin-bottom:40rpx;border-radius:10rpx;
+  & .userdetail {
+    width:702rpx;
+    padding: 0 15rpx;
+    min-height: 800rpx;
+    align-items: flex-start;
+    & .imgbox {width:96rpx;height:88rpx;}
+    & image {width:68rpx;height:68rpx;border-radius: 50%;}
+  }
+  & .user_checkmore {margin:23rpx 0 6rpx 0;line-height:1;color:#68A3F4;font-size:24rpx;}
+  & .icon24p {font-size:24rpx;}
+  & .ihdx {color:#adaaaa;}
+ }
+</style>

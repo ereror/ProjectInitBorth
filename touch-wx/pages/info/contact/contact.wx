@@ -1,0 +1,130 @@
+<template>
+  <block>
+    <import src="../../../template/form/form.wxml"/>
+    <view class='contact_tip'>请填写您的称呼，联系方式，公司及期望推广的产品简介</view>
+    <view>
+      <template is='inputmsg' data='{{...myname}}'></template>
+      <template is='inputmsg' data='{{...phone}}'></template>
+      <template is='inputmsg' data='{{...company}}'></template>
+      <view class='contact_item'>
+        <template is='textarea' data="{{...contact, iptclass: 'iptclass'}}"></template>
+      </view>
+      <view class='contact_btn'>
+        <button class="buttonreset contact_submit {{!isTotal ? 'graybtn' : ''}}" bindtap='saveContact'>提交</button>
+      </view>
+      <view class='contact_text'>*感谢您的支持与信赖，我们将在两个工作日与您联系</view>
+      <view class='adbox'>
+        <image src='{{ademptyImg}}' class='ademptyImg' bindtap='goDirect'>
+      </view>
+    </view>
+  </block>
+</template>
+
+<script>
+import info from '../../../api/index'
+import toast from '../../../static/utils/toast'
+import util from '../../../static/utils/index'
+export default {
+  config: {
+    navigationBarTitleText: '联系我们',
+    backgroundColor: '#ffffff',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    ademptyImg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/adempty2.jpg',
+    myname: {title: '您的称呼', icons: false, placeholder: '请填写姓名', showicons: false, key: 1, val: '', size: 20},
+    phone: {title: '联系方式', icons: false, placeholder: '请填写手机号码', showicons: false, key: 2, val: '', type: 'number'},
+    company: {title: '公司名称', icons: false, placeholder: '请填写内容', showicons: false, key: 3, val: '', size: 20},
+    contact: {
+      title: '',
+      placeholder: '请填写期望推广的产品简介...',
+      size: 50,
+      inputval: '',
+      key: 4
+    },
+    isTotal: false
+  },
+  onLoad(){
+  },
+  sendForm(){
+    // 联系我们
+  },
+  setParam (e) {
+    let { key } = util.getData(e)
+    let val = e.detail.value
+    if (key === 1) {
+      if (this.data.myname.val.length >= 20) {
+        toast.show('warn', '称呼最多20个汉字！', 1000)
+      }
+      this.data.myname.val = val.substring(0, 20)
+      this.data.myname.val = val
+    } else if (key === 2) {
+      this.data.phone.val = val
+    } else if (key === 3) {
+      if (this.data.company.val.length >= 20) {
+        toast.show('warn', '公司名称最多20个汉字！', 1000)
+      }
+      this.data.company.val = val.substring(0, 20)
+    } else if (key === 4) {
+      this.data.contact.inputval = val
+    }
+    if (this.data.myname.val && this.data.phone.val && this.data.company.val && this.data.contact.inputval) {
+      this.data.isTotal = true
+    }
+    this.setData({
+      myname: this.data.myname,
+      phone: this.data.phone,
+      company: this.data.company,
+      contact: this.data.contact,
+      isTotal: this.data.isTotal
+    })
+  },
+  goDirect (e) {
+    wx.navigateBack({
+      delta: 2
+    })
+  },
+  saveContact(){
+    if (!this.data.isTotal) return
+    let param = {
+      name: this.data.myname.val,
+      phone: this.data.phone.val,
+      company: this.data.company.val,
+      message: this.data.contact.inputval
+    }
+    info.addContact(param).then(res => {
+      if (res.code === 200) {
+        toast.show('warn', '提交成功，我们将在2个工作日内与你联络！', 1000)
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 2
+          })
+        }, 1000)
+      } else {
+        toast.show('warn', '提交失败，请稍后再试！', 1000)
+      }
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  @import '../../../template/form/form.wxss';
+  .contact_tip {
+    margin:31rpx 0 27rpx 30rpx;font-size:24rpx;color:#FF5E97;padding-left:10rpx;line-height:1;
+  }
+  .contact_tip:before {position:absolute;top:32rpx;left:24rpx;content:'';width:6rpx;height:24rpx;background:#FF5E97;}
+  .contact_item {
+    padding:37rpx 24rpx 0rpx 24rpx;
+    background:white;
+    overflow:hidden;
+  }
+  .ademptyImg {width:702rpx;height:220rpx;border-radius:10rpx;box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.2)}
+  .iptclass {height:215rpx;margin:-15rpx 0 0 -6rpx;}
+  .contact_btn {margin-top:64rpx;}
+  .contact_submit {width:702rpx;height:88rpx;background:linear-gradient(90deg,rgba(255,94,151,1),rgba(255,153,153,1));border-radius:44rpx;color:white;line-height:88rpx;text-align:center;margin:30rpx auto;font-size:32rpx;}
+  .graybtn {background:linear-gradient(90deg,rgba(199,195,195,1),rgba(224,224,224,1));}
+  .contact_text {text-align:center;font-size:22rpx;color:#757373;line-height:1;margin-top:28rpx;}
+  .adbox {width:702rpx;height:200rpx;margin: 64rpx auto;border-radius:10rpx;background:lightblue;box-shadow:0px 3rpx 16rpx rgba(128,128,128,0.1);}
+</style>

@@ -1,0 +1,98 @@
+
+page {
+	overflow: hidden;
+}
+.vi-box {
+	position: relative;
+	height: 100%;
+	width:100%;
+}
+.vi-btnbox {
+	position: absolute;
+	z-index: 2;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	font-size: 40px;
+	color: white;
+}
+.vi-source {
+	height:100%;
+	width: 100%;
+}
+.vi-play-box {
+	width: 150rpx;
+	height:150rpx;
+	margin: 760rpx 300rpx;
+}
+.vi-play, .vi-finish {
+	margin: 0 auto;
+	width:104rpx;
+	height: 104rpx;
+}
+.vi-replay{
+	 margin:800rpx 164rpx;
+}
+.vi-play-text, .vi-finish-text {
+	font-size: 30rpx;
+	width: 150rpx;
+	text-align: center;
+	margin-top: 16rpx;
+}
+.vi-finish-box {
+	width: 150rpx;
+	margin:-950rpx 480rpx;
+}
+.vi-bar {
+	position: relative;
+	height: 100%;
+	width:100%;
+}
+.vi-bar-img {
+	margin:168rpx 0rpx 0rpx 644rpx ;
+	width: 76rpx;
+}
+.vi-bar-img-btn {
+	background: none;
+	outline: none;
+}
+.vi-mark-text {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-inex: 12;
+	height: 60rpx;
+	line-height: 60rpx;
+	font-size: 28rpx;
+	color: white;
+	text-align: center;
+}
+.vi-rz {
+	background: rgba(193, 66, 103, .8);
+}
+.vi-play-imgd {
+	height: 76rpx;
+	width: 76rpx;
+}
+.actionimage1 {
+	position: absolute;
+	z-index: 11111;
+	padding: 30rpx 100rpx 30rpx 30rpx;
+	top: 40rpx;
+	left: 0rpx;
+}
+.actionimage1-img {
+	width: 22rpx;
+	height: 36rpx;
+}
+.vi-finish-back {
+	position:absolute;
+	z-index:449;
+	bottom: 106rpx;
+	height: 54rpx;
+	width: 54rpx;
+	left: 348rpx;
+}
+

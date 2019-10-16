@@ -1,0 +1,56 @@
+.ui-cascader {
+  overflow: hidden;
+  background-color: #F5F5F5;
+  /* .cascader-name-item-wrap:last-of-type {
+    border-bottom: 2px solid red;
+
+  } */
+}
+.ui-cascader .cascader-name-wrap {
+  background-color: white;
+  position: relative;
+  border-bottom: 1px solid #F5F5F5;
+  height: 50px;
+}
+.ui-cascader .cascader-name-item-wrap {
+  height: 50px;
+  padding-left: 8px;
+  padding-right: 8px;
+  float: left;
+  text-align: center;
+  line-height: 50px;
+  color: black;
+  border-bottom: 0px solid black;
+}
+.ui-cascader .cascader-item-border {
+  border-bottom: 1px solid #F5F5F5;
+}
+.ui-cascader .cascader-name-item-wrap-clicked {
+  color: #3399ff;
+  /* border-bottom: 2px solid @theme-color; */
+}
+.ui-cascader .cascader-content-wrap {
+  background-color: white;
+  transition: 0.1s transform linear;
+}
+.ui-cascader .cascader-block {
+  float: left;
+  height: 250px;
+}
+.ui-cascader .cascader-block .cascader-block-item {
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  line-height: 40px;
+}
+.ui-cascader .cascader-block .cascader-block-item .cascader-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* display: inline; */
+  /* width: 100%; */
+  /* border-bottom: 1px solid #F5F5F5; */
+}
+.ui-cascader .cascader-block .cascader-block-item .cascader-item-clicked {
+  color: #3399ff;
+}

@@ -1,0 +1,34 @@
+{
+  "style": {
+    "brandColor": "#FF0077",
+    "controlColor": "#FF5777",
+    "mainHeadingColor": "#333333",
+    "subHeadingColor": "#666666",
+    "darkPromptColor": "#999999",
+    "splitLineColor": "#ECECEC",
+    "backgroundColour": "#EFEFEF"
+  },
+  "prefix": "wxc",
+  "dest": "luck_price",
+  "npm": {
+    "dest": "luck_price/packages"
+  },
+  "resolve": {
+    "alias": {
+      "@": "/"
+    }
+  },
+  "compilers": {
+    "babel": {
+      "presets": [
+        "env"
+      ],
+      "plugins": [
+        "syntax-export-extensions",
+        "transform-class-properties",
+        "transform-decorators-legacy",
+        "transform-export-extensions"
+      ]
+    }
+  }
+}

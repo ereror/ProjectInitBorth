@@ -1,0 +1,119 @@
+<template>
+  <block>
+    <import src="../../../template/adline/adline.wxml"/>
+    <import src="../../../template/form/form.wxml"/>
+    <view class='home_box'>
+      <image src='{{home_imgsrc}}' class='home_bg'/>
+      <view class='u_center_head flex-l'>
+        <image class='u_center_head_img' src='{{userInfo.avatarurl || himg_01}}'/>
+        <view class='u_center_head_msg'>
+          <view class='u_center_head_title'>{{userInfo.nickname || '喵了个咪'}}</view>
+          <view class='u_center_head_text'>
+            今日抽奖次数<text class='u_center_head_text_02'>{{userInfo.join_times_today || 0}}</text>次
+          </view>
+        </view>
+      </view>
+      <view class='u_center_bar flex-between'>
+        <view class='flex-center flex-wrap afterline flex-1' bindtap='goUrl' data-url='/pages/info/coin/coin?money={{userInfo.money}}'>
+          <view class='alline_01'>{{userInfo.money / 100 || 0.00}}</view>
+          <view class='alline_02'>我的零钱</view>
+        </view>
+        <view class='flex-center flex-wrap afterline flex-1' bindtap='goUrl' data-url='/pages/info/pools/pools'>
+          <view class='alline_03'>{{userInfo.join_times || 0}}</view>
+          <view class='alline_02'>全部抽奖</view>
+        </view>
+        <view class='flex-center flex-wrap flex-1' bindtap='goUrl' data-url='/pages/info/getgift/getgift'>
+          <view class='alline_03'>{{userInfo.prize_get_times || 0}}</view>
+          <view class='alline_02'>中奖记录</view>
+        </view>
+      </view>
+      <view class='u_center_items'>
+        <template is='redirect' data="{{iconclass: 'address_icon', icon: icon_addr, title: '收货地址', arrow: true, url: addressY}}"></template>
+        <template is='redirect' data="{{icon: icon_help, title: '常见问题', arrow: true, url: problem}}"></template>
+        <template is='redirect' data="{{iconclass: 'advicepage_icon', icon: icon_edit, title: '建议与反馈', arrow: true, url: advicepage}}"></template>
+      </view>
+      <template is='adline' data="{{ad_img_01: ad_img_01, ad_img_02: ad_img_02}}"></template>
+      <view class='ad'>
+        <image src='{{ademptyImg}}' class='ademptyImg' bindtap='goIndexUrl'>
+      </view>
+      <template is='tabbar' data="{{ismy: true}}"></template>
+    </view>
+  </block>
+</template>
+
+<script>
+import util from '../../../static/utils/index'
+let app =  getApp()
+export default {
+  config: {
+    navigationBarTitleText: '个人中心'
+  },
+  data: {
+    ademptyImg: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/adempty2.jpg',
+    home_imgsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/bg_home_03.png',
+    ad_img_01: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_01.png',
+    ad_img_02: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/line_02.png',
+    icon_addr: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/icon_addr.png',
+    icon_edit: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/icon_edit.png',
+    icon_help: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/icon_help.png',
+    himg_01: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/himg_01.jpg',
+    advicepage: '/pages/info/adviceback/adviceback',
+    addressY: '/pages/info/address/address?type=ucenter',
+    problem: '/pages/info/problem/problem',
+    userInfo: {}
+  },
+  onShow () {
+    app.getUserInfo().then(res => {
+    console.log(res)
+    this.data.userInfo = app.globalData.userInfo
+      this.setData({
+        userInfo: this.data.userInfo
+      })
+    })
+  },
+  goUrl: util.throttle(function goUrl (e) {
+    let { type, index, url } = util.getData(e)
+    if (index * 1 === 2) {
+      return
+    }
+    if (type == 'indexPage') {
+      wx.redirectTo({url: url})
+    } else {
+      util.goUrl(e)
+    }
+  }, 1500),
+  goIndexUrl () {
+    wx.redirectTo({url: '/pages/info/index/index?fromtype=center'})
+  }
+}
+</script>
+
+<style lang="less">
+  @import '../../../template/adline/adline.wxss';
+  @import '../../../template/form/form.wxss';
+  .home_box {margin-top:0;}
+  .home_bg {width:750rpx;height:284rpx;position:relative;z-index:-1;};
+  .u_center_head {margin-top:-284rpx;height:180rpx;padding:0 30rpx;
+    & .u_center_head_img {width:120rpx;height:120rpx;border-radius:50%;border:4rpx solid white;margin-right:21rpx;}
+    & .u_center_head_msg {line-height:1;
+      & .u_center_head_title {color:white;font-size:42rpx;font-weight:bolder;}
+      & .u_center_head_text {margin-top:19rpx;color:white;font-size:28rpx;}
+      & .u_center_head_text_02 {color:#ffd45c;margin:0 .5em;}
+    }
+  }
+  .u_center_bar {width:702rpx;height:180rpx;text-align:center;margin: 0 auto;background:white;box-shadow:0 3rpx 16rpx rgba(128,128,128,0.1);border-radius:10rpx;
+    & .alline_01,  & .alline_02, & .alline_03 {width:100%;line-height:1;}
+    & .alline_02 {margin-top:26rpx;font-size:24rpx;}
+    & .alline_01, & .alline_03 {font-size:40rpx;color:#68a3f4;font-weight:600;}
+    & .alline_03 {color:#292727;}
+    & .afterline {position:relative;}
+    & .afterline::before {content:'';position:absolute;height:90rpx;top:0;right:0;width:2rpx;background:#E6E6E6;}
+  }
+
+  .u_center_items {
+    margin:20rpx 24rpx;
+  }
+  .address_icon {width:32rpx;height:34rpx;}
+  .advicepage_icon {width:30rpx;height:30rpx;}
+  .ademptyImg {width:702rpx;height:220rpx;border-radius:10rpx;margin:10rpx 24rpx;box-shadow:0px 3rpx 8rpx rgba(128,128,128,0.5)}
+</style>

@@ -1,0 +1,20 @@
+<view class="ui-tags">
+  <view class="ui-tag-item" wx:for="{{ data }}" wx:key="index" style="{{ itemStyle }}">
+    <view style="{{ item.checked ? item.tagSelectedStyle : item.tagStyle }}" data-index="{{ index }}" data-city="{{ item }}" bindtap="handleItemTap">
+      <block wx:if="{{ item.badge }}">
+        <span wx:for="item.badge" wx:for-item="badge" class="corner left {{ badge['badge-class']}}">
+          {{ badge['badge-text'] }}
+        </span>
+      </block>
+      <span wx:if="{{ iconPosition === 'left' && item.icon && !item.checked }}" type="{{ item.icon }}" size="{{ iconSize }}" color="{{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }}" class="left ui-icon icon-{{ item.icon }}" style="color: {{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }};font-size: {{ iconSize }}px;">
+      </span>
+      <span wx:if="{{ iconPosition === 'left' && item.iconSelected && item.checked }}" type="{{ item.iconSelected }}" color="{{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }}" size="{{ iconSize }}" class="left ui-icon icon-{{ item.iconSelected }}" style="color: {{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }};font-size: {{ iconSize }}px;">
+      </span>
+      {{item.text || item.name || item.fullname}}
+      <span wx:if="{{ iconPosition === 'right' && item.icon && !item.checked }}" type="{{ item.icon }}" color="{{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }}" size="{{ iconSize }}" class="right ui-icon icon-{{ item.icon }}" style="color: {{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }};font-size: {{ iconSize }}px;">
+      </span>
+      <span wx:if="{{ iconPosition === 'right' && item.iconSelected && item.checked }}" type="{{ item.iconSelected }}" color="{{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }}" size="{{ iconSize }}" class="right ui-icon icon-{{ item.iconSelected }}" style="color: {{ item.checked ? (item.iconSelectedColor ? item.iconSelectedColor : item.iconColor) : item.iconColor }};font-size: {{ iconSize }}px;">
+      </span>
+    </view>
+  </view>
+</view>

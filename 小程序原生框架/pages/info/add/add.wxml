@@ -1,0 +1,57 @@
+<view class="info-tip">提示：请确保发布信息真实合法，恶意发布，虚假发布可能将承担相应的违法违规后果。</view>
+
+<view class='form-box'>
+   <view class='form-label' style='margin-bottom:0'>
+      <view class='f-32'>上传照片</view>
+      <view bindtap='choosevideo'>拍摄</view>
+      <view class='f-28 c-gray-dark ml-20'>(不低于3张)</view>
+   </view>
+   <view class='img-list'>
+      <view class='img-item' wx:for="{{param.imgs}}" wx:key="{{index}}">
+        <image src='{{item.path}}!info_list_cover' class='img-180'></image>
+        <image src='/images/icon/close.png' class='close-img' bindtap='delImage' data-index='{{index}}' data-key='imgs'></image>
+      </view>
+      <view class='img-item' bindtap='chooseImage' data-key='imgs' data-size='6' wx:if="{{param.imgs.length<6}}">
+        <image src='/images/icon/add.png' class='add-img'></image>
+      </view>
+   </view>
+   <view class='flex-between'>
+      <view>
+         <view class='form-label'>
+            <!-- <view class='f-32'>选择分类</view> -->
+        </view>
+        <picker range="{{categoryList}}" value='{{categoryIndex}}' range-key='title' bindchange='categoryChange'>
+            <view class='cate-box'>
+              <view class='c-gray-dark'>{{categoryIndex>=0?categoryList[categoryIndex].title:"选择分类"}}</view>
+              <image style='width:20rpx;height:10rpx;' src='/images/icon/arrow-down.png'></image>
+            </view>
+        </picker>
+      </view>
+   <view>
+         <view class='form-label' >
+            <!-- <view class='f-32'>宝贝地址</view> -->
+        </view>
+        <view class='cate-box' bindtap='chooseLocation'>
+          <view class='c-gray-dark flex-1'>{{param.address||"宝贝地址"}}</view>
+          <image src='/images/icon/location1.png' style='width:20rpx;height:20rpx;'></image>
+        </view>
+      </view>
+   </view>
+   
+   <view class='form-label'>
+      <view class='f-32'>选择标签</view>
+   </view>
+   <view class='tag-list' >
+      <view class='tag-item {{tagIndex==index?"tag-item-select":""}}' wx:for="{{tagList}}" wx:key="{{index}}" bindtap='tagChange' data-index='{{index}}'>
+         <view>{{item}}</view>
+         <image src='/images/icon/checked.png' class='checked-img' wx:if="{{tagIndex==index}}"></image>
+      </view>
+   </view>
+   <view class='form-label'>
+      <view class='f-32'>宝贝详情</view>
+      <view class='f-28 c-gray-dark ml-20'>(120字以内)</view>
+   </view>
+   <textarea placeholder='在此介绍一下你的宝贝吧(如宝贝的品牌、规格、成色、转手原因等)' bindinput='setParam' data-key='content' value='{{param.content}}' maxlength='120'></textarea>
+</view>
+
+<button type='primary' hover-class='none' bindtap='next'>下一步</button>

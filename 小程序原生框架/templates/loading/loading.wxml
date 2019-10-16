@@ -1,0 +1,15 @@
+<template name="loading">
+    <view  wx:if="{{loading}}" class='loading-box'>
+       <view class='weui-loading'></view>
+       <text>正在加载</text>
+    </view>
+    <view wx:else class='loading-box'>
+         <view wx:if="{{current_page>=last_page&&data.length>0}}">
+             我是有底线的~~
+         </view>
+         <view wx:if="{{data.length<=0}}" class="nodata">
+             <view class='iconfont icon-tongyongzanshimeiyoushuju' style='color:#999;font-size:60rpx;margin-bottom:30rpx;'></view>
+             <view>暂无数据</view>
+         </view>
+    </view>
+</template>

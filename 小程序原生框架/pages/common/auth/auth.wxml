@@ -1,0 +1,15 @@
+
+  <view class='flex-y-center flex-column'>
+   <view class='icon-tishi' style='font-size:100rpx;color:#0cba09;margin-top:10vh;'></view>
+   <view class='auth-tip'>为了更好的体验，此应用需要获取你的头像、昵称等基本信息</view>
+   
+</view>
+<button class="button--primary" style="background:#0cba09"  open-type="getUserInfo" bindgetuserinfo='getuserinfo'>授权 </button> 
+
+
+<!-- <view style='height:30rpx;'></view>
+<button open-type="openSetting"	bindopensetting="opensetting">打开授权设置</button>
+<view class='b-1px-b'></view>
+<button open-type="getUserInfo"	bindgetuserinfo="getuserinfo">同步微信用户信息</button>
+<view class='b-1px-b'></view>
+<button open-type="getPhoneNumber"	bindgetphonenumber="getphonenumber">同步微信手机号码</button> -->

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "最近来访",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "iptitem": "/wxcomponents/form/index",
+    "loading": "/wxcomponents/loading/index"
+  }
+}

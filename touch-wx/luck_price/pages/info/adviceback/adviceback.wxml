@@ -1,0 +1,24 @@
+<block>
+  <import src="../../../template/form/form.wxml" />
+  <view class="adviceback">
+    <view class="adviceback_item">
+      <template is="textarea" data="{{...advice}}" />
+    </view>
+    <view class="adviceback_img_text flex-l">
+      <view class="adviceback_img_text_01">上传图片</view>
+      <view class="adviceback_img_text_02">*上传问题截图，最多上传三张，选填</view>
+    </view>
+    <view class="adviceback_img flex-l flex-wrap">
+      <view class="adviceback_img_item" wx:for="{{imgList}}" wx:key="{{index}}">
+        <image src="{{item.path}}" class="adviceimg" />
+        <view class="icon adviceback_img_item_close icon-close icon16" bindtap="delimg" data-index="{{index}}"></view>
+      </view>
+      <view class="adviceback_img_item" catchtap="chooseImage" data-size="3" wx:if="{{imgList.length != 3}}">
+        <image src="{{imgbtn}}" class="adviceimg" />
+      </view>
+    </view>
+  </view>
+  <view>
+    <button class="buttonreset advice_submit {{advice.inputval.length ? '': 'graybtn'}}" bindtap="saveAdvice">提交</button>
+  </view>
+</block>

@@ -1,0 +1,65 @@
+<view>
+  <import src="../../../template/adline/adline.wxml" />
+  <view class="coin_box">
+    <image src="{{coinbg}}" class="coin_bg" />
+    <view class="coin_msg">
+      <view class="coin_text_01" bindtap="goUrl" data-url="/pages/info/coindetail/coindetail">零钱明细></view>
+      <view class="coin_text_02">零钱金额</view>
+      <view class="coin_text_03"><text class="coin_text_05">￥</text>{{money || 0}}</view>
+      <view class="coin_text_04"><text>*零钱超过</text><text class="coin_text_06">10</text><text>块可提现</text>
+      </view>
+    </view>
+    <view class="coin_txopt">
+      <view class="coin_txopt_title">提现选择
+        <text class="coin_txopt_title_01">*提现需收0.3%的手续费</text>
+      </view>
+      <view class="coin_txopt_box flex-between">
+        <view class="coin_txopt_box_title">支付宝账户</view>
+        <view class="flex-center" bindtap="showAccountFunc">
+          <view class="coin_txopt_box_titled {{account ? 'coin_txopt_box_titleA': ''}}">{{account || '点击添加'}}</view>
+          <view class="icon icon-nextstep coin-icon"></view>
+        </view>
+      </view>
+    </view>
+    <view class="coins-items flex-between flex-wrap">
+      <view class="coins-item {{txshow == 10 ? 'coins-itemA' : ''}} flex-center" data-money="10" bindtap="setMoney">
+        <image src="{{txshow == 10 ? coin_choose : coin_choose_no}}" class="coins-item-img" />
+        <view class="coins-item-test">10元</view>
+      </view>
+      <view class="coins-item {{txshow == 50 ? 'coins-itemA' : ''}} flex-center" data-money="50" bindtap="setMoney">
+        <image src="{{txshow == 50 ? coin_choose : coin_choose_no}}" class="coins-item-img" />
+        <view class="coins-item-test">50元</view>
+      </view>
+      <view class="coins-item {{txshow == 100 ? 'coins-itemA' : ''}} flex-center" data-money="100" bindtap="setMoney">
+        <image src="{{txshow == 100 ? coin_choose : coin_choose_no}}" class="coins-item-img" />
+        <view class="coins-item-test">100元</view>
+      </view>
+    </view>
+    <view class="coin_msg_btn">
+      <button class="buttonreset coin_btn {{money > 10 && account ? '' : 'graybtn'}}" bindtap="txfunc">提现</button>
+    </view>
+  </view>
+  <view class="coin_ad" wx:if="{{false}}">
+    <template is="adline" data="{{ad_img_01: ad_img_01, ad_img_02: ad_img_02}}" />
+    <view class="ad">
+      <ad></ad>
+    </view>
+  </view>
+  <ui-mask wx:if="{{coin_now_show}}" effect="scale-out" custom-style="mask" show="true" _pid="{{_pid}}">
+    <view class="coin-account-box flex-center">
+      <view class="coin-account-content flex-wrap" catchtap="setParam">
+        <view class="coin-account-title">现金将汇入您的支付宝账号</view>
+        <view class="coin-input">
+          <input placeholder="支付宝账号" class="coin-inputs {{account.length ? 'hasvalipt' : ''}}" data-key="{{1}}" bindinput="setParam" value="{{account || ''}}"></input>
+        </view>
+        <view class="coin-input2">
+          <input placeholder="姓名（保密内容，防止汇错）" class="coin-inputs {{name.length ? 'hasvalipt' : ''}}" data-key="{{2}}" bindinput="setParam" value="{{name || ''}}"></input>
+        </view>
+        <view class="coin-btns flex-between">
+          <button class="buttonreset coin-btn-cancel" catchtap="showAccountFunc">取 消</button>
+          <button class="buttonreset coin-btn-sure" catchtap="saveUseInfo">确 认</button>
+        </view>
+      </view>
+    </view>
+  </ui-mask>
+</view>

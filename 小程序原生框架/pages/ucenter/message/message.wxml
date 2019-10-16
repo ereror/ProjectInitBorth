@@ -1,0 +1,41 @@
+<import src="../../../templates/info/info.wxml" />
+<!-- 信息 -->
+<block wx:for="{{list}}" wx:key="{{index}}">
+  <view class='time'>{{item.date}}</view>
+  <block wx:for="{{item.data}}" wx:key="{{index}}">
+    <template is="message" data="{{...item,index}}"></template>
+  </block>
+</block>
+<view wx:if="{{list.length<1}}" class='noData'>暂无消息</view>
+
+
+<template name="message">
+  <form report-submit='{{true}}' bindsubmit='createFormid' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}">
+  <button form-type='submit' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}" class='inputbtnid'>
+  <view class='message-item b-1px-b' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}">
+      <view class='message-img-box'>
+         <image class='avatar-80 ' src='{{avatarurl}}'></image>
+         <view class='badge {{un_read<10?"badge-single":""}}' wx:if="{{un_read>0}}">{{un_read}}</view>
+      </view>
+      <view class='flex-1'>
+         <view class='c-black'>{{nickname}}</view>
+         <view class='f-24 c-gray-dark ellipsis'>{{content}}</view>
+      </view>
+      <view style='color:#b2b2b2;font-size:22rpx'>{{time}}</view>
+  </view>
+  </button>
+  </form>
+</template>
+<mask show="{{show}}" hide-on-tap="{{false}}">
+   <view class='mask-body'>
+     <view class='tip-box'>
+        <view class='tip-box-head b-1px-b'>提示</view>
+        <view class='tip-box-content'>请微信搜索公众号“闲小宝”或者微信扫描二维码关注即可开通用户私信等实时信息微信通知功能。</view>
+        <image src='/images/icon/code.jpg' style='width:600rpx;height:600rpx;'></image>
+        <view class='flex' style='width:600rpx;'>
+          <view class='flex-1 flex-center' style='padding:20rpx 0' bindtap='back'>取消</view>
+          <view class='flex-1 flex-center c-primary' style='padding:20rpx 0' bindtap='save'>保存图片</view>
+        </view>
+     </view>
+   </view>
+</mask>

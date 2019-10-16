@@ -1,0 +1,3 @@
+<button class='c-btn round icon bg-red' catchtap='sendBack' disabled='{{disabled}}'>
+	确定
+</button>

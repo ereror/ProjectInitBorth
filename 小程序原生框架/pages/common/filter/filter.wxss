@@ -1,0 +1,12 @@
+page{
+  height: 200vh;
+}
+.sample_title {
+  height: 46px;
+  line-height: 46px;
+  background: red
+}
+.tab-box{
+  background: white;
+  padding: 0 30rpx;
+}

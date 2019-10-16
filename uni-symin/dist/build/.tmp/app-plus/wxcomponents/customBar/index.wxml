@@ -1,0 +1,15 @@
+
+<view class="cu-custom" style="height:{{barconfig.CustomBar}}px;">
+  <view class="cu-bar, fixed, {{barconfig.bgset}}" style="height:{{barconfig.CustomBar}}px;padding-top:{{barconfig.StatusBar}}px;">
+	<navigator class='action' open-type="navigateBack" delta="1" hover-class="none" wx:if='{{barconfig.hiddenTitle === 2}}' style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;">
+	  <view style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;"></view>
+	  <image src="{{barconfig.isArrow ? barconfig.isArrow === 1 ? iconb : iconbw : ''}}" class="actionimage1" wx:if='{{barconfig.isArrow}}'/>
+	  <view class='clickbg'></view>
+	</navigator>
+	<navigator class='action' delta="1" open-type="navigateBack" hover-class="none" wx:if='{{barconfig.hiddenTitle === 1}}' style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;">
+	  <view style="height:{{barconfig.CustomBar - barconfig.StatusBar}}px;"></view>
+	  <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAABGCAYAAAC69QZ6AAAB6UlEQVRoQ83aPUrEQBiA4Xcba0tREPQI/vRiobWHsNdG8AaijfZ2XsBaQSwFC2+giI02IlaCoDKwgWzM7s4k318gkOLL8DA7LOzLDohzzQBzwAvw22QNgjjXgEtgAbgFdoCPui0CNCGvgdka7B7YqmO9oW3IyjuC9YROQlbYdAw205n1guYgK+wy8OQBLUG+AkvAlzW0BPkJbAN3aWstoZ2RltBeSCtob6QFVASpDRVDakJFkVpQcaQGVAUpDVVDSkJVkVJQdaQE1ATZF2qG7AM1RXaFmiO7QF2QpVA3ZAnUFZkLdUfmQEMgp0HDICdBQyHHQcMh26AhkU1oWGQdGhpZQVPpfRxG1Ho7Hfe8C5znDErOpKSzCDwXLLoCPBTMi4wmaLpvgI3MFU+B/cxZsbEqkqUsfQWsZ658AJxkzoqM1WteaGwzO4bFtvXRkNhxITccdlJxDoWdlsbDYKdB01dLCGwONAQ2F+qOLYG6YkuhbtguUBdsV6g5tg/UFNsXaoaVgJpgpaDqWEmoKlYaqobVgKpgtaDiWE2oKFYbKoa1gIpgraC9sZbQLtg94Cy9aA0txX4P/1P67gEtwf4A88CbFzQXewQcen309bo36af4SN703NEK3Ib912AjQKtjkHCrwAVw3Iyqf8Jgrke8FEt5AAAAAElFTkSuQmCC" class="actionimage2"/>
+	</navigator>
+	<view class='cu-custometitle {{barconfig.tset}}'>{{barconfig.title}}</view>
+  </view>
+</view>

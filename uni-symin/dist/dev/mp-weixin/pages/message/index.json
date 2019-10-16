@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "消息",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "tbar": "/wxcomponents/tbar/index",
+    "custombar": "/wxcomponents/customBar/index",
+    "chatlisttextnode": "/wxcomponents/message/sessiondetails/chatlist_text_node/chatlist_text_node"
+  }
+}

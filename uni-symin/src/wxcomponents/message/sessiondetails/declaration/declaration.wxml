@@ -1,0 +1,21 @@
+<view>
+    <view class="declaration" wx:if="{{show}}">
+        <view>
+            <view class="declaration_content">交友声明</view>
+            <view class="declaration_exe">请仔细阅读以下内容，并同意</view>
+            <view class="declaration_item {{index == contentlist.length-1 ? 'declaration_itemnth' : ''}}" wx:for="{{contentlist}}" wx:key="{{index}}">
+                <view class="declaration_item_d">
+                    <view></view>
+                </view>
+                <view class="declaration_item_t">
+                    <text>{{item}}</text>
+                </view>
+                <view class="declaration_item_z"></view>
+            </view>
+            <view class="declaration_button {{timestatic<=0?'declaration_button_yes':'declaration_button_no'}}" bindtap="yestimestatic">
+                同意并不再提示{{timestatic<=0?'':'('+timestatic+')'}}
+            </view>
+            <view class="declaration_button_back" bindtap="back">拒绝</view>
+        </view>
+    </view>
+</view>

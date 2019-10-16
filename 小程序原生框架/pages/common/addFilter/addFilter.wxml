@@ -1,0 +1,27 @@
+<view class='b-1px-t'></view>
+<block wx:for="{{filterList}}" wx:key="{{index}}">
+  <!-- 等于,选择 -->
+  <block wx:if="{{item.is_filter==1}}">
+    <view class="filter-title">{{item.title}}</view>
+    <view class="filter-list">
+      <view class='filter-item {{childindex===param[item.name]?"c-primary":""}}' wx:for="{{item.extra}}" wx:for-index="childindex" wx:for-item="child" wx:key="{{childindex}}" bindtap='setSelect' data-key='{{item.name}}' data-title='{{child}}' data-id='{{childindex}}'>{{child}}</view>
+    </view>
+  </block>
+  <!-- 输入,范围 -->
+  <block wx:if="{{item.is_filter==2}}">
+    <view class="filter-title">{{item.title}}</view>
+    <view class="filter-list">
+      <input class="filter-item filter-item-input" type='number' placeholder='请输入数字' bindinput='setInput' data-key='{{item.name}}' value='{{param[item.name]}}'></input>
+    </view>
+    
+  </block>
+  <!-- 输入,模糊 -->
+  <block wx:if="{{item.is_filter==3}}">
+
+  </block>
+</block>
+
+<view style='height:150rpx;'></view>
+<view class='fixed-bottom'>
+  <view class='btn btn-select' bindtap='submit'>选好了</view>
+</view>

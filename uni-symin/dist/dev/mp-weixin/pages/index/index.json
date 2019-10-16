@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "首页",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "tbar": "/wxcomponents/tbar/index",
+    "loading": "/wxcomponents/loading/index",
+    "uswiper": "/wxcomponents/ui-swiper/index"
+  }
+}

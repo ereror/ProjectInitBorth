@@ -1,0 +1,7 @@
+<import src="../../../templates/info/info.wxml" />
+<import src="../../../templates/loading/loading.wxml" />
+<!-- 信息 -->
+<block wx:for="{{list.data}}" wx:key="{{index}}">
+   <template is="info" data="{{...item,index}}"></template>
+</block>
+<template is="loading" data="{{loading,...list}}"></template>

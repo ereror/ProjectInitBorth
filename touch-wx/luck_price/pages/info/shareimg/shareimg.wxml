@@ -1,0 +1,5 @@
+<block>
+  <poster id="poster" hide-loading="{{false}}" preload="{{true}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+  </poster>
+  <image src="{{imgsrc}}" class="bigimg" bindtap="previewImage" />
+</block>

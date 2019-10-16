@@ -1,0 +1,1 @@
+<rich-text nodes="{{messagenode}}" space="nbsp" class="richtext"></rich-text>

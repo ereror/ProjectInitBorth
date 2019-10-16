@@ -1,0 +1,65 @@
+.t-flex {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.t-flex2 {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.t-box {
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:477;
+}
+
+.t-content {
+	width: 240rpx;
+	height:240rpx;
+	border-radius: 30rpx;
+	background-color: #3A3A3A;
+	animation: toastfun .5s;
+}
+.t-icon {
+	width: 72rpx;
+	height: 72rpx;
+	margin: 16rpx 0;
+}
+
+.t-mess {
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-size: 28rpx;
+}
+
+.t-big {
+	width: 400rpx;
+	height: auto;
+	padding: 24rpx 50rpx;
+	text-align: center;
+}
+
+.t-small {
+	width: 240rpx;
+	height: auto;
+	padding: 24rpx 50rpx;
+	text-align: center;
+	color: white;
+}
+
+@keyframes toastfun {
+	0% {
+		transform: translateY(50rpx);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0rpx);
+		opacity: 1;		
+	}
+}

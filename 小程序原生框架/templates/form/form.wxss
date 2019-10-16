@@ -1,0 +1,173 @@
+.form-box{
+   background: white; 
+}
+.scroll-x{
+  white-space: nowrap;
+}
+.scroll-x-item__img{
+  width: 100%;
+  height: 100%;
+}
+.scroll-x-item{
+  position: relative;
+  display: inline-block;
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 10rpx;
+}
+.del-image{
+  position: absolute;
+  top:0;
+  right: 0;
+  width: 30rpx;
+  height: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 1;
+}
+.uploading-image{
+  position: absolute;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 1;
+  font-size: 24rpx;
+}
+.checkgroup{
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkgroup-item{
+  width: 230rpx;
+  margin-bottom: 10rpx;
+}
+
+.add-img{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.text-input {
+  height: 92rpx;
+  line-height: 92rpx;
+}
+.text-ipting {
+  padding-left: 12rpx;
+}
+.text-placeholder {
+  font-size:28rpx;
+  color:#b3b3b3;
+}
+.cell-textarea {
+  width:100%;
+  height:282rpx;
+  font-size: 28rpx;
+}
+
+.textarea-text {
+  font-size: 24rpx;
+  color: #b3b3b3;
+}
+
+.textarea-placeholder, .input-placeholder {
+  font-size: 28rpx;
+  color: #b3b3b3;
+}
+
+.ismaskcontent {
+  padding: 10rpx;
+}
+.ismasktext {
+  line-height:1.2;
+  padding: 16rpx 10rpx;
+}
+.c-gray-dark {
+  color: #b3b3b3;
+}
+.textagin-lpx {
+  border-bottom:1px solid #ebebeb;
+}
+.textagin-label {
+  color: #363636;
+}
+.textagin-text {
+  color: #b3b3b3;
+  font-size: 26rpx;
+  margin-right: 6rpx;
+}
+.isvaltext {
+  color: #7a7a7a;
+}
+.digit-1px {
+  border-bottom: 1px solid #ebebeb;
+  height:100rpx;
+  line-height:100rpx;
+}
+
+.digit-title {
+  font-size: 32rpx;
+  color: #363636;
+  margin-right: 48rpx;
+}
+
+.digit-placeholder {
+  font-size: 32rpx;
+  color: #b3b3b3;
+}
+
+.isknow {
+  margin: 40rpx auto;
+  width:240rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 8rpx;
+  background:#ff6454;
+  box-shadow: 0 1px 1rpx 2rpx rgba(255, 100, 84, .35);
+  color: white;
+  font-size: 28rpx !important;
+}
+
+.newalertbox {
+  position:relative;
+  margin: 0 auto;
+  margin-top: -100rpx;
+  height:440rpx;
+  width:500rpx;
+}
+
+.newalertboxbg, .newalertboxcontent {
+  position:absolute;
+  z-index: 1;
+  width:100%;
+  height:100%;
+}
+
+.newalertboxcontent {
+  z-index:2;
+  margin-top:240rpx;
+}
+
+.newalertboxcontentmess {
+  font-size: 42rpx;
+  color: #363636;
+  text-align: center;
+  /*font-weight: 600;*/
+}
+
+.newalertboximg {
+  height:440rpx;
+  width:500rpx;
+}

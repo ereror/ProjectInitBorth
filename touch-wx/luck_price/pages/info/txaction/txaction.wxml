@@ -1,0 +1,40 @@
+<view class="home_box">
+  <image src="{{home_imgsrc}}" class="home_bg" />
+  <view class="apply_steps flex-center">
+    <view class="apply_steps_pro_imgs">
+      <image src="{{tx_iconA}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text">发起提现申请</view>
+    </view>
+    <view class="apply_steps_pro_aline"></view>
+    <view class="apply_steps_pro_imgs">
+      <image src="{{tx_iconA}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text">后台处理中</view>
+    </view>
+    <view class="apply_steps_pro_halfaline"></view>
+    <view class="apply_steps_pro_imgs">
+      <image src="{{tx_iconD}}" class="apply_steps_pro_img" />
+      <view class="apply_steps_pro_imgs_text apply_steps_pro_imgs_text_no">到账成功</view>
+    </view>
+  </view>
+  <view class="apply_deatil">
+    <view class="apply_deatil_header">提现明细</view>
+    <view class="apply_deatil_items">
+      <view class="apply_deatil_item flex-between">
+        <view class="apply_deatil_item_name">提现金额</view>
+        <view class="apply_deatil_item_content">￥{{money}}</view>
+      </view>
+      <view class="apply_deatil_item flex-between">
+        <view class="apply_deatil_item_name">手续费</view>
+        <view class="apply_deatil_item_content">￥{{money * 0.003}}</view>
+      </view>
+      <view class="apply_deatil_item flex-between">
+        <view class="apply_deatil_item_name">到账支付宝账户</view>
+        <view class="apply_deatil_item_content">{{account}}</view>
+      </view>
+    </view>
+    <view class="order_line_02"></view>
+    <view class="apply_btn_box">
+      <button class="buttonreset apply_btn" bindtap="txFunc">完成</button>
+    </view>
+  </view>
+</view>

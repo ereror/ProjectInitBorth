@@ -1,0 +1,72 @@
+<view class="home_box">
+  <image src="{{home_imgsrc}}" class="home_bg" />
+  <image src="{{home_hbsrc}}" class="home_btn_hb" bindtap="goUrl" data-url="/pages/info/getgift/getgift?type=3" />
+  <view class="home_h_box">
+    <button class="buttonreset home_h_btn" bindtap="goUrl" data-url="/pages/info/goindex/goindex">
+      <view class="icon icon-goindex icon-28"></view>
+      <text class="home_h_btn_text">我要上首页</text>
+    </button>
+  </view>
+  <view class="listContainer">
+    <block wx:for="{{prizeData}}" wx:key="{{index}}">
+      <template is="listContainer" data="{{prize_img_icon:prize_img_icon, numberStyle: numberStyle,pagePath: pagePath, ...item, ikey: index}}" />
+    </block>
+  </view>
+  <view class="ad_box" wx:if="{{isShowA}}">
+    <image src="{{ad_img_01}}" class="adbox_img" />
+    <view class="adbox_line">广告</view>
+    <image src="{{ad_img_02}}" class="adbox_img" />
+    <view class="ad">
+      <image src="{{ademptyImg}}" class="ademptyImg" />
+    </view>
+  </view>
+  <template is="tabbar" />
+  <template name="listContainer">
+    <view class="prize_container" data-url="{{pagePath}}" data-id="{{id}}" data-idsarr="{{ids}}" bindtap="checkDetail">
+      <image src="{{prize_img_icon}}" class="isprizing" wx:if="{{joined}}" />
+      <view class="timeconter" wx:if="{{joined}}">
+        <cc-counttime target="{{timeend}}" show-day="{{false}}" clear-timer="{{false}}" endDesc="开奖中..." numberStyle="{{numberStyle}}" splitStyle="{{splitStyle}}" bindticallback="getList" _pid="{{_pid}}"></cc-counttime>
+      </view>
+      <view class="prize_img">
+        <image src="{{icon}}" class="prize_imgs" />
+      </view>
+      <view class="line_01"></view>
+      <view class="prize_msg_01 {{!sponsor ? 'pdt-30' : ''}}">
+        <view class="prize_helper flex-l">
+          <button class="buttonreset prize_helper_btn flex-center {{ikey % 2 == 0 ? 'prize_helper_btn_2n' : ''}}">
+            <view class="icon icon-zzs icon-22"></view>
+            <view class="line-ones"></view>
+            <view class="prize_helper_text">{{sponsor || '陪我抽奖'}} 赞助</view>
+          </button>
+        </view>
+        <view class="prize_list flex-l" wx:for="{{prizelist}}" wx:key="{{index}}">
+          <view class="ellipsis--2 item_line_height">
+            <text wx:if="{{prizelist.length > 1}}">奖品</text>
+            <text wx:if="{{prizelist.length > 1 && index === 0}}">一: </text>
+            <text wx:if="{{index === 1}}">二: </text>
+            <text wx:if="{{index === 2}}">三: </text>
+            <text>{{item.name || '随便抽'}}</text>
+            <text wx:if="{{item.num > 1}}" class="item_line_height_text"> x{{item.num}}份 </text>
+          </view>
+        </view>
+      </view>
+      <view class="prize_msg_02 flex-l">
+        <view>自动开奖</view>
+        <view class="line_y_01"></view>
+        <view>{{endTime}}</view>
+      </view>
+    </view>
+  </template>
+  <template name="tabbar">
+    <view class="tabbar-box-place flex-center">
+      <view class="tabbar-box flex-center flex-wrap flex-1 tabbar-box-active">
+        <view class="icon icon-indexA icon-46"></view>
+        <view class="tabbar-box-place-text">首页</view>
+      </view>
+      <view class="tabbar-box flex-center flex-wrap flex-1" data-url="/pages/info/usercenter/usercenter" data-type="menu" bindtap="goUrl">
+        <view class="icon icon-usercenterD icon-46"></view>
+        <view class="tabbar-box-place-text">我的</view>
+      </view>
+    </view>
+  </template>
+</view>

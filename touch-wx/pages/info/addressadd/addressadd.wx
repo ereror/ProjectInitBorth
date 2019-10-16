@@ -1,0 +1,217 @@
+<template>
+  <view>
+    <import src="../../../template/form/form.wxml"/>
+    <view class='addressadd-box'>
+      <template is='inputmsg' data='{{...goodsman}}'></template>
+      <template is='inputmsg' data='{{...phonenum}}'></template>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class='addressadd_isnullbox'>
+          <view class='addressadd_alltop'></view>
+          <view class='addressadd_allbottom'>
+            <template is='inputmsg' data='{{...area}}'></template>
+          <view>
+        </view>
+      </picker>
+      <template is='inputmsg' data='{{...areadetail}}'></template>
+      <view class='flex-between addressadd_set'>
+        <view class='addressadd_title'>设置为默认地址</view>
+        <view>
+          <button class="buttonreset switchbtn {{isnow ? 'switchbtnbg': ''}}" bindtap='setNow'>
+            <view class="btnicons {{isnow ? 'btniconsbg': ''}}"></view>
+          </button>
+        </view>
+      </view>
+      <view>
+        <button class="buttonreset saveaddr isright {{goodsman.val.length && phonenum.val.length && region.length && areadetail.val.length ? '': 'graybtn'}}" bindtap='saveAddr'>保存地址</button>
+        <button class='buttonreset deladdr' wx:if='{{id}}' bindtap='delAddr'>删除</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import info from '../../../api/index'
+import util from '../../../static/utils/index'
+import toast from '../../../static/utils/toast'
+export default {
+  config: {
+    navigationBarTitleText: '收货地址',
+    backgroundColor: '#F2f3f5',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    region: ['四川省', '成都市', '高新区'],
+    goodsman: {title: '收货人', icons: false, placeholder: '请填写收货人姓名', showicons: false, key: 1, val: '', iptclass: 'iptclass'},
+    phonenum: {title: '手机号码', icons: false, placeholder: '请填写手机号码', showicons: false, key: 2, val: '', iptclass: 'iptclass', type: 'number'},
+    area: {title: '所在地区', icons: true, placeholder: '点击选择', showicons: true, key: 3, val: '', iconend: 'icon-nextstep areaipt', iptclass: 'iptclass'},
+    areadetail: {title: '详细地址', icons: false, placeholder: '详细地址，例：睿东中心wework41b', showicons: false, key: 4, val: '', iptclass: 'iptclass'},
+    isnow: false,
+    isloading: false,
+    id: '',
+    type: '',
+    choseobj: {}
+  },
+  onLoad (param) {
+    this.data.type = param.type || ''
+    this.data.id = param.id || ''
+    this.data.goodsman.val = param.name || ''
+    this.data.phonenum.val = param.phone || ''
+    this.data.area.val = param.city || ''
+    this.data.areadetail.val = param.addr || ''
+    this.data.isnow = param.used * 1 || false
+    let title = '新增收货地址'
+    if (this.data.id) {
+      title = '编辑收货地址'
+    }
+    wx.setNavigationBarTitle({
+      title: title,
+    })
+    this.setData({
+      'goodsman.val': this.data.goodsman.val,
+      'phonenum.val': this.data.phonenum.val,
+      'area.val': this.data.area.val,
+      'areadetail.val': this.data.areadetail.val,
+      isnow: this.data.isnow,
+      id: this.data.id
+    })
+  },
+  bindRegionChange: function (e) {
+    this.setData({
+      region: e.detail.value,
+      'area.val': e.detail.value
+    })
+  },
+  isnoFunc (e) {
+    console.log('123')
+  },
+  onUnload () {
+    // 当来自详情页直接添加地址需要返回页面，并且将地址赋值上去
+    var model = -1
+    if (this.data.choseobj.id && this.data.type === 'detail') {
+      util.getPage(model).setData({
+        address: this.data.choseobj
+      })
+    } else {
+      // 列表选择返回
+      util.getPage(model).getAddrList()
+    }
+  },
+  setParam (e) {
+    let { key } = util.getData(e)
+    let val = e.detail.value
+    if (key === 1) {
+      this.data.goodsman.val = val
+      this.setData({
+        'goodsman.val': this.data.goodsman.val
+      })
+    } else if (key === 2) {
+      this.data.phonenum.val = val
+      this.setData({
+        'phonenum.val': this.data.phonenum.val
+      })
+    } else if (key === 4) {
+      this.data.areadetail.val = val
+      this.setData({
+        'areadetail.val': this.data.areadetail.val
+      })
+    }
+  },
+  setNow () {
+    this.data.isnow = !this.data.isnow
+    this.setData({
+      isnow: this.data.isnow
+    })
+  },
+  saveAddr () {
+    let param = {}
+    param.id = this.data.id
+    param.name = this.data.goodsman.val || ''
+    param.phone = this.data.phonenum.val || ''
+    param.city = this.data.region.join(',') || ''
+    param.addr = this.data.areadetail.val || ''
+    param.used = this.data.isnow ? 1 : 0
+    if (!param.name.length || !param.phone.length || !param.city.length || !param.addr.length) {
+      return toast.show('warn', '请完整填写表单数据', 1000)
+    }
+    if (this.data.isloading) return
+    this.data.isloading = true
+    info.editAddr(param).then(res => {
+      this.data.isloading = false
+      if(res.code === 200) {
+        this.clearAddr()
+        toast.show('success', '添加地址成功！！', 1000)
+        if (this.data.type === 'detail') {
+          this.data.choseobj = res.data || {}
+          // 如果选择默认将保存根性全局对象里面userinfo
+          if (param.used) {
+            getApp().getUserInfo(true)
+          }
+        }
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1000)
+       } else {
+        toast.show('warn', '添加地址失败！！', 1000)
+      }
+    })
+  },
+  clearAddr () {
+    this.data.id = ''
+    this.data.goodsman.val = ''
+    this.data.phonenum.val = ''
+    this.data.region = ''
+    this.data.areadetail.val = ''
+    this.data.isnow = false
+    this.setData({
+      id: this.data.id,
+      'goodsman.val': this.data.goodsman.val,
+      'phonenum.val': this.data.phonenum.val,
+      'area.val': this.data.area.val,
+      'areadetail.val': this.data.areadetail.val,
+      isnow: this.data.isnow
+    })
+  },
+  delAddr (e) {
+    if (this.data.isloading) return
+    this.data.isloading = true
+    let { index } = util.getData(e)
+    let id = this.data.id
+    info.delAddr({id: id}).then(res => {
+      this.data.isloading = false
+      if(res.code === 200) {
+        this.clearAddr()
+        toast.show('success', '地址删除成功！！', 1000)
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1000)
+      } else {
+        toast.show('warn', '地址删除失败！！', 1000)
+      }
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  @import '../../../template/form/form.wxss';
+  .addressadd-box {
+    margin-top: 21rpx;
+  }
+  .addressadd_set {background:white;height:108rpx;padding:0 24rpx;}
+  .addressadd_title {width:300rpx;text-align:left;color:#292727;}
+  .switchbtn {width:100rpx;height:50rpx;border:4rpx solid rgba(217,215,215,1);border-radius:25rpx;transition: all .5s;padding:7rpx 10rpx;}
+  .switchbtnbg {border:4rpx solid #22c961;}
+  .saveaddr, .deladdr {margin:65rpx auto;width:702rpx;height:88rpx;background:linear-gradient(90deg,rgba(199,195,195,1),rgba(224,224,224,1));border-radius:44rpx;color:white;line-height:88rpx;text-align:center;font-size:32rpx;}
+  .deladdr {margin-top:-36rpx;background:none;border:2rpx solid #d3d2d3;color:#adadad;}
+  .btnicons {width:30rpx;height:30rpx;background:rgba(217,215,215,1);border-radius:50%;transition: all .5s;}
+  .btniconsbg {background:#22c961;transform:translateX(46rpx);}
+  .isright {background:linear-gradient(90deg,rgba(255,94,151,1),rgba(255,153,153,1));}
+  .addressadd_isnullbox {position:relative;height:100rpx;width:100%;}
+  .addressadd_alltop {position:absolute;top:0;right:0;left:30rpx;z-index:2;width:690rpx;height:100rpx;border-bottom:1rpx solid #e6e6e6;}
+  .addressadd_allbottom {z-index:-1;}
+  .iptclass {border:0;position:relative;}
+  .iptclass::before {content: '';position:absolute;bottom:0;width:690rpx;left:30rpx;border-bottom:1rpx solid #e6e6e6;}
+  .graybtn {background:linear-gradient(90deg,rgba(199,195,195,1),rgba(224,224,224,1));}
+  .areaipt {margin-left:20rpx;}
+</style>

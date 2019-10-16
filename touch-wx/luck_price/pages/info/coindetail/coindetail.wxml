@@ -1,0 +1,21 @@
+<block>
+  <import src="../../../template/nomsg/nomsg.wxml" />
+  <view class="home_box">
+    <image src="{{home_imgsrc}}" class="home_bg" />
+    <view class="coin_d_ad">
+      <image src="{{ademptyImg}}" class="ademptyImg" />
+    </view>
+    <view class="coin_d_list" wx:if="{{hb_list.length}}">
+      <view class="coin_d_item flex-between" wx:for="{{hb_list}}" wx:key="{{index}}">
+        <view class="flex-1 line-1">
+          <view class="coin_d_item_name">{{item.reason === 'hb' ? '红包' : (item.reason === 'tx' ? '提现申请': '购买消费方式')}}</view>
+          <view class="coin_d_item_time">{{item.opttime}}</view>
+        </view>
+        <view class="coin_d_count">{{item.addmoney > 0 ? '+' + item.addmoney / 100 : item.addmoney / 100}}</view>
+      </view>
+    </view>
+    <view wx:if="{{!hb_list.length && isloaded}}" class="coin-detail flex-center">
+      <template is="nomsg" data="{{data: hb_list, nomsg_bg : img_bg}}" />
+    </view>
+  </view>
+</block>

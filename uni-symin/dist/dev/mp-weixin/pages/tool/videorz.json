@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "视频认证",
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "dialogbox": "/wxcomponents/dialog/index"
+  }
+}

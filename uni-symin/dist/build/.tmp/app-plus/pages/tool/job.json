@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "选择行业/职业",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index"
+  }
+}

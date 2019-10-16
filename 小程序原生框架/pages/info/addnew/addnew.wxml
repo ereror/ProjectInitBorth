@@ -1,0 +1,128 @@
+<import src="../../../templates/form/form.wxml" />
+<view style='background:#f2f2f5;'>
+<view class="info-tip" style="background:url('http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/addnew/fb_img17.png');background-size:cover;" wx:if='{{infotip}}'>
+	<view>提示：请确保发布信息真实合法，恶意发布，虚假发布可能将承担相应的违法违规后果。</view>
+	<view class='info-btnicon' bindtap='infotipfunc'>
+		<image src='/images/addnew/fb_img9.png' style='height:30rpx;width:30rpx;'></image>
+	</view>
+</view>
+<view class='mess-loc'>
+	<template is='text' data="{{...titletext}}"></template>
+	<view style='height:1px;background:#ebebeb;width:100%;'></view>
+	<template is='textarea' data="{{...messtext}}"></template>
+<!-- 	<view class='loc-and-love'>
+		<view class='locarr'>
+			<view>
+				<image src='/images/addnew/fb_img11.png'  style='height:24rpx;width:16rpx;vertical-align:center'/>
+			</view>
+			<view class='locarrtext' bindtap='chooseLocation'>{{param.address || "宝贝地址"}}</view>
+		</view>
+		<view class='locarr2' bindtap='setGoodsstatus'>
+			<view>
+				<image src='/images/addnew/fb_img20.png'  style='height:26rpx;width:26rpx;vertical-align:center;' wx:if="{{!isnewgoods}}"/>
+				<image src='/images/addnew/fb_img21.png'  style='height:26rpx;width:26rpx;vertical-align:center;' wx:if="{{isnewgoods}}"/>
+			</view>
+			<view class='locarrtext' wx:if="{{pagemodel !== 2}}">全新宝贝</view>
+		</view>
+	</view> -->
+</view>
+<view class='imglist'>
+  <view class='img-item' wx:if='{{param.video.length}}'>
+  	 <view>
+  	 	<image src='{{param.video[0].src}}?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast' class="itemimgs"/>
+  	 </view>
+  	 <view class='itemimgs img-item-video' bindtap='openVideo' data-src='{{param.video[0].src}}'>
+  	 	<image src='/images/addnew/fb_img14.png' class='img-item-videoimgs'/>
+  	 	<view class='img-item-videotext'>这是视频</view>
+  	 </view>
+  	 <view class='img-closebtn'>
+  		<image src='/images/addnew/fb_img23.png' class='imgclosebtn' bindtap='delVideo' />
+  	 </view>
+  </view>
+  <view class='img-item' wx:for="{{param.imgs}}" wx:key="{{index}}">
+  	 <view>
+  	 	<image src='{{item.path}}!info_list_cover' class='itemimgs' bindtap='previewImage' data-src='{{item.path}}' />
+  	 </view>
+  	<view class='img-closebtn'>
+  		<image src='/images/addnew/fb_img23.png' class='imgclosebtn' bindtap='delImage' data-index='{{index}}' data-key='imgs'/>
+  	</view>
+  </view>
+  <view class='img-item' wx:if='{{pagemodel === 2 && imgs.length}}' bindtap='chooseImage' data-key='imgs' data-size='9'>
+  	 <view>
+  	 	<image src='/images/addnew/fb_img19.png' class='itemimgs'/>
+  	 </view>
+  </view>
+</view>
+
+<view class='sendfilebtn' wx:if='{{pagemodel !== 2}}'>
+	<view class='sendfilebtn-item' style='border-right:1px solid #ebebeb;'>
+		<view style='text-align:center;' bindtap='chooseImage' data-key='imgs' data-size='9' wx:if='{{!param.video.length}}'>
+			<image src='/images/addnew/fb_img18.png' style='height:72rpx;width:80rpx;' />
+			<view class='sendfilebtn-text'>添加照片</view>
+		</view>
+		<view style='text-align:center;color:gray' data-key='imgs' data-size='9'  wx:if='{{param.video.length}}'>
+			<image src='/images/icon/takephotogray.png' style='height:72rpx;width:80rpx;' />
+			<view class='sendfilebtn-text'>添加照片</view>
+		</view>
+    </view>
+    <view class='sendfilebtn-item'>
+		<view style='text-align:center;' bindtap='choosevideo' wx:if='{{!param.imgs.length}}'>
+			<image src='/images/addnew/fb_img13.png' style='height:72rpx;width:80rpx;' />
+			<view class='sendfilebtn-text'>拍摄视频</view>
+		</view>
+		<view style='text-align:center;color:gray;' wx:if='{{param.imgs.length}}'>
+			<image src='/images/icon/takevideogray.png' style='height:72rpx;width:80rpx;' />
+			<view class='sendfilebtn-text'>拍摄视频</view>
+		</view>
+    </view>
+    <view class='sendimgbtntip'>
+    	<text wx:if="{{false}}">*图片和视频至少共三个（视频只能一个）</text>
+    </view>
+</view>
+
+<view class='sendimgbtn' wx:if='{{pagemodel === 2 && !imgs.length}}'>
+	<view class='sendfilebtn-item'>
+		<view style='text-align:center;' bindtap='chooseImage' data-key='imgs' data-size='9'>
+			<image src='/images/addnew/fb_img18.png' style='height:72rpx;width:80rpx;' />
+			<view class='sendfilebtn-text'>添加照片</view>
+		</view>
+    </view>
+	<view class='sendimgbtntip'>
+		<text wx:if="{{false}}">*想要更快找到宝贝，您还可以添加示例图~</text>
+	</view>
+</view>
+
+<view style='background:white;margin:20rpx 0 20rpx 0rpx;padding-left:30rpx;'>
+	<template is='location' data="{{param}}"></template>
+</view>
+
+<view class='fb-btntext'>
+  <picker bindchange="tipsChange" bindcancel='tipsChange' value="{{tips.name}}" range="{{tipsList}}" range-key='name'>
+	<template is='textagin' data="{{...tips}}"></template>
+  </picker>
+  <view wx:if='{{tips.type <= 3}}'>
+	<view style='width:100%;background:#f9f9f9;height:1rpx;'></view> 
+	<template is='textagin' data="{{...price}}" wx:if='{{tips.type === 1}}'></template>
+	<view style='width:100%;background:#f9f9f9;height:1rpx;'></view> 
+    <picker bindchange="categoryChange" bindcancel='categoryChange' value="{{category.val}}" range="{{categoryList}}" range-key='title'>
+	<template is='textagin' data="{{...category}}"></template>
+	</picker>
+  </view>
+</view>
+
+<button type='submit' class='fb-submit' bindtap='submit'>
+	<text wx:if="{{!isUpdate}}">发布</text>
+	<text wx:if="{{isUpdate}}"> 修改</text>
+</button>
+
+
+<view class='bottom-ipt mask-body' bindtap='clearpriceipt' wx:if='{{showpriceipt}}'>
+	<view class='bottom-box' catchtap='digitsetParam'>
+  	  <template is='digit' data="{{...pricefill}}"></template>
+  	  <template is='digit' data="{{...priceold}}"></template>
+  	</view>
+</view>
+</view>
+<mask show="{{showfbbox}}" bindtap='clearsurebtn'>
+   <template is='newalertbox' data="{{result:showfbboxt}}"></template>
+</mask>

@@ -1,0 +1,26 @@
+<view class='category' wx:if="{{visible}}">
+    <slot></slot>
+
+    <view class='category-bottom'>
+        <view class='category-parent'>
+            <scroll-view scroll-y>
+                <view class='category-parent-list'>
+                    <view class='category-parent-item {{SelectParentIndex==index?"category-parentitem__select":""}}'
+                          wx:for="{{cateList}}" wx:key="{{index}}" bindtap='changeParent' data-index='{{index}}'>
+                        {{item.title}}
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class='category-child'>
+            <scroll-view scroll-y>
+                <view class='category-child-list'>
+                    <view class='category-child-item' wx:for="{{cateList[SelectParentIndex].child}}" wx:key="{{index}}" bindtap='selectChild' data-index='{{index}}'>
+                        {{item.title}}
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+
+</view>

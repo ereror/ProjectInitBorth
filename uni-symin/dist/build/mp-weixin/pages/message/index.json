@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "消息中心",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index"
+  }
+}

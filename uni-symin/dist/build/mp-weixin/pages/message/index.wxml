@@ -1,0 +1,1 @@
+<block><custombar vue-id="1" name="uni-app" barconfig="{{barconfig}}" data-com-type="wx" bind:__l="__l"></custombar><view>个人信息中心</view></block>

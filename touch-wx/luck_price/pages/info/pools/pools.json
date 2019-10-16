@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ui-mask": "../../../packages/touchui-wx-components/ui-mask/dist/index",
+    "cc-counttime": "../../../packages/countTime/index"
+  },
+  "navigationBarTitleText": "全部抽奖",
+  "backgroundColor": "#ffffff",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

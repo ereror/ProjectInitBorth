@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "查看视频",
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "dialogbox": "/wxcomponents/dialog/index"
+  }
+}

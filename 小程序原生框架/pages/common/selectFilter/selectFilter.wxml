@@ -1,0 +1,25 @@
+<import src="../../../templates/form/form.wxml" />
+<view class='b-1px-t'></view>
+<!-- 等于,选择 -->
+<block>
+  <view class="filter-title">分类</view>
+  <view class="filter-list">
+    <view class='filter-item {{item.id===param.categoryid?"c-primary":""}}' wx:for="{{categoryList}}" wx:key="{{index}}"  bindtap='categoryChange' data-index='{{index}}'>{{item.title}}</view>
+  </view>
+</block>
+<view class='b-1px-b'></view>
+<block wx:for="{{filterList}}" wx:key="{{index}}">
+  <!-- 等于,选择 -->
+  <block>
+    <view class="filter-title">{{item.title}}</view>
+    <view class="filter-list">
+      <view class='filter-item {{child===paramTitle[item.name]?"c-primary":""}}' wx:for="{{item.extra}}" wx:for-index="childindex" wx:for-item="child" wx:key="{{childindex}}" bindtap='setSelect' data-key='{{item.name}}' data-title='{{child}}' data-id='{{childindex}}'>{{child}}</view>
+    </view>
+  </block>
+</block>
+
+<view style='height:150rpx;'></view>
+<view class='fixed-bottom'>
+  <view class='btn  btn-resete' bindtap='resete'>重置</view>
+  <view class='btn' bindtap='submit'>确认</view>
+</view>

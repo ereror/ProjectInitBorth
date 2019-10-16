@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+	  <script>
+	    if ('addEventListener' in document) {
+	      document.addEventListener('DOMContentLoaded', function() {
+	        FastClick.attach(document.body);
+	      }, false);
+	    }
+	    if(!window.Promise) {
+	      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+	    }
+
+	  </script>
+	  <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+      <script type="text/javascript" src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>
+      <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js'></script>
+<link href="/vendors~app.1fb319da1c666d86b594.css" rel="stylesheet"><link href="/app.309007bdb3360a1be5af.css" rel="stylesheet"></head>
+<body>
+	<div id="app"></div>
+	<script>
+	  window.onload = function () {
+	    window.viewportUnitsBuggyfill.init({
+	      hacks: window.viewportUnitsBuggyfillHacks
+	    });
+	    FastClick.prototype.focus = function(targetElement) {
+	    	'use strict';
+	    	targetElement.focus();
+	    }
+	  }
+	</script>
+<script type="text/javascript" src="/vendors~app~vendor.js"></script><script type="text/javascript" src="/vendors~app.js"></script><script type="text/javascript" src="/app.js"></script><script type="text/javascript" src="/vendor.js"></script></body>
+</html>

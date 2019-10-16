@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "chatdetails": "/wxcomponents/message/sessiondetails/chatdetails/chatdetails",
+        "dialogbox": "/wxcomponents/dialog/index",
+        "declaration": "/wxcomponents/message/sessiondetails/declaration/declaration"
+    }
+}

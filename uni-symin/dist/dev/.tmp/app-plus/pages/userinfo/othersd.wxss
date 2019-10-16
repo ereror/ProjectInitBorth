@@ -1,0 +1,187 @@
+
+page {
+        background: #F9F9Fb;
+}
+.uinfo-d-head {
+        position: relative;
+        width: 690rpx;
+        border-radius: 30rpx;
+        margin: 30rpx auto 0;
+        overflow: hidden;
+}
+.uinfo-d-user {
+        margin: 0 auto;
+        width: 690rpx;
+        height: 284rpx;
+        background: white;
+        border-radius: 0 0 30rpx 30rpx
+}
+.uinfo-d-user-msg {
+        background: white;
+        height: 184rpx;
+        border-radius: 0 0 30rpx 30rpx;
+        padding-top: 40rpx;
+}
+.uinfo-d-user-rz {
+        height: 100rpx;
+        line-height: 100rpx;
+        font-size: 34rpx;
+        color: white;
+        text-align: center;
+}
+.I-d-rz {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 23;
+        width: 152rpx;
+        height: 60rpx;
+        line-height: 60rpx;
+        background: #09d6a1;
+        border-radius: 0 30rpx 0 30rpx;
+        -webkit-box-shadow: -2rpx -2rpx 0 2rpx rgb(147, 229, 208);
+                box-shadow: -2rpx -2rpx 0 2rpx rgb(147, 229, 208);
+        font-size: 28rpx;
+        text-align: center;
+        color: white;
+}
+.isrz {
+        background: #09d6a1;
+}
+.isrzf {
+        background: #ffb400;
+}
+.uinfo-d-user-name-box,
+    .uinfo-d-user-status-box {
+        padding: 0 30rpx;
+        font-size: 34rpx;
+        font-weight: 500;
+        color: #000000;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.uinfo-d-user-constellation {
+        margin-left: 30rpx;
+}
+.uinfo-d-user-status-box {
+        margin-top: 20rpx;
+        font-size: 26rpx;
+}
+.uinfo-d-user-status-dest {
+        margin-left: 20rpx;
+}
+.uinfo-d-user-status-destaddr {
+		margin-left: 10rpx;
+}
+.uinfo-d-box {
+        width: 690rpx;
+        border-radius: 30rpx;
+        overflow: hidden;
+        background: white;
+        margin: 40rpx auto 0;
+}
+.uinfo-d-btnbox {
+        width: 690rpx;
+        margin: 40rpx auto 62rpx;
+}
+.I-d-mark {
+        margin: 0 10rpx;
+        font-size: 26rpx;
+        font-weight: 600;
+}
+.I-d-text {
+        font-size: 24rpx;
+}
+.I-d-box {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        text-align: right;
+        color: #333333;
+}
+.I-d-sm {
+        font-size: 16rpx;
+        line-height: 16rpx;
+}
+.I-d-bg {
+        font-size: 24rpx;
+        /* line-height: 40rpx; */
+}
+.uinfo-d-btn {
+        width: 100%;
+        border-radius: 30rpx;
+        background: #f81f5e !important;
+        color: white;
+}
+.uinfo-d-btn2 {
+        width: 100%;
+        border-radius: 30rpx;
+        background-color: transparent !important;
+        color: #f81f5e;
+		margin:20rpx 0;
+}
+.ui-pop {
+		position: relative;
+		z-index: 9999;
+}
+.lg {
+        padding: 0 40rpx;
+        font-size: 32rpx;
+        height: 88rpx;
+}
+.uinfo-d-box2  {
+		position:fixed;
+		top:0;
+		right:0;
+		left:0;
+		bottom:0;
+		background: rgba(0,0,0,.2);
+		z-index: 998;
+}
+.uinfo-d-box2-detail {
+		width: 540rpx;
+		height:265rpx;
+		border-radius: 30rpx;
+		background: white;
+}
+.uinfo-d-content {
+		padding:22rpx;
+		text-align: center;
+		font-size:32rpx;
+		line-height:44rpx;
+		border-bottom: 1rpx solid rgba(238,238,238,1);
+}
+.uinfo-d-btn-02 {
+		width:200rpx;
+		height:88rpx;
+		line-height:88rpx;
+		margin:40rpx auto;
+		background: #6267F9;
+		border-radius:44rpx;
+		font-size: 32rpx;
+		color:white;
+		text-align:center;
+}
+.uinfo-check-btn {
+		font-size: 24rpx;
+		line-height: 34rpx;
+		border-radius:32rpx;
+		height: 60rpx;
+		width: 138rpx;
+		border-radius: 30rpx;
+		padding: 13rpx 20rpx;
+		background: #ffb400 !important;
+		color: white;
+}
+

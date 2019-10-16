@@ -1,0 +1,35 @@
+<import src="../../../templates/search/search.wxml" />
+
+<view class="ui-dialog-content">
+  <view class="ui-dialog-body">
+  <view class="top_box">
+    <template is='search-input' data='{{searchTitle}}'></template>
+    <indexlist height="{{height}}" show-top data="{{searchVal.length > 0 ? listSearch : list}}" bindcustomtap="dealCity" >
+      <view class='showcity' wx:if="{{showcity}}">
+        <view class="top1" style='background:#f7f7f7f;'>
+          <text wx:if='{{country.length}}'>
+              <text>当前：{{country}}</text>
+              <text wx:if='{{qycity.length}}'>{{' - ' + qycity}}</text> 
+          </text>
+          <text wx:if='!country.length'>当前：{{position}}</text>
+          <tags data="{{listQy}}" bindchange="dealQy" fixed-width col-number="4"></tags>
+        </view>
+        <view class="top2">
+          <view class="title">定位区域</view>
+          <view class="position" bindtap="saveLocationToPrev">
+            <span type="home-map" color="#00ab48" class="ui-icon icon-home-map" style="color: #00ab48;font-size: 12px;"></span>
+            {{position}}</view>
+        </view>
+        <view class="top2">
+          <view class="title">最近访问区域</view>
+          <tags data="{{isusedData}}" bindchange="dealCity" fixed-width col-number="4" ></tags>
+        </view>
+        <view class="top2">
+          <view class="title">热门城市</view>
+          <tags data="{{tagsData}}" bindchange="dealCity" fixed-width col-number="5" ></tags>
+        </view>
+      </view>
+    </indexlist>
+    </view>
+  </view>
+</view>

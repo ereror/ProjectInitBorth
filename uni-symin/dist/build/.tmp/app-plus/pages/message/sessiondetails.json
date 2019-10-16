@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "消息详情",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "sessiondetails": "/wxcomponents/message/sessiondetails/sessiondetails"
+  }
+}

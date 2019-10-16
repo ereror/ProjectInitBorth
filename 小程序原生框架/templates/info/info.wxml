@@ -1,0 +1,235 @@
+<template name="info">
+    <view class='info b-1px-b'>
+       <view class='info-user'>
+          <view class='avatar-box mr-20'>
+            <image class='avatar-80 ' src='{{avatarurl}}'></image>
+            <image class='info-sex' wx:if="{{gender==1}}" src='/images/icon/boy.png'></image>
+            <image class='info-sex' wx:if="{{gender==2}}" src='/images/icon/girl.png'></image>
+          </view>
+          <view class='flex-1'>
+             <view class='info-user-name'>{{nickname}}</view>
+             <view class='flex-y-center'>
+                 <view class='f-22 c-blue mr-20' catchtap='{{isFilter?"":"goUrl"}}' data-url='/pages/info/filter/filter?id={{categoryid}}' wx:if="{{categoryTitle && categoryTitle.length}}">{{categoryTitle}}</view>
+                 <view class='f-22' style='color:#b2b2b2'>{{create_time}}</view>
+             </view>
+          </view>
+          <block wx:if="{{!release}}">
+            <button class='share-button b-1px share-img-box' open-type='share' wx:if="{{false}}" >
+              <image class='share-img' src='/images/icon/share.png'></image>
+            </button>
+            <form report-submit='{{true}}' bindsubmit='checkdetail' data-url="/pages/info/detail/detail" data-index="{{index}}" wx:if="{{false}}">
+              <button form-type='submit' class='inputbtnid' data-url="/pages/info/detail/detail" style='height:10rpx;width:20rpx;'>
+                <view class='b-1px comment-img-box ml-10' style='width:80rpx;'>
+                  <view class='f-22 c-blue'>详情</view>
+                </view>
+              </button>
+            </form>
+            <form report-submit='{{true}}' bindsubmit='createFormid' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}">
+            <button form-type='submit' class='inputbtnid' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}" style='height:10rpx;width:20rpx;'>
+            <view class='b-1px comment-img-box ml-10' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}">
+              <image class='comment-img' src='/images/icon/comment.png'></image>
+              <view class='f-22 c-blue ml-10'>私信</view>
+            </view>
+            </button>
+          </form>
+          </block>
+          <view class='c-gray-dark' wx:if="{{release}}">
+             <text data-index='{{index}}' data-url="/pages/info/addnew/addnew?index={{index}}" bindtap='checkdetail'>修改</text>
+             <text style='margin:0 20rpx;'>|</text>
+             <text bindtap='del' data-index='{{index}}'>删除</text>
+          </view>
+       </view>
+
+       <view class='info-content ellipsis--6'>
+         <view class='tag tag-primary-plain mr-20' wx:if="{{false}}">{{tag || '正品'}}</view>
+         <view class='cardsm mxzcard' wx:if="{{type == 3}}">卖闲置</view>
+         <view class='cardsm mfscard' wx:if="{{type == 1}}">免费送</view>
+         <view class='cardsm sxzcard' wx:if="{{type == 2 || type == 4}}">收闲置</view>
+         <text bindtap='checkdetail' data-url="/pages/info/detail/detail" data-index="{{index}}" >{{content}}</text>
+       </view>
+       <view class='info-img-list'>
+          <form report-submit='{{true}}'  wx:for="{{imgs}}" wx:for-index="imgindex" wx:key="{{imgindex}}">
+            <button form-type='submit' class='inputbtnid'>
+               <view wx:if="{{item.type == '.mp4'}}" class='info-img-item info-video'>
+                 <view>
+                    <image src='{{item.path}}?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast' class="info-videomg-item"/>
+                 </view>
+                 <view class='info-videomg-item info-videomgbox' data-index='{{index}}' bindtap='checkdetail' data-src='{{item.path}}' data-url='/pages/info/detail/detail'>
+                     <image src='/images/addnew/fb_img14.png' class='img-item-videoimgs'/>
+                 </view>
+                 <view class='tagimgview' wx:if='{{imgindex === -1}}'>
+                     <image src='/images/addnew/mxz.png' class='tagimglittle'></image>
+                 </view>
+               </view>
+               <view class='info-img-item info-video' wx:if="{{item.type !== '.mp4'}}">
+              <image class='info-img-item' src='{{item.path}}!info_list_cover' data-index='{{index}}' data-url='/pages/info/detail/detail' bindtap='checkdetail' data-pindex='{{pindex}}' bindload=''></image>
+              <view class='tagimgview' wx:if='{{imgindex === -1}}'>
+                 <image src='/images/addnew/mxz.png' class='tagimglittle' wx:if="{{type == 3}}"></image>
+                 <image src='/images/addnew/mfs.png' class='tagimglittle' wx:if="{{type == 1}}"></image>
+                 <image src='/images/addnew/sxz.png' class='tagimglittle' wx:if="{{type == 2 || type == 4}}"></image>
+              </view>
+               </view>
+<!--             <view class='tagIndex'>
+               <image src='/images/addnew/mxz.png'></image>
+            </view> -->
+             </button>
+          </form>
+       </view>
+       
+       <view class='info-caption'>
+          <view class='flex-1 flex-y-center'>
+            <view class='tagtitle' wx:if='{{type !== 2 && tag.length}}'>{{tag}}</view>
+          </view>
+          <view class='mr-30'>{{view}}次浏览</view>
+          <view class='flex-y-center mr-30' >
+             <image src='/images/icon/location.png' style='width:13rpx;height:17rpx;margin-right:10rpx'></image>
+             <view class="ellipsis" style='max-width:200rpx;'>{{address}}</view>
+          </view>
+          <view>{{distance}}km</view>
+       </view>
+
+       <view class='info-describe'>
+          <view wx:if="{{type==1||type==2}}" class='c-primary'>
+             {{type_detail.msg}}
+          </view>
+          <view wx:if="{{type==3}}" class='flex-y-center'>
+             <view class='c-primary f-34 mr-20'>￥{{type_detail.now_money}}</view>
+             <view class='c-gray-dark f-26 text-deleted'>￥{{type_detail.origin_money}}</view>
+             <view class='c-discount f-26 ml-20' wx:if="{{discount}}">{{discount}}折</view>
+          </view>
+          <view wx:if="{{type==4}}" class='flex-y-center'>
+             <view class='info-tag mr-20'>数码产品</view>
+             <view class='c-primary'>{{type_detail.detail}}</view>
+          </view>
+       </view>
+
+       <view class='info-status' wx:if="{{release}}">
+          <view class='flex-y-center' style='margin-right:90rpx;'  bindtap='changeStatus' data-index='{{index}}' data-status='{{0}}' data-id='{{id}}'>
+             <view class='checked {{status==0?"checked-select":""}}'>
+                <view wx:if="{{status==0}}" class='checked-item'></view>
+             </view>
+             <view class='ml-20'>已处理</view>
+          </view>
+
+          <view class='flex-y-center' bindtap='changeStatus' data-index='{{index}}' data-status='{{1}}' data-id='{{id}}'>
+             <view class='checked {{status==1?"checked-select":""}}'> 
+               <view wx:if="{{status==1}}" class='checked-item'></view>
+             </view>
+             <view class='ml-20'>处理中</view>
+          </view>
+       </view>
+    </view>
+</template>
+
+
+<template name="infos">
+    <view class='info b-1px-b'>
+       <view class='info-user'>
+          <view class='avatar-box mr-20'>
+            <image class='avatar-80 ' src='{{avatarurl}}'></image>
+            <image class='info-sex' wx:if="{{gender==1}}" src='/images/icon/boy.png'></image>
+            <image class='info-sex' wx:if="{{gender==2}}" src='/images/icon/girl.png'></image>
+          </view>
+          <view class='flex-1'>
+             <view class='info-user-name'>{{nickname}}</view>
+             <view class='flex-y-center'>
+                 <view class='f-22 c-gray-dark mr-20'>宝宝一岁</view>
+             </view>
+          </view>
+       </view>
+       <view style="font-size:34rpx;font-weight:bold;">
+         <text>{{title}}</text>
+       </view>
+       <view class='info-content ellipsis--2' style='margin:22rpx 0;'>
+         <text bindtap='checkdetail' data-url="/pages/info/details/details" data-index="{{index}}" style='font-size:28rpx;'>{{content}}</text>
+       </view>
+       <view class="info-img-list {{imgs.length === 4 ? 'four-modle-img': ''}}">
+          <form report-submit='{{true}}'  wx:for="{{imgs}}" wx:for-index="imgindex" wx:key="{{imgindex}}">
+            <button form-type='submit' class='inputbtnid'>
+             <view wx:if="{{item.type == '.mp4'}}">
+                 <view>
+                    <image src='{{item.path}}?x-oss-process=video/snapshot,t_1000,f_jpg,w_0,h_0,m_fast' class="info-videomg-item" mode='widthFix'/>
+                 </view>
+                 <view class='info-videomgbox' data-index='{{index}}' bindtap='checkdetail' data-src='{{item.path}}' data-url='/pages/info/details/details'>
+                     <image src='http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/index_12.png' class='img-item-videoimgs'/>
+                 </view>
+                 <view class='tagimgview' wx:if='{{imgindex === -1}}'>
+                     <image src='/images/addnew/mxz.png' class='tagimglittle'></image>
+                 </view>
+            </view>
+            <view class='info-video' wx:if="{{item.type !== '.mp4'}}">
+              <image class="{{imgs.length === 1 ? 'one-modle-img': 'info-img-item'}}"  src="{{item.path}}{{imgs.length === 1 ? '': '!info_list_cover'}}" data-index='{{index}}' data-url='/pages/info/details/details' bindtap='checkdetail' data-pindex='{{pindex}}' mode='widthFix'></image>
+              <view class='tagimgview' wx:if='{{imgindex === -1}}'>
+                 <image src='/images/addnew/mxz.png' class='tagimglittle' wx:if="{{type == 3}}"></image>
+                 <image src='/images/addnew/mfs.png' class='tagimglittle' wx:if="{{type == 1}}"></image>
+                 <image src='/images/addnew/sxz.png' class='tagimglittle' wx:if="{{type == 2 || type == 4}}"></image>
+              </view>
+            </view>
+            </button>
+          </form>
+       </view>
+       <view class='info-caption'>
+          <view class='flex-y-center mr-10' >
+             <image src='http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/index_07.png' style='width:20rpx;height:24rpx;margin-right:16rpx'></image>
+             <view class="ellipsis" style='max-width:175rpx;'>{{address}}</view>
+          </view>
+          <view class='mr-10'>{{distance}}km</view>
+          <view class='mr-10'>|</view>
+          <view class='f-22' style='color:#b2b2b2'>{{create_time}}</view>
+      </view>
+      <view style='height:110rpx;line-height:110rpx;border-bottom:1px solid #e6e6e6;display:flex;align-items:center;'>
+          <view class='info-msss-img' style='display:flex;padding-left:20rpx;' wx:if="{{watchers.length}}">
+             <image src='{{item.avatarurl}}' style='height:46rpx;width:46rpx;border-radius:50%;border:4rpx solid white;margin-left:-20rpx;z-index:{{3 - index}};' wx:for="{{watchers}}" wx:key="{{index}}" wx:if="{{index < 3}}"/>
+          </view> 
+          <view style='color:#adadad;font-size:24rpx;' class='ml-20'>{{view || 0}}人看过</view>
+          <view style='display:flex;justify-content:flex-end;flex:1;align-items:center;'>
+            <view class='mr-40'>
+              <image src="http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/{{zan ? 'index_11.png': 'index_08.png'}}" style='height:36rpx;width:36rpx;vertical-align:base-line;'
+              data-zan='{{zan || 0}}' data-index="{{index}}" data-id='{{id}}' bindtap='setzan'/>
+              <text style="color:{{zan ? '#ff6454' : '#adadad'}};font-size:22rpx;margin-left:8rpx;display:inline-block;margin-top:-36rpx;">{{zan_count}}</text>
+            </view>
+            <view class='mr-40'>
+              <image src='http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/index_09.png' style='height:36rpx;width:36rpx;vertical-align:base-line;'/>
+              <text style="color:#adadad;font-size:22rpx;margin-left:8rpx;display:inline-block;margin-top:-36rpx;">{{comment_count}}</text>
+            </view>
+            <view wx:if="{{!release}}">
+              <form report-submit='{{true}}' bindsubmit='createFormid' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}">
+                <button form-type='submit' class='inputbtnid' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}" style='height:36rpx;width:36rpx;'>
+                  <view class='b-1px ml-10' data-url="/pages/ucenter/chat/chat?uid={{uid}}&&nickname={{nickname}}" style='margin-top:-18rpx;'>
+                    <image src='http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/index_10.png' style='height:36rpx;width:36rpx;'></image>
+                  </view>
+                </button>
+              </form>
+            </view>
+          </view>
+       </view>
+
+       <view class='infos-describe'>
+          <view wx:if="{{type==3}}" class='flex-y-center'>
+             <view class='c-primary f-34 mr-20'>￥{{type_detail.now_money}}</view>
+             <view class='c-gray-dark f-26 text-deleted' style='line-height:1.4;height:30rpx;'>￥{{type_detail.origin_money}}</view>
+          </view>
+          <view class='f-20 ml-20 infos-discount' wx:if="{{type==3 && discount}}" style='background:url(/images/icon/index_13.png);background-size:100% 100%;'>{{discount}} 折</view>
+       </view>
+       <view class='info-status' wx:if="{{release}}">
+          <view class='c-gray-dark' style='flex:1;'>
+             <text data-index='{{index}}' data-url="/pages/info/addnew/addnew?index={{index}}" bindtap='checkdetail'>修改</text>
+             <text style='margin:0 20rpx;'>|</text>
+             <text bindtap='del' data-index='{{index}}'>删除</text>
+          </view>
+          <view class='flex-y-center' style='margin-right:90rpx;'  bindtap='changeStatus' data-index='{{index}}' data-status='{{0}}' data-id='{{id}}'>
+             <view class='checked {{status==0?"checked-select":""}}'>
+                <view wx:if="{{status==0}}" class='checked-item'></view>
+             </view>
+             <view class='ml-20'>已处理</view>
+          </view>
+
+          <view class='flex-y-center' bindtap='changeStatus' data-index='{{index}}' data-status='{{1}}' data-id='{{id}}'>
+             <view class='checked {{status==1?"checked-select":""}}'> 
+               <view wx:if="{{status==1}}" class='checked-item'></view>
+             </view>
+             <view class='ml-20'>处理中</view>
+          </view>
+       </view>
+    </view>
+</template>

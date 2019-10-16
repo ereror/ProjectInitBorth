@@ -1,0 +1,17 @@
+<template name="tabbar">
+    <view class='tabbar-box-place'></view>
+    <view class="tabbar-box {{isIpx?'fix-iphonex-button':''}}" style='background:{{tabbar.backgroundColor}}'>
+      <block wx:for="{{tabbar.list}}" wx:key="{{index}}">
+        <view wx:if="{{item.index!=1}}" class='tabbar-box-item'  style="color: {{item.index == nowPageIndex ?tabbar. selectedColor : tabbar.color}}" bindtap='tabChange' data-method="redirectTo" data-url='{{item.pagePath}}' data-index='{{index}}'>
+            <image class='tabbar-box-item__img' src='{{item.index == nowPageIndex ? item.selectedIconPath:item.iconPath}}'></image>
+            <text class='tabbar-box-item__text'>{{item.text}}</text>
+        </view>
+        <view wx:if="{{item.index==1}}" class='tabbar-box-item' bindtap='goUrl' data-url='{{item.pagePath}}'>
+          <view class="add-tabar">
+             <image src="{{item.iconPath}}" style='width:88rpx;height:88rpx;'></image>
+            <view class="add-tabar-text">{{item.text}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+</template>

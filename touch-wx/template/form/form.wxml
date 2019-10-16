@@ -1,0 +1,84 @@
+<template name='redirect'>
+  <view class='u_center_item flex-between'  data-key="{{key}}" bindtap="goUrl" data-url='{{url}}'>
+    <image class='u_center_icon_img {{iconclass}}' wx:if='{{icon}}' src='{{icon}}'></image>
+    <view class='u_center_icon_title flex-1'>{{title}}</view>
+    <view class='icon icon-nextstep icon-24 icon-iptbar' wx:if='{{arrow}}'></view>
+  </view>
+</template>
+
+<template name="tabbar">
+  <view class='tabbar-box-place flex-center'>
+    <view class="tabbar-box flex-center flex-wrap flex-1 {{isindex ? 'tabbar-box-active' : ''}}"  data-index="1"  data-type='indexPage' data-url='/pages/info/index/index' bindtap='goUrl'>
+      <view class="icon icon-46  {{isindex ? 'icon-indexA' : 'icon-indexD'}}"></view>
+      <view class='tabbar-box-place-text'>首页</view>
+    </view>
+    <view class="tabbar-box flex-center flex-wrap flex-1  {{ismy ? 'tabbar-box-active' : ''}}"  data-index="2" data-url='/pages/info/usercenter/usercenter' bindtap='goUrl'>
+      <view class="icon icon-46 {{ismy ? 'icon-usercenterA' : 'icon-usercenterD'}}"></view>
+      <view class='tabbar-box-place-text'>我的</view>
+    </view>
+  </view>
+</template>
+
+<template name='listContainer'>
+  <view class='prize_container' bindtap='checkDetail' data-url='{{pagePath}}' data-id='{{id}}'>
+    <image src="{{prize_img_icon}}" class='isprizing' wx:if="{{joined}}" />
+    <view class='timeconter'>
+      <ui-count-down timetype="second" time="{{timeend}}" format="{%h}:{%m}:{%s}" number-style="{{numberStyle}}"></ui-count-down>
+    </view>
+    <view class='prize_img'>
+      <image src="{{icon}}" class='prize_imgs' />
+    </view>
+    <view class='line_01'></view>
+    <view class="prize_msg_01 {{!sponsor ? 'pdt-30' : ''}}">
+      <view class='prize_helper flex-l' wx:if="{{sponsor.length}}">
+        <button class='buttonreset prize_helper_btn flex-center'>
+          <view class='icon icon-changjingguanli icon-22'></view>
+          <view class='prize_helper_text'>{{sponsor}} 赞助</view>
+        </button>
+      </view>
+      <view class="prize_list flex-l" wx:for='{{prizelist}}' wx:key="{{index}}">
+        <view wx:if='{{prizelist.length > 1}}'>
+          奖品
+          <text wx:if='{{index === 0}}'>一</text>
+          <text wx:if='{{index === 1}}'>二</text>
+          <text wx:if='{{index === 2}}'>三</text>
+          :
+        </view>
+        <view class='ellipsis' style='max-width:580rpx;'>
+          {{item.name || '随便抽'}}
+          <text wx:if="{{item.num}}">x {{item.num}}</text>
+        </view>
+        <view class='ispticon' wx:if='{{false}}'>
+          <text>团</text>
+        </view>
+      </view>
+    </view>
+    <view class='prize_msg_02 flex-l'>
+      <view>自动开奖</view>
+      <view class='line_y_01'></view>
+      <view>{{endTime}}{{timeend}}</view>
+    </view>
+  </view>
+</template>
+
+<template name='inputmsg'>
+  <view class='inputmsg_box flex-l {{iptclass}}'>
+    <view class="inputmsg_head">{{title}}</view>
+    <view class='flex-l'>
+      <view class='icon {{iconstart}}  icon-24' wx:if="{{iconstart}}"></view>
+      <input class="flex-1 inputmsg_ipt" placeholder='{{placeholder}}' placeholder-class='placeholder text-placeholder' bindinput='setParam' data-key='{{key}}' value="{{val || ''}}" type="{{type || 'text'}}"  maxlength='{{size || 50}}'/>
+    </view>
+    <view class='icon icon-24 {{iconend}} icon-iptbar'  wx:if="{{showicons}}"></view>
+  </view>
+</template>
+
+<template name='textarea'>
+  <view class='textarea_box'>
+    <view wx:if="{{title}}" class='cell-row-label'>
+        <text>{{title}}</text>
+    </view>
+    <textarea class='textarea_ipt {{iptclass}}' placeholder='{{placeholder}}'  placeholder-class='placeholder text-placeholder' bindinput='setParam' data-key='{{key}}' maxlength='{{size || 600}}' value="{{inputval || ''}}" auto-height='{{inputval.length > 200}}'></textarea>
+    <view class='textarea_count'>{{inputval.length}} / {{size}}</view>
+  </view>
+</template>
+

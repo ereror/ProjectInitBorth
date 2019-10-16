@@ -1,0 +1,118 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxd70b89da4d9ec6b3",
+	"projectname": "jiushudian",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "发布信息",
+					"pathName": "pages/info/addnew/addnew",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "动态发布下一步",
+					"pathName": "pages/info/addnext/addnext",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "编辑用户",
+					"pathName": "pages/ucenter/edit/edit",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/ucenter/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布的动态",
+					"pathName": "pages/info/release/release",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "筛选信息",
+					"pathName": "pages/info/filter/filter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "聊天",
+					"pathName": "pages/ucenter/chat/chat",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/ucenter/message/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "浏览历史",
+					"pathName": "pages/info/history/history",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/ucenter/about/about",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "测试二维码扫描",
+					"pathName": "pages/info/detail/detail",
+					"query": "scene=197",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "测试二维码扫描",
+					"pathName": "pages/info/index/index",
+					"query": "scene=197",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "详细信息",
+					"pathName": "pages/info/details/details",
+					"query": "detailid=192",
+					"scene": "1011"
+				}
+			]
+		}
+	}
+}

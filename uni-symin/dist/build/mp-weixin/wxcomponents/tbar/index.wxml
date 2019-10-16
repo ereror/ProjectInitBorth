@@ -1,0 +1,6 @@
+<view class='tbar-box'>
+	<view wx:for="{{tbarconfig}}" class='tar-items' wx:key="{{index}}" data-url='{{item.url}}' bindtap='goToDistancs'>
+		<image class='tar-icon' src="{{isActiveIndex === item.isActiveIndex ? item.icon_a : item.icon_d}}"></image>
+		<view class="tar-text {{isActiveIndex === item.isActiveIndex ? 'tar-textc-a' : 'tar-textc-d'}}">{{item.text}}</view>
+	</view>
+</view>

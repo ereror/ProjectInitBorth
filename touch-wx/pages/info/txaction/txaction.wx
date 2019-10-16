@@ -1,0 +1,141 @@
+<template>
+  <view class='home_box'>
+    <image src='{{home_imgsrc}}' class='home_bg'/>
+    <view class='apply_steps flex-center'>
+      <view class='apply_steps_pro_imgs'>
+        <image src='{{tx_iconA}}' class='apply_steps_pro_img' />
+        <view class='apply_steps_pro_imgs_text'>发起提现申请</view>
+      </view>
+      <view class='apply_steps_pro_aline'></view>
+      <view class='apply_steps_pro_imgs'>
+        <image src='{{tx_iconA}}' class='apply_steps_pro_img' />
+        <view class='apply_steps_pro_imgs_text'>后台处理中</view>
+      </view>
+      <view class="apply_steps_pro_halfaline"></view>
+      <view class='apply_steps_pro_imgs'>
+        <image src='{{tx_iconD}}' class='apply_steps_pro_img' />
+        <view class='apply_steps_pro_imgs_text apply_steps_pro_imgs_text_no'>到账成功</view>
+      </view>
+    </view>
+    <view class='apply_deatil'>
+      <view class='apply_deatil_header'>提现明细</view>
+      <view class='apply_deatil_items'>
+        <view class='apply_deatil_item flex-between'>
+          <view class='apply_deatil_item_name'>提现金额</view>
+          <view class='apply_deatil_item_content'>￥{{money}}</view>
+        </view>
+        <view class='apply_deatil_item flex-between'>
+          <view class='apply_deatil_item_name'>手续费</view>
+          <view class='apply_deatil_item_content'>￥{{money * 0.003}}</view>
+        </view>
+        <view class='apply_deatil_item flex-between'>
+          <view class='apply_deatil_item_name'>到账支付宝账户</view>
+          <view class='apply_deatil_item_content'>{{account}}</view>
+        </view>
+      </view>
+      <view class='order_line_02'></view>
+      <view class='apply_btn_box'>
+        <button class='buttonreset apply_btn' bindtap='txFunc'>完成</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import info from '../../../api/index'
+import toast from '../../../static/utils/toast'
+import util from '../../../static/utils/index'
+import usermessage from '../../../api/user'
+let app = getApp()
+export default {
+  config: {
+    navigationBarTitleText: '提现申请成功'
+  },
+  data: {
+    prizesend: false,
+    home_imgsrc: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/bg.png',
+    tx_iconA: '/images/tx-icona.png',
+    tx_iconD: '/images/tx-icond.png',
+    id: '',
+    money: 0,
+    account: ''
+  },
+  onLoad(param){
+    this.data.account = param.account || ''
+    this.data.money = param.money || ''
+    this.setData({
+      account: this.data.account,
+      money: this.data.money
+    })
+  },
+  onShow(){
+  },
+  txFunc(){
+    let param = {
+      money: this.data.money * 100,
+      account: this.data.account
+    }
+    util.showLoading()
+    info.applyTixian(param).then(res => {
+      if(res.code === 200) {
+        usermessage.getUserinfo().then(d => {
+          util.hideAll()
+          app.globalData.userInfo = d.data
+          wx.navigateBack()
+          toast.show('success', '提现成功,我们会尽快处理', 1000)
+        }).catch(e => {
+          util.hideAll()
+          toast.show('warn', '提现失败，请稍后重试！', 1000)
+        })
+      } else {
+        toast.show('warn', '提现失败，请稍后重试！', 1000)
+        util.hideAll()
+      }
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  .home_box {margin-top:0;}
+  .home_bg {width:750rpx;height:310rpx;position:relative;z-index:-1};
+  .apply_steps {height:214rpx;margin-top:-340rpx;
+    & .apply_steps_pro_imgs {position:relative;}
+    & .apply_steps_pro_imgs_text {
+      position: absolute;top:110rpx;left:-50%; width: 190rpx;text-align:center;line-height:1;font-size:26rpx;font-weight:600;color:white;
+    }
+    & .apply_steps_pro_imgs_text_no {color:#ffd6e5;}
+    & .apply_steps_pro_img {width:88rpx;height:88rpx;transform:scale(1.1);}
+    & .apply_steps_pro_aline {width:138rpx;height:6rpx;background:white;}
+    & .apply_steps_pro_halfaline {position:relative;width:138rpx;height:6rpx;background:#FFaec8;}
+    & .apply_steps_pro_halfaline::before {position:absolute;content:'';width:69rpx;height:6rpx;background:white;border-radius:0 3rpx 3rpx 0;z-index:2;top:0;left:0;}
+  }
+  .apply_deatil {
+    margin:20rpx 24rpx;background:white;box-shadow:0rpx 3rpx 16rpx rgba(128,128,128,0.1);border-radius:10rpx;padding:0 30rpx;overflow:hidden;
+    & .apply_deatil_header {height:88rpx;line-height:88rpx;font-size:32rpx;color:#292727;font-weight:600;border-bottom:1rpx solid rgba(230,230,230,1);}
+    & .apply_deatil_content {height:192rpx;border-bottom:1rpx solid rgba(230,230,230,1);}
+    & .apply_deatil_content_img {height:128rpx;width:128rpx;border-radius:10rpx;}
+    & .apply_deatil_content_box{line-height:1;padding-left:23rpx;flex:1;
+      & .apply_deatil_content_header {font-size:30rpx;font-weight:600;color:#292727;line-height:1.2;}
+      & .apply_deatil_content_count {margin-top:30rpx;font-size:24rpx;color:#757373;}
+    }
+    & .apply_deatil_items {
+      margin-top:20rpx;
+      padding-bottom:20rpx;
+      & .apply_deatil_item {
+        padding:16rpx 0;
+        line-height:1.5;
+        align-items: flex-start;
+        & .apply_deatil_item_name {font-size:28rpx;color:#757373;}
+        & .apply_deatil_item_content {max-width:360rpx;text-align:right;color:#292727}
+      }
+    }
+  }
+  .order_line_02 {height:1rpx;width:100%;position:relative;border:0;background:rgba(230,230,230,1);}
+  .order_line_02::before, .order_line_02::after{content: '';position:absolute;border-radius:50%;width:30rpx;height:30rpx;left:-42rpx;z-index:166;background:rgb(242, 243, 245);top:-15rpx;box-shadow:inset -5rpx 0rpx 6rpx rgba(128,128,128,0.1);}
+  .order_line_02::after{content: '';left:658rpx;box-shadow:insert 5rpx 0rpx 16rpx rgba(128,128,128,0.1)}
+  .apply_btn_box{
+    width:100%;
+    & .apply_btn{width:642rpx;height:88rpx;margin:40rpx auto;font-size:32rpx;color:white;font-weight:600;border-radius:44rpx;background:linear-gradient(90deg,rgba(34,201,97,1),rgba(126,242,117,1));}
+  }
+</style>

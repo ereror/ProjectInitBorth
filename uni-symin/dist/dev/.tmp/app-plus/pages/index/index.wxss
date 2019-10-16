@@ -1,0 +1,209 @@
+
+page {
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f81f5e), color-stop(28%, #f81f5e), color-stop(28%, #f9f9fb), color-stop(30%, #f9f9fb));
+		background-image: -o-linear-gradient(top, #f81f5e 0 28%, #f81f5e 28% 30%, #f9f9fb 28% 30%, #f9f9fb 30% 100%);
+		background-image: linear-gradient(180deg, #f81f5e 0 28%, #f81f5e 28% 30%, #f9f9fb 28% 30%, #f9f9fb 30% 100%);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+}
+page:before {
+	  content: ' ';
+	  position: fixed;
+	  z-index: -1;
+	  height: 100%;
+	  width: 100%;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f81f5e), color-stop(28%, #f81f5e), color-stop(28%, #f9f9fb), color-stop(30%, #f9f9fb));
+      background-image: -o-linear-gradient(top, #f81f5e 0 28%, #f81f5e 28% 30%, #f9f9fb 28% 30%, #f9f9fb 30% 100%);
+      background-image: linear-gradient(180deg, #f81f5e 0 28%, #f81f5e 28% 30%, #f9f9fb 28% 30%, #f9f9fb 30% 100%);
+	  background-size: 100% 100%;
+}
+.I-box {
+		padding: 65rpx 0 60rpx 0;
+}
+.I-upload {
+		position: fixed;
+		z-index: 1002;
+		-webkit-transition: all .5s;
+		-o-transition: all .5s;
+		transition: all .5s;
+}
+.I-upload-complete {
+		height: 0;
+		opacity: 0;
+}
+.I-upbar {
+		width: 750rpx;
+		height: 8rpx;
+		padding: 1rpx 0;
+		background: #fa5a38;
+}
+.I-now {
+		width: 0%;
+		background: #ffb400;
+		height: 8rpx;
+		-webkit-transition: width .3s;
+		-o-transition: width .3s;
+		transition: width .3s;
+}
+.I-uploadText {
+		width: 100%;
+		text-align: center;
+		margin: 10rpx 0;
+		font-size: 24rpx;
+		color: white;
+}
+.I-adBox {
+		/* width: 690rpx; */
+/* 		height: 260rpx; */
+		margin: 0rpx auto;
+		border-radius: 30rpx;
+		/* background: #f2f2f2; */
+}
+.I-adBox-m-20 {
+		margin-top: 20rpx;
+}
+.I-dot {
+		padding: 30rpx 0;
+}
+.I-dot-item {
+		height: 12rpx;
+		width: 12rpx;
+		border-radius: 6rpx;
+		background: #ffb400;
+		margin-right: 30rpx;
+}
+.I-dot-itema {
+		width: 30rpx;
+		background: #f81f5e;
+}
+.I-barTool {
+		width: 160rpx;
+		height: 60rpx;
+		background: white;
+		border-radius: 30rpx;
+		margin: 10rpx 50rpx 30rpx 30rpx;
+}
+.I-barTool-text {
+		margin: 0 20rpx;
+		font-size: 28rpx;
+		color: #F5A623;
+}
+.I-barTool-img {
+		height: 24rpx;
+		width: 24rpx;
+}
+.I-content {
+		padding: 0 30rpx;
+}
+.I-item {
+		margin-bottom: 40rpx;
+		height: 786rpx;
+		width: 690rpx;
+		border-radius: 30rpx;
+		background: white;
+		overflow: hidden;
+}
+.I-item-img {
+		width: 690rpx;
+		height: 690rpx;
+		border-radius: 30rpx;
+}
+.I-detail-box {
+		position: relative;
+}
+.I-detail {
+		position: absolute;
+		z-index: 22;
+		width: 100%;
+		padding: 30rpx;
+		bottom: 0;
+		color: white;
+}
+.I-textshadow {
+		text-shadow: 1rpx 1rpx 2rpx rgba(0,0,0,.2), -1rpx 1rpx 2rpx rgba(0,0,0,.2), 1rpx -1rpx 2rpx rgba(0,0,0,.2), -1rpx -1rpx 2rpx rgba(0,0,0,.2);
+}
+.I-d-name {
+		font-size: 34rpx;
+		color: white;
+}
+.I-d-mark {
+		margin: 0 10rpx;
+		font-size: 26rpx;
+		font-weight: 600;
+}
+.I-d-text {
+		font-size: 24rpx;
+}
+.I-d-icons {
+		margin-top: 20rpx;
+		font-size: 26rpx;
+		line-height: 36rpx;
+		color: white;
+		text-shadow: 1rpx 1rpx 2rpx black;
+}
+.I-d-addr {
+		margin-left: 20rpx;
+}
+.I-d-distance {
+		margin-left: 20rpx;
+}
+.I-d-msgIcon {
+		margin-left: 10rpx;
+		width: 30rpx;
+		height: 30rpx;
+		border-radius: 30rpx;
+		background: white;
+}
+.I-d-msgIcon2 {
+		margin-left: 10rpx;
+		min-width: 100rpx;
+		min-height: 50rpx;
+		border-radius: 25rpx;
+		background: white;
+		padding: 6rpx 14rpx;
+		-webkit-box-shadow: 1rpx 1rpx 1rpx rgba(0,0,0,.2);
+		        box-shadow: 1rpx 1rpx 1rpx rgba(0,0,0,.2);
+}
+.I-d-msgIcon2-text{
+		margin-left: .3em;
+		color: #000000;
+}
+.I-d-msgIcon-img {
+		width: 30rpx;
+		height: 30rpx;
+		border-radius: 30rpx;
+}
+.I-d-rz {
+		position:absolute;
+		top: 0;
+		right: 0;
+		z-index: 23;
+		width: 162rpx;
+		height: 60rpx;
+		line-height: 60rpx;
+		background: #09d6a1;
+		border-radius: 0 30rpx 0 30rpx;
+		-webkit-box-shadow: -2rpx -2rpx 0 2rpx rgb(147, 229, 208);
+		        box-shadow: -2rpx -2rpx 0 2rpx rgb(147, 229, 208);
+		font-size: 28rpx;
+		text-align: center;
+		color: white;
+}
+.I-text-box {
+		height: 96rpx;
+		background: white;
+}
+.I-text {
+		font-size: 26rpx;
+		line-height: 36rpx;
+		color: #000000;
+		font-weight: 500;
+}
+.I-text-mark {
+		font-size: 24rpx;
+		color: rgb(248, 31, 94);
+		margin: 0 20rpx 0 30rpx;
+}
+.I-btn {-webkit-box-flex:1;-webkit-flex:auto;-ms-flex:auto;flex:auto;}
+.upload-fail {background: #333333;}
+

@@ -1,0 +1,35 @@
+<template>
+  <view class='go_index_box'>
+    <image src='{{goindex}}' class='go_index_bg'/>
+    <button class='buttonreset gochatme_submit' bindtap='goUrl' data-url='/pages/info/contact/contact'>联系我们</button>
+  </view>
+</template>
+
+<script>
+import util from '../../../static/utils/index'
+export default {
+  config: {
+    navigationBarTitleText: '我要上首页',
+    backgroundColor: '#ffffff',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black',
+    backgroundColorBottom: '#3a1268'
+  },
+  data: {
+    goindex: 'https://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/goindexbg2.jpg'
+  },
+  goUrl (e) {
+    util.goUrl(e)
+  }
+}
+</script>
+
+<style lang="less">
+page {background:white;}
+.go_index_box {width:100%;overflow:hidden;height:1927rpx;}
+.go_index_bg {
+  width:100%;
+  height:1927rpx;
+}
+.gochatme_submit {width:608rpx;height:88rpx;background:linear-gradient(0deg,rgba(125,84,252,1),rgba(195,130,255,1));border-radius:44rpx;color:white;line-height:88rpx;text-align:center;margin:-180rpx auto;font-size:32rpx;}
+</style>

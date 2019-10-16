@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "会员中心",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index",
+    "iptitem": "/wxcomponents/form/index"
+  }
+}

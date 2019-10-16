@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "选择城市",
+  "usingComponents": {
+    "tags": "/components/tags/tags",
+    "indexlist": "/components/indexlist/indexlist"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "推荐给朋友",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "disableScroll": true,
+  "usingComponents": {
+    "custombar": "/wxcomponents/customBar/index"
+  }
+}

@@ -1,0 +1,21 @@
+<!-- <view class='category-head b-1px-b b-1px-t'>全部</view> -->
+<view class='flex-y-center'>
+  <view style='width:200rpx;background:#f4f6f8'>
+    <v-tabs bindchange="tabChange" wx:if="{{categoryList.length>0}}" height="{{height}}" index="{{activeIndex}}">
+      <v-tab wx:for="{{categoryList}}" wx:key="{{index}}" >{{item.title}}</v-tab>
+    </v-tabs>
+  </view>
+  
+  <scroll-view  scroll-y style="width:550rpx;height:{{height}}px;box-sizing:border-box">
+    <view class='category-child-list'>
+       <view class='category-child-item' wx:for="{{categoryList[activeIndex]._child}}" wx:key="{{index}}" data-index="{{index}}" bindtap='categoryChange'>
+          <view class='flex-center'>
+            <view>{{item.title}}</view>
+            <image wx:if="{{item.must_vip}}" src='/images/svg/vip.svg' style='width:26rpx;height:26rpx;margin-left:10rpx;'></image>
+          </view>
+       </view>
+    </view>
+       
+  </scroll-view> 
+  
+</view>

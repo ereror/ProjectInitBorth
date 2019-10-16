@@ -1,0 +1,219 @@
+@import "../../../templates/form/form.wxss";
+
+.info-tip{
+	height: 84rpx;
+	padding: 0 20rpx;
+	display: flex;
+	align-items: center;
+	background: #fff;
+	font-size: 22rpx;
+	color: #f3a52a;
+}
+.info-btnicon {
+	width: 80rpx;
+	padding-left: 50rpx;
+}
+
+.info-btnclose{
+	border-radius:50%;
+	padding:4rpx;
+	font-size:24rpx;
+	background:orange;
+	color:white;
+	box-shadow:inset 1px 1px 5px white;
+	width:30rpx;	
+}
+.info-btnclose2 {
+	position: absolute;
+	padding: 8rpx;
+	background: red;
+	color: white;
+	border: 3px solid white;
+	border-radius:50%;
+	top: -12rpx;
+	right: -10rpx;
+	font-size: 20rpx;
+	box-shadow:inset 1px 1px 5px white;
+}
+.imglist {
+	display:flex;
+	/*margin-top:20rpx;*/
+	padding-left: 30rpx;
+	/*padding-top:20rpx;*/
+	background: white;
+	flex-wrap:wrap;
+	width: 100%;
+	/*overflow:auto;*/
+}
+
+.img-item {
+	position:relative;
+	display: box;
+    width: 218rpx;
+    height: 218rpx ;
+    margin-right: 20rpx;
+    /*border: 2px solid #363636;*/
+    border-radius:8rpx;
+    margin-top: 20rpx;
+}
+
+.itemimgs {
+	width:210rpx;
+	height:210rpx;
+	border-radius: 10rpx;
+	transition: all .5s;
+}
+.itemimgsrotate {
+	transform: rotate(90deg);
+}
+.itemimgsvideo {
+	display:none;
+}
+
+.img-item-video {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  top: 0;
+  background: rgba(0,0,0, .2);
+  padding-top: 50rpx;
+}
+
+.showvideo {
+	position: fixed;
+	z-index: 2200;
+	width: 100%;
+	height: 100%;
+}
+
+.videobox {
+	width:100%;
+	height:100%;
+}
+
+.img-item-videobox {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  top: 0;
+  background: rgba(0,0,0, .9);
+}
+.img-item-videotext {
+	font-size: 22rpx;
+	color: white;
+}
+.img-item-videoimgs {
+	width:50rpx;
+	height:50rpx;
+}
+
+.img-closebtn {
+	position:absolute;
+	top: -12rpx;
+	right: -8rpx;
+	z-index:100;
+}
+.imgclosebtn {
+	height: 42rpx;
+	width: 42rpx;
+}
+.sendfilebtn {
+	display:flex;
+	background:white;
+	padding: 50rpx 20rpx;
+/*	margin-top:4rpx;*/
+	justify-content: center;
+	align-items:center;
+	flex-wrap:wrap;
+	padding-bottom:0;
+}
+
+.sendfilebtn-item {
+	box-flex:1;
+	flex-grow:1;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sendfilebtn-text {
+	margin-top: 7rpx;
+	font-size:26rpx;
+	color: #363636;
+	text-align:center;
+}
+
+.sendimgbtn {
+	padding: 40rpx 0;
+	background: white;
+}
+
+.sendimgbtntip {
+	text-align:center;
+	font-size:20rpx;
+	color: #878787;
+	width:100%;
+	display:block;
+	padding:31rpx;
+}
+
+.mess-loc {
+ padding: 0 30rpx;
+ background: white;
+}
+
+.loc-and-love {
+  margin-top:18rpx;
+  border-top: 1px solid #ebebeb;
+  height: 92rpx;
+  display: flex;
+}
+
+.locarr, .locarr2 {
+  display: flex;
+  line-height: 92rpx;
+  flex-grow:1;
+}
+
+.locarrtext {
+  font-size:30rpx;
+  color: #363636;
+  margin-left: 14rpx;
+}
+
+.locarr2 {
+  justify-content:flex-end;
+}
+
+.fb-btntext {
+	margin-top: 20rpx;
+	background: white;
+	padding: 0 0 0 30rpx;
+}
+
+.fb-submit {
+	width:710rpx;
+	height: 88rpx;
+	line-height: 88rpx;
+    border-radius: 8rpx;
+	margin: 64rpx auto;
+	background: #ff6454;
+	color: #ffffff;
+	font-size: 34rpx;
+}
+
+.bottom-ipt{
+  background: rgba(0,0,0, .6);
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.bottom-box {
+  background: white;
+  padding: 0 20px;
+  width:100%;
+}
+
+.b-1px-t {
+	z-index:1;
+}

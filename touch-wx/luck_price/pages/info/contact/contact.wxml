@@ -1,0 +1,19 @@
+<block>
+  <import src="../../../template/form/form.wxml" />
+  <view class="contact_tip">请填写您的称呼，联系方式，公司及期望推广的产品简介</view>
+  <view>
+    <template is="inputmsg" data="{{...myname}}" />
+    <template is="inputmsg" data="{{...phone}}" />
+    <template is="inputmsg" data="{{...company}}" />
+    <view class="contact_item">
+      <template is="textarea" data="{{...contact, iptclass: 'iptclass'}}" />
+    </view>
+    <view class="contact_btn">
+      <button class="buttonreset contact_submit {{!isTotal ? 'graybtn' : ''}}" bindtap="saveContact">提交</button>
+    </view>
+    <view class="contact_text">*感谢您的支持与信赖，我们将在两个工作日与您联系</view>
+    <view class="adbox">
+      <image src="{{ademptyImg}}" class="ademptyImg" bindtap="goDirect" />
+    </view>
+  </view>
+</block>

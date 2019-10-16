@@ -1,0 +1,186 @@
+<template>
+  <block>
+    <import src="../../../template/form/form.wxml"/>
+    <view class='adviceback'>
+      <view class='adviceback_item'>
+        <template is='textarea' data='{{...advice}}'></template>
+      </view>
+      <view class='adviceback_img_text flex-l'>
+        <view class='adviceback_img_text_01'>上传图片</view>
+        <view class='adviceback_img_text_02'>*上传问题截图，最多上传三张，选填</view>
+      </view>
+      <view class='adviceback_img flex-l flex-wrap'>
+        <view class='adviceback_img_item' wx:for='{{imgList}}' wx:key='{{index}}'>
+          <image src='{{item.path}}' class='adviceimg' />
+          <view class='icon adviceback_img_item_close icon-close icon16' bindtap='delimg' data-index='{{index}}'></view>
+        </view>
+        <view class='adviceback_img_item' catchtap='chooseImage' data-size='3' wx:if='{{imgList.length != 3}}'>
+          <image src='{{imgbtn}}' class='adviceimg' />
+        </view>
+      </view>
+    </view>
+    <view>
+      <button class="buttonreset advice_submit {{advice.inputval.length ? '': 'graybtn'}}" bindtap='saveAdvice'>提交</button>
+    </view>
+  </block>
+</template>
+
+<script>
+import util from '../../../static/utils/index'
+import info from '../../../api/index'
+import toast from '../../../static/utils/toast'
+export default {
+  config: {
+    navigationBarTitleText: '建议与反馈',
+    backgroundColor: '#F2f3f5',
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    img: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/prize_lost.png',
+    imgbtn: 'http://exchange-001.oss-cn-beijing.aliyuncs.com/luck_prize/images/upload_img.png',
+    advice: {
+      title: '',
+      placeholder: '请填写您的建议与反馈...',
+      size: 100,
+      inputval: '',
+      iptclass: 'textHt'
+    },
+    imgList: []
+  },
+  setParam (e) {
+    let val = e.detail.value
+    this.data.advice.inputval = val
+    this.setData({
+      'advice.inputval': this.data.advice.inputval
+    })
+  },
+  delimg(e) {
+    let { index } = util.getData(e)
+    this.data.imgList.splice(index, 1)
+    this.setData({
+      imgList: this.data.imgList
+    })
+  },
+  chooseImage: function(e) {
+    let that = this
+    let { size } = util.getData(e)
+    let imageList = this.data.imgList || []
+    wx.chooseImage({
+      count: size - imageList.length,
+      sourceType: ['album', 'camera'],
+      success: function(res) {
+        let tempFiles = res.tempFiles
+        //定义图片id数组
+        let imageIdList = []
+        // 格式化图片参数
+        var send = []
+        for (let i = 0; i < tempFiles.length; i++) {
+          var temp = new Promise((resolve, reject) => {
+            info.upload({
+              filePath: tempFiles[i].path
+            }).then(d => {
+              if (d.code === 1) resolve(d)
+              else {
+                reject(i + 1)
+              }
+            })
+          })
+          send.push(temp)
+        }
+        util.showLoading('上传中')
+        Promise.all(send).then(res => {
+          toast.show('success', "上传成功", 1000)
+          for (let j = 0, len = res.length; j < len; j++) {
+            let data = res[j].data;
+            tempFiles[j].id = data.id;
+            tempFiles[j].path = data.url
+          }
+          imageList = [...imageList, ...tempFiles];
+          that.setData({
+            imgList: imageList
+          })
+          console.log(imageList)
+          util.hideAll()
+        }).catch(res => {
+          if (tempFiles.length == 1) {
+            toast.show('warn', "图片上传失败", 1000);
+          } else {
+            let result = res.join(',')
+            toast.show('warn', '第' + result + '张图片上传失败', 1000);
+          }
+          util.hideAll()
+        })
+      }
+    })
+  },
+  saveAdvice: util.throttle(function saveAdvice() {
+    if (!this.data.advice.inputval.length) return toast.show('warn', '请填写输入反馈意见内容！', 1000);
+    let param = {
+      message: this.data.advice.inputval,
+      images: JSON.stringify(this.data.imgList)
+    }
+    util.showLoading('正在提交')
+    info.addAdvise(param).then(res => {
+      util.hideAll()
+      if (res.code === 200) {
+        toast.show('warn', '感谢你的建议！\n谢谢！\n我们会尽快处理！', 1000);
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1000)
+      }
+    })
+  }, 1500)
+}
+</script>
+
+<style lang="less">
+  @import '../../../template/form/form.wxss';
+  .adviceback {
+    width:702rpx;
+    margin: 20rpx 24rpx;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 3rpx 16rpx rgba(128,128,128,0.1);
+    border-radius:10rpx;
+    padding: 40rpx 30rpx;
+  }
+  .adviceback_item {width:642rpx;overflow:hidden;border-bottom:1rpx solid #E6E6E6;}
+  .adviceback_img_text {height:80rpx;}
+  .adviceback_img_text_01 {font-size:28rpx;color:#292727;font-weight:600;}
+  .adviceback_img_text_02 {font-size:22rpx;color:#adaaaa;margin-left:14rpx;}
+  .adviceback_img {margin-top:10rpx;margin-left:-30rpx;}
+  .adviceback_img_item {
+    height:194rpx;
+    width:194rpx;
+    border-radius:10rpx;
+    position:relative;
+    margin-left: 30rpx;
+    & .adviceimg {
+      height:194rpx;
+      width:194rpx;
+      border-radius:10rpx;
+    }
+  }
+  .adviceback_img_item_close {
+    position:absolute;
+    top:-15rpx;
+    right:-15rpx;
+    z-index:2;
+    background: #FF5E97;
+    border: 4rpx solid white;
+    border-radius: 50%;
+    color:white;
+    font-size: 18rpx;
+    width: 40rpx;
+    text-align:center;
+    height:40rpx;
+    padding: 4rpx;
+  }
+  .textHt {
+    height: 208rpx;
+    font-size:28rpx;
+    margin:-15rpx 0 0 -6rpx;
+  }
+  .advice_submit {width:702rpx;height:88rpx;background:linear-gradient(90deg,rgba(255,94,151,1),rgba(255,153,153,1));border-radius:44rpx;color:white;line-height:88rpx;text-align:center;margin:64rpx auto;font-size:32rpx;}
+  .graybtn {background:linear-gradient(90deg,rgba(199,195,195,1),rgba(224,224,224,1));}
+</style>

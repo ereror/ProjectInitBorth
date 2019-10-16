@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "cc-counttime": "../../../packages/countTime/index"
+  },
+  "navigationBarTitleText": "陪我抽奖",
+  "enablePullDownRefresh": true,
+  "backgroundColorTop": "#FF5E97",
+  "backgroundColorBottom": "#F2F3F5"
+}

@@ -1,0 +1,24 @@
+<block>
+  <import src="../../../template/adline/adline.wxml" />
+  <view class="pdt-30">
+    <template is="adline" data="{{ad_img_01: ad_img_01, ad_img_02: ad_img_02, ademptyImg: ademptyImg}}" />
+  </view>
+  <view class="users_titale flex-center">
+    <view class="icon icon-joiner joiner-l"></view>
+    <view>{{total}}位参与者</view>
+  </view>
+  <view class="users_imghead">
+    <view class="flex-l flex-wrap userdetail">
+      <view class="imgbox flex-center" wx:for="{{imgData}}" wx:key="{{index}}">
+        <image src="{{item.avatarurl}}" />
+      </view>
+    </view>
+    <view class="flex-center user_checkmore" wx:if="{{query.current_page !== query.last_page}}" bindtap="checkMore">
+      <view class="icon24p">加载更多</view>
+      <view class="icon icon-nextstep icon24p" wx:if="{{false}}"></view>
+    </view>
+    <view class="flex-center user_checkmore" wx:if="{{query.current_page === query.last_page}}" bindtap="checkMore">
+      <view class="icon24p ihdx">我是有底线的~</view>
+    </view>
+  </view>
+</block>

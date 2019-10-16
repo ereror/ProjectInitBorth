@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "poster": "/packages/shareimg/poster/index"
+  },
+  "navigationBarTitleText": "生成分享图",
+  "backgroundColor": "#ffffff",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

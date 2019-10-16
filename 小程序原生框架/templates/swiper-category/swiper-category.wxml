@@ -1,0 +1,17 @@
+<template name="swiper-category">
+    <!-- 轮播图广告 -->
+    <swiper  class="swiper-category"  indicator-dots="{{false}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" circular="{{circular}}" previous-margin="{{previousMargin}}" next-margin="{{nextMargin}}" style='height:{{height}}rpx;font-size:{{fontSize}}rpx;background:white;width:690rpx;margin:0 auto;border-radius:18rpx;position:relative;box-shadow:1rpx 4rpx 28rpx rgba(128,128,128, .15);margin-top:30rpx;' bindchange="categoryChange">
+        <block wx:for="{{list.length/rowNum}}" wx:for-index="pageKey" wx:key="{{pageKey}}">
+            <swiper-item class="swiper-category-item">
+              <view wx:for="{{list}}" wx:key="{{index}}" wx:if="{{index>=pageKey*rowNum&&index<(pageKey+1)*rowNum}}" class="swiper-category-item__child" style='width:{{100/rowNum}}%;height:{{height}}rpx;' bindtap='goUrl' data-url='{{url}}?id={{item.type}}'>
+                  <image class="swiper-category__img" src='http://exchange-001.oss-cn-beijing.aliyuncs.com/images/web/icon/{{item.icon}}' style='width:{{imageSize}}rpx;height:{{imageSize}}rpx'></image>
+                  <view style='font-size:26rpx;'>{{item.name}}</view>
+              </view>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class='dots' wx:if="{{list.length/rowNum/2>1}}">
+       <view class='dot' wx:for="{{list.length/rowNum/2}}" wx:key="{{index}}" style='background:{{index==current?indicatorActiveColor:indicatorColor}};width:{{index==current?"32rpx":"12rpx"}}'></view>
+    </view>
+</template>

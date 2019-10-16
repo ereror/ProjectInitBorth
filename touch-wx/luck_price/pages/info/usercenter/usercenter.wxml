@@ -1,0 +1,40 @@
+<block>
+  <import src="../../../template/adline/adline.wxml" />
+  <import src="../../../template/form/form.wxml" />
+  <view class="home_box">
+    <image src="{{home_imgsrc}}" class="home_bg" />
+    <view class="u_center_head flex-l">
+      <image class="u_center_head_img" src="{{userInfo.avatarurl || himg_01}}" />
+      <view class="u_center_head_msg">
+        <view class="u_center_head_title">{{userInfo.nickname || '喵了个咪'}}</view>
+        <view class="u_center_head_text">
+          今日抽奖次数<text class="u_center_head_text_02">{{userInfo.join_times_today || 0}}</text>次
+        </view>
+      </view>
+    </view>
+    <view class="u_center_bar flex-between">
+      <view class="flex-center flex-wrap afterline flex-1" bindtap="goUrl" data-url="/pages/info/coin/coin?money={{userInfo.money}}">
+        <view class="alline_01">{{userInfo.money / 100 || 0.00}}</view>
+        <view class="alline_02">我的零钱</view>
+      </view>
+      <view class="flex-center flex-wrap afterline flex-1" bindtap="goUrl" data-url="/pages/info/pools/pools">
+        <view class="alline_03">{{userInfo.join_times || 0}}</view>
+        <view class="alline_02">全部抽奖</view>
+      </view>
+      <view class="flex-center flex-wrap flex-1" bindtap="goUrl" data-url="/pages/info/getgift/getgift">
+        <view class="alline_03">{{userInfo.prize_get_times || 0}}</view>
+        <view class="alline_02">中奖记录</view>
+      </view>
+    </view>
+    <view class="u_center_items">
+      <template is="redirect" data="{{iconclass: 'address_icon', icon: icon_addr, title: '收货地址', arrow: true, url: addressY}}" />
+      <template is="redirect" data="{{icon: icon_help, title: '常见问题', arrow: true, url: problem}}" />
+      <template is="redirect" data="{{iconclass: 'advicepage_icon', icon: icon_edit, title: '建议与反馈', arrow: true, url: advicepage}}" />
+    </view>
+    <template is="adline" data="{{ad_img_01: ad_img_01, ad_img_02: ad_img_02}}" />
+    <view class="ad">
+      <image src="{{ademptyImg}}" class="ademptyImg" bindtap="goIndexUrl" />
+    </view>
+    <template is="tabbar" data="{{ismy: true}}" />
+  </view>
+</block>

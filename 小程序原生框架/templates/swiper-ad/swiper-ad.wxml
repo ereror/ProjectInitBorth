@@ -1,0 +1,13 @@
+<template name="swiper-ad">
+    <!-- 轮播图广告 -->
+    <swiper  class="swiper-ad"  indicator-dots="{{list.length>1?indicatorDots:false}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" circular="{{circular}}" previous-margin="{{list.length>1?previousMargin:0}}" next-margin="{{list.length>1?nextMargin:0}}" style='height:{{height}}rpx;'>
+        <block wx:for="{{list}}" wx:key="{{index}}"> 
+          <swiper-item class="swiper-ad-item" >
+            <view class='img-box' style='padding: 0 {{space}}rpx'>
+                <image src="{{item.img[0].path}}" class="swiper-ad__img" data-url='{{item.url}}' bindtap='goUrl' style='border-radius:{{borderRadius}}rpx'/>
+            </view>
+           
+          </swiper-item>
+        </block>
+    </swiper>
+</template>

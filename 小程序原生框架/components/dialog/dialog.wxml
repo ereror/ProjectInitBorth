@@ -1,0 +1,7 @@
+<view class='x-dialog' wx:if="{{visible}}">
+    <view class='x-mask'></view>
+    <view class='x-body'>
+      <slot></slot>
+    </view>
+</view>
+

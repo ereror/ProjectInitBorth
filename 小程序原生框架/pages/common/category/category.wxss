@@ -1,0 +1,16 @@
+page{
+  background: white;
+}
+.category-head{
+  line-height: 80rpx;
+  padding-left: 20rpx;
+}
+.category-child-list{
+  font-size: 32rpx;
+}
+.category-child-item{
+  padding-left: 50rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/begin",
+    "pages/index/indexd",
+    "pages/userinfo/edit",
+    "pages/message/desct",
+    "pages/message/join",
+    "pages/message/sfdesc",
+    "pages/regist/stepuser",
+    "pages/regist/stepinfo",
+    "pages/regist/stepvideo",
+    "pages/index/index",
+    "pages/tool/cropper",
+    "pages/tool/videorz",
+    "pages/tool/video",
+    "pages/tool/adviceback",
+    "pages/tool/brush",
+    "pages/userinfo/vip",
+    "pages/message/visitor",
+    "pages/userinfo/index",
+    "pages/userinfo/detail",
+    "pages/userinfo/othersd",
+    "pages/tool/index",
+    "pages/message/index",
+    "pages/webview/index",
+    "pages/message/sessiondetails",
+    "pages/tool/job",
+    "pages/seting/setindex",
+    "pages/seting/setdetail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "51约",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用户获取地理位置信息"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

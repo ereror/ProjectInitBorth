@@ -1,0 +1,29 @@
+.ad {
+  margin-top: 10rpx;
+}
+
+.ad_box {
+  padding: 0 24rpx;
+  color: #ADAAAA;
+}
+
+.ad_box .adbox_line {
+  display: inline-block;
+  text-align: center;
+  width: 85rpx;
+  color: #ADAAAA;
+  font-size: 22rpx;
+}
+
+.ad_box .adbox_img {
+  display: inline-block;
+  width: 309rpx;
+  height: 14rpx;
+}
+
+.ademptyImg {
+  width: 702rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3rpx 8rpx rgba(128, 128, 128, 0.2);
+}

@@ -1,0 +1,24 @@
+.tip-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 60rpx;
+	padding: 10rpx 14rpx;
+	font-size: 28rpx;
+	line-height: 40rpx;
+}
+
+.tip-box-style {
+	background: #ffb400;
+	color: white;
+}
+
+.tip-content {
+	display: flex;
+}
+
+.tip-close {
+	display: flex;
+	align-items: center;
+}

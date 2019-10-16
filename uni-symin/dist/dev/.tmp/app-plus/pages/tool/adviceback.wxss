@@ -1,0 +1,98 @@
+
+page {
+	background: #F9F9FB;
+}
+.ad-box {
+	padding: 40rpx 30rpx;
+}
+.ad-box-bar {
+	width: 100%;
+	height: 52rpx;
+	font-size: 30rpx;
+	color: #333333;
+}
+.ad-box-bar-btn {
+	color: #f82764;
+}
+.ad-btn {
+	margin-top: 60rpx;
+	width: 690rpx;
+	height: 88rpx;
+	border-radius: 30rpx;
+}
+.ad-ipt-box {
+	margin-top: 40rpx;
+	width: 690rpx;
+	min-height: 300rpx;
+	border-radius: 30rpx;
+	background: rgba(242, 242, 242, 1);
+	padding: 30rpx;
+}
+.ad-ipt {
+	width: 100%;
+	font-size:26rpx;
+	min-height:280rpx;
+}
+.ad-plcolor {
+	color: #999999;
+}
+.ad-ipt-count {
+	text-align: right;
+	font-size: 26rpx;
+	color: #999999;
+}
+.ad-upimg {
+	margin: 80rpx 0 30rpx 0;
+	padding: 40rpx 0;
+}
+.ad-upimg-title {
+	height: 42rpx;
+	line-height: 42rpx;
+	font-size: 30rpx;
+	color: #333333;
+}
+.ad-upimgbox {
+	margin-top: 40rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	margin-left: -40rpx;
+}
+.ad-upimg-btn, .ad-upimg-item {
+	position: relative;
+	width: 170rpx;
+	height: 170rpx;
+	margin-left: 40rpx;
+	border-radius: 30rpx;
+	background: rgba(242,242,242,1);
+}
+.ad-upimg-img {
+	border-radius: 30rpx;
+}
+.ad-upimg-btn-icon {
+	width: 49rpx;
+	height: 35rpx;
+}
+.ad-upimg-close {
+	position: absolute;
+	z-index: 477;
+	width: 40rpx;
+	height: 40rpx;
+	border-radius: 50%;
+	top: -15rpx;
+	right: -15rpx;
+	background: #f82764;
+	font-size: 22rpx;
+}
+.ad-upmess {
+	font-size: 22rpx;
+	line-height: 1.5;
+	color: #333333;
+}
+.closebtn {color: white;}
+

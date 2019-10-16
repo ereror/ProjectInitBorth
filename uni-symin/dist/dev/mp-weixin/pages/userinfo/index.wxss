@@ -1,0 +1,43 @@
+
+page {
+	background: #F9F9Fb;
+}
+.uinfo-head {
+	position: relative;
+	top: 0;
+	height: 360rpx;
+	width: 750rpx;
+	background-image: url('https://sns-cdn.myxianxiaobao.com/sfximao/u-head.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.uinfo-iconH {
+	position: absolute;
+	height: 170rpx;
+	width: 170rpx;
+	border-radius: 50%;
+	border: 6rpx solid rgba(255,255,255,1);
+	margin: 228rpx 290rpx 0 290rpx;
+}
+.uinfo-iconN {
+	width: 48rpx;
+	height: 24rpx;
+	margin: 0 20rpx;
+}
+.uinfo-tool-1 {
+	width: 690rpx;
+	height: 234rpx;
+	margin: -50rpx auto;
+	padding: 20rpx 30rpx;
+	background: white;
+	border-radius: 30rpx;
+}
+.uinfo-tool-2 {
+	width: 690rpx;
+	margin: 0rpx auto;
+	margin-top: 80rpx;
+	border-radius: 30rpx;
+	background: white;
+	overflow: hidden;
+}
+

@@ -1,0 +1,3 @@
+<template name='goods'>
+	<view class='goods-class'>模板消息</view>
+</template>

@@ -1,0 +1,20 @@
+<demo-block title="基础用法" padding>
+  <van-tag custom-class="demo-margin-right">标签</van-tag>
+  <van-tag custom-class="demo-margin-right" type="danger">标签</van-tag>
+  <van-tag custom-class="demo-margin-right" type="success">标签</van-tag>
+  <van-tag type="primary">标签</van-tag>
+</demo-block>
+
+<demo-block title="空心样式" padding>
+  <van-tag custom-class="demo-margin-right" plain>标签</van-tag>
+  <van-tag custom-class="demo-margin-right" plain type="danger">标签</van-tag>
+  <van-tag custom-class="demo-margin-right" plain type="primary">标签</van-tag>
+  <van-tag plain type="success">标签</van-tag>
+</demo-block>
+
+<demo-block title="圆角样式" padding>
+  <van-tag custom-class="demo-margin-right" mark>标签</van-tag>
+  <van-tag custom-class="demo-margin-right" mark type="danger">标签</van-tag>
+  <van-tag custom-class="demo-margin-right" mark type="primary">标签</van-tag>
+  <van-tag mark type="success">标签</van-tag>
+</demo-block>

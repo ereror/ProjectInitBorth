@@ -1,0 +1,57 @@
+<view class="info-tip">提示：贵重物品的买卖，最好在当地找第三方（线下实体店）鉴定评估，对双方都有好处啦。</view>
+
+<view class='form-box'>
+   <view class='form-label' style='margin-bottom:0'>
+      <view class='f-32'>选择方式</view>
+   </view>
+
+   <view class='flex-y-center mt-20'>
+      <!-- <checkbox checked='{{typeList[0].checked}}' bindtap='typeChange' data-index='{{0}}'></checkbox> -->
+      <view class='checked {{param.type==1?"checked-select":""}}' bindtap='typeChange' data-index='{{1}}'>
+        <view wx:if="{{param.type==1}}" class='checked-item'></view>
+      </view>
+      <view class='form-item ml-20'>
+         {{info_type_free_words||"都是邻居，免费送给你吧，来拿吧"}}
+      </view>
+   </view>
+   <view class='flex-y-center mt-20'>
+
+      <view class='checked {{param.type==2?"checked-select":""}}' bindtap='typeChange' data-index='{{2}}'>
+        <view wx:if="{{param.type==2}}" class='checked-item'></view>
+      </view>
+      <view class='form-item ml-20'>
+         {{info_type_wonder_words||"我也不知道，看能换什么吧，哈哈~"}}
+      </view>
+   </view>
+   <view class='flex-y-center mt-20'>
+      <view class='checked {{param.type==3?"checked-select":""}}' bindtap='typeChange' data-index='{{3}}'>
+        <view wx:if="{{param.type==3}}" class='checked-item'></view>
+      </view>
+      <view class='ml-20'>
+         我想换钱
+      </view>
+   </view>
+   <view class='flex-y-center'>
+      <input class='price-input' placeholder='输入原价' bindinput='setParam' data-key='origin_money' value='{{param.origin_money}}' type='number'></input>
+      <input class='price-input' placeholder='输入二手价' bindinput='setParam' data-key='now_money' value='{{param.now_money}}' type='number'></input>
+   </view>
+   
+   <view class='flex-y-center mt-20'>
+      <view class='checked {{param.type==4?"checked-select":""}}' bindtap='typeChange' data-index='{{4}}'>
+        <view wx:if="{{param.type==4}}" class='checked-item'></view>
+      </view>
+      <view class='form-label flex-y-center'>
+        <view class='ml-20'>我想互换</view>
+        <view class='f-28 c-gray-dark ml-20'>(24字以内)</view>
+      </view>
+   </view>
+   <picker range="{{categoryList}}" value='{{categoryIndex}}' range-key='title' bindchange='categoryChange'>
+      <view class='form-item mt-20' style='margin-left:66rpx;'>
+        <view class='c-gray-dark'>{{param.category_name||"选择想要物品分类"}}</view>
+        <image style='width:20rpx;height:10rpx;' src='/images/icon/arrow-down.png'></image>
+      </view>
+   </picker>
+   <textarea placeholder='描述你想要的东西' class='mt-20' bindinput='setParam' data-key='detail'></textarea>
+</view>
+
+<button type='primary' hover-class='none' bindtap='submit'>确定发布</button>

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "资料介绍页视频",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "dialogbox": "/wxcomponents/dialog/index",
+    "custombar": "/wxcomponents/customBar/index"
+  }
+}

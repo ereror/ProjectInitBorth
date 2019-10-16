@@ -1,0 +1,50 @@
+/* 主题色 */
+.c-primary{
+ color: #ff6454 !important;
+}
+/* 主题填充色 */
+.fill-primary{
+  background: #ff6454 !important;
+}
+/* tab下划线颜色 */
+.ui-tabs-x .ui-tabs-ink-bar{
+ border-bottom: 2px solid #ff6454;
+}
+/* tab选中样式 */
+.ui-tab.ui-tab-x.active {
+  color: #ff6454;
+}
+/* 中括号 */
+.bracket::before{
+  content: '[';
+  margin-right:10rpx;
+  color: #ff6454;
+}
+.bracket::after{
+  content: ']';
+  margin-left:10rpx;
+  color: #ff6454;
+}
+/* 信息标签样式 */
+.info-tag{
+  background: #fff5e4;
+  color: #ff6454;
+  margin-left: 10rpx;
+  font-size: 22rpx;
+  padding: 0 10rpx;
+}
+/* 按钮颜色 */
+.button--primary{
+   background: #ff6454;
+   color: white; 
+}
+.button--primary::after{
+  border-color:transparent; 
+}
+.button--primary--plain{
+  background: transparent;
+  color: #ff6454;
+}
+.button--primary--plain::after{
+  border-color: #ff6454;
+}

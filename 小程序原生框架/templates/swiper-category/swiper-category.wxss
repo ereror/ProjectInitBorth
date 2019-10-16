@@ -1,0 +1,37 @@
+.swiper-category{
+  width: 100%;
+  background: white;
+  font-size: 26rpx;
+}
+.swiper-category-item{
+  height: 100%;
+  box-sizing:border-box;
+   display: flex; 
+  flex-wrap: wrap;
+}
+.swiper-category-item__child{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-category__img{
+  width: 108rpx;
+  height: 108rpx;
+  margin-bottom: 4rpx
+}
+.dots{
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 20rpx
+}
+.dot{
+  height: 12rpx;
+  width: 12rpx;
+  background: #dddddd;
+  border-radius: 6rpx;
+  margin: 0 4rpx;
+}

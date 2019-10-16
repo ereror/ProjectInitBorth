@@ -1,0 +1,153 @@
+@import "../../../templates/tabbar/tabbar.wxss";
+@import "../../../templates/swiper-ad/swiper-ad.wxss";
+@import "../../../templates/swiper-category/swiper-category.wxss";
+@import "../../../templates/roller/roller.wxss";
+@import "../../../templates/info/info.wxss";
+@import "../../ucenter/index/index.wxss";
+@import "../../../templates/areamess/areamess.wxss";
+.fill-head{
+  height: 260rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.block-box{
+  height: 100rpx;
+  background: #ff6454;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 0 30rpx 0 10rpx
+}
+.block-box-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.block-name{
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.block-name--important{
+  font-weight: bold;
+  letter-spacing: 5rpx;
+}
+.info-title{
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 20rpx;
+}
+.backtop{
+  width: 88rpx;
+  height: 88rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 240rpx;
+}
+.message{
+ 
+  width: 88rpx;
+  height: 88rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 140rpx;
+}
+.message-box{
+   width: 88rpx;
+  height: 88rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 140rpx;
+}
+.badge{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.select-sex{
+  height: 490rpx;
+  width: 440rpx;
+  border-radius: 20rpx;
+  background: white;
+}
+.select-sex-head{
+  height: 200rpx;
+  width: 440rpx;
+  background: #ff6454;
+  border-radius:  20rpx 20rpx 0 0;
+}
+.select-sex-title{
+  color: #ff6454;
+  font-size: 46rpx;
+  text-align: center;
+  margin: 30rpx 0 40rpx;
+}
+.tag-list{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tag-item{
+  width: 138rpx;
+  height: 88rpx;
+  background: white;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:1px solid #e2e2e2;
+}
+.tag-item-select{
+  border:1px solid #ff6454;
+  position: relative;
+}
+.checked-img{
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.select-sex-btn{
+  width: 120rpx;
+  height: 60rpx;
+  border: 1px solid #fff;
+  border-radius: 30rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+.releasetip-box{
+  width: 530rpx;
+  height: 676rpx;
+  border-radius: 20rpx;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.releasetip-head{
+  width: 530rpx;
+  height: 280rpx;
+  background: red;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.releasetip-btn{
+  width: 240rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  color: #888888;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mt-30{
+  margin-top: 30rpx;
+}

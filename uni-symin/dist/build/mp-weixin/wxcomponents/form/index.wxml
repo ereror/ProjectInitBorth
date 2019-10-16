@@ -1,0 +1,11 @@
+<view class='f-box' style="{{iptStyle ? iptStyle: ''}}" data-type='{{inputconfig.type}}' bindtap='goUrl' data-url='{{inputconfig.url}}' data-key='{{inputconfig.key}}'>
+	<image class='f-icon' src="{{inputconfig.icon || titleicon}}" wx:if='{{inputconfig.icon}}'></image>
+	<view class='f-title' wx:if='{{inputconfig.title.length}}'>
+		<view>{{inputconfig.title}}</view>
+		<view class='f-title-icon' wx:if='{{inputconfig.titleicon}}'></view>
+	</view>
+	<view class='f-content' wx:if='{{inputconfig.content.length && !inputconfig.isInput && !inputconfig.selfconf}}'>{{inputconfig.content}}</view>
+	<input class='f-ipt' placeholder='{{inputconfig.placeholder}}' placeholder-class='placeholder text-placeholder' bindinput='setParam' data-key='{{inputconfig.key}}' value="{{inputconfig.content || ''}}" type="{{inputconfig.type || 'text'}}"  maxlength='{{inputconfig.size || 50}}' wx:if='{{inputconfig.isInput && !inputconfig.selfconf}}'/>
+	<slot wx:if='{{inputconfig.selfconf}}'></slot>
+	<image class='f-arrow' src='{{arrow}}' wx:if='{{inputconfig.arrow}}'></image>
+</view>

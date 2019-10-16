@@ -1,0 +1,116 @@
+<block>
+  <view class="ptb30">
+    <import src="../../../template/nomsg/nomsg.wxml" />
+    <view class="pools_dk" wx:if="{{prizeData.length}}">待开奖</view>
+    <view class="listContainer" wx:if="{{prizeData.length}}">
+      <block wx:for="{{prizeData}}" wx:key="{{index}}">
+        <template is="listContainer" data="{{prize_img_icon:prize_img_icon, numberStyle: numberStyle,pagePath: pagePath, ...item, ikey: index, joined: true}}" />
+      </block>
+    </view>
+    <view class="pools_dk {{prizeData.length ? 'pools_dkp' : ''}}" wx:if="{{prizeNowData.length}}">已结束</view>
+    <view class="pools_yk" wx:if="{{prizeNowData.length}}">
+      <view class="pools_ad">
+        <image src="{{ademptyImg}}" class="ademptyImg" />
+      </view>
+      <view class="pools_list">
+        <block wx:for="{{prizeNowData}}" wx:key="{{index}}">
+          <view class="pools_item flex-between" data-url="/pages/info/detail/detail?id={{item.id}}&prizeId={{item.prize_id}}" data-type="{{item.prize.prize_type}}" data-id="{{item.prize.id}}" data-status="{{item.prize.status}}" bindtap="goUrl">
+            <view class="flex-1 line-1">
+              <view class="pools_item_name ellipsis">奖品：
+                <text wx:if="{{item.prize && item.prize.prize_type === 3}}">随机红包</text>
+                <text wx:if="{{item.prize && item.prize.prize_type !== 3 || !item.prize}}">{{item.title}}</text>
+              </view>
+              <view class="pools_item_time">{{item.endTime}}</view>
+            </view>
+            <form report-submit="{{true}}" bindsubmit="createFormId">
+              <button class="buttonreset pools_item_btn" wx:if="{{item.prize && item.prize.status === 0}}" form-type="submit">领取</button>
+            </form>
+            <view class="pools_item_ylq" wx:if="{{item.prize && item.prize.status != 0 || !item.prize}}">
+              <text wx:if="{{item.prize.status === 13}}">已过期</text>
+              <text wx:if="{{item.prize.status === 1}}">已领取</text>
+              <text wx:if="{{!item.prize.status}}">未中奖</text>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="pools_more" wx:if="{{query.current_page !== query.last_page}}" bindtap="checkMore">
+        <text>加载更多></text>
+      </view>
+      <view class="pools_more" wx:else="{{query.current_page !== query.last_page}}">
+        <text>我是有底线的~></text>
+      </view>
+    </view>
+    <view wx:if="{{!prizeData.length && !prizeNowData.length && isloaded}}" class="nomsg-detail flex-center">
+      <template is="nomsg" data="{{data: []}}" />
+    </view>
+    <ui-mask show="{{showHb}}" hide-delay="500" bindtap="handleShowMask" effect="scale-out" custom-style="mask" wx:if="{{showHb}}" _pid="{{_pid}}">
+      <view class="get_hb_box flex-center">
+        <view class="get_hb_boxs">
+          <image src="{{hb_imgsrc}}" class="get_hb_boxs_img" />
+          <image src="{{hb_imgsrc2}}" class="get_hb_boxs_img_02 {{isopenhb ? 'get_hb_boxs_img_02_an' : ''}}" />
+          <image src="{{hb_imgsrc3}}" class="get_hb_boxs_img_03 {{isopenhb ? 'get_hb_boxs_img_03_an' : ''}}" />
+          <view class="icon icon-close getgift_close_btn" catchtap="handleShowMask" wx:if="{{isopenhb}}"></view>
+          <view class="get_hb_winbox {{isopenhb ? 'get_hb_winbox_an': ''}}" wx:if="{{isopenhb}}">
+            <image src="{{hb_icon}}" class="get_hb_winbox_icon" />
+            <view class="get_hb_winbox_title">陪你抽奖</view>
+            <view class="get_hb_winbox_msg">恭喜发财，大吉大利</view>
+            <view class="get_hb_winbox_money">
+              {{money}}
+              <text class="get_hb_winbox_money_s">元</text>
+            </view>
+            <view class="get_hb_winbox_msg_s">已存入[零钱]，可提现</view>
+          </view>
+          <view class="get_hb_boxs_msg" wx:if="{{!isopenhb}}">
+            <view class="get_hb_boxs_msg_01" wx:if="{{!ishowHb_btn}}">
+              <view class="get_hb_boxs_msg_text01">恭喜获得红包</view>
+              <view class="get_hb_boxs_msg_text02">点击下方图片领取</view>
+            </view>
+            <view class="get_hb_boxs_msg_02 {{ishowHb_btn ? 'get_hb_boxs_msg_03' : ''}}">
+              恭喜发财，大吉大利
+            </view>
+            <view class="ad_02" catchtap="clickad" wx:if="{{!ishowHb_btn}}">
+              <image src="{{hbimgbg}}" class="hbimgbg" />
+            </view>
+            <image src="{{openhb_img}}" class="getgift_open {{ishowHb_btn && iscount ? 'getgift_open_an': ''}}" wx:if="{{ishowHb_btn && !isopenhb}}" catchtap="openGift" />
+          </view>
+        </view>
+      </view>
+    </ui-mask>
+    <template name="listContainer">
+      <view class="prize_container" data-url="{{pagePath}}?id={{id}}" data-id="{{id}}" bindtap="goUrl">
+        <image src="{{prize_img_icon}}" class="isprizing" wx:if="{{joined}}" />
+        <view class="timeconter">
+          <cc-counttime target="{{timeend}}" show-day="{{false}}" clear-timer="{{false}}" endDesc="开奖中..." numberStyle="{{numberStyle}}" splitStyle="{{splitStyle}}" _pid="{{_pid}}"></cc-counttime>
+        </view>
+        <view class="prize_img">
+          <image src="{{icon}}" class="prize_imgs" />
+        </view>
+        <view class="line_01" wx:if="{{false}}"></view>
+        <view class="prize_msg_01 {{!sponsor ? 'pdt-30' : ''}}">
+          <view class="prize_helper flex-l">
+            <button class="buttonreset prize_helper_btn flex-center {{ikey % 2 == 0 ? 'prize_helper_btn_2n' : ''}}">
+              <view class="icon icon-zzs icon-22"></view>
+              <view class="line-ones"></view>
+              <view class="prize_helper_text">{{sponsor || "陪我抽奖"}} 赞助</view>
+            </button>
+          </view>
+          <view class="prize_list flex-l" wx:for="{{prizelist}}" wx:key="{{index}}">
+            <view class="ellipsis--2 item_line_height">
+              <text wx:if="{{prizelist.length > 1}}">奖品</text>
+              <text wx:if="{{prizelist.length > 1 && index === 0}}">一: </text>
+              <text wx:if="{{index === 1}}">二: </text>
+              <text wx:if="{{index === 2}}">三: </text>
+              <text>{{item.name || '随便抽'}}</text>
+              <text wx:if="{{item.num > 1}}" class="item_line_height_text"> x{{item.num}}份 </text>
+            </view>
+          </view>
+        </view>
+        <view class="prize_msg_02 flex-l">
+          <view>自动开奖</view>
+          <view class="line_y_01"></view>
+          <view>{{endTime}}</view>
+        </view>
+      </view>
+    </template>
+  </view>
+</block>

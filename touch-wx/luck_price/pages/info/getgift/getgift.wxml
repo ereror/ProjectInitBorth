@@ -1,0 +1,60 @@
+<block>
+  <import src="../../../template/nomsg/nomsg.wxml" />
+  <view class="home_box">
+    <image src="{{home_imgsrc}}" class="home_bg" />
+    <view class="getgift_ad">
+      <image src="{{ademptyImg}}" class="ademptyImg" />
+    </view>
+    <view class="getgift_list" wx:if="{{giftData.length}}">
+      <block wx:for="{{giftData}}" wx:key="{{index}}">
+        <view class="getgift_item flex-between" data-url="/pages/info/detail/detail?id={{item.pool_id}}&prizeId={{item.id}}" data-type="{{item.prize_name}}" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="goUrl">
+          <view class="flex-1 line-1">
+            <view class="getgift_item_name ellipsis">奖品：{{item.prize_name || '随机红包'}}</view>
+            <view class="getgift_item_time">{{item.create_time}}</view>
+          </view>
+          <form report-submit="{{true}}" bindsubmit="createFormId" wx:if="{{item.status === 0}}">
+            <button class="buttonreset getgift_item_btn" form-type="submit">领取</button>
+          </form>
+          <view class="getgift_item_ylq" wx:if="{{item.status !== 0 && !item.isover}}">已领取</view>
+          <view class="getgift_item_ylq" wx:if="{{item.status !== 0 && item.isover}}">已过期</view>
+        </view>
+      </block>
+    </view>
+    <view wx:if="{{!giftData.length && isloaded}}" class="nomsg-detail flex-center">
+      <template is="nomsg" data="{{data: giftData}}" />
+    </view>
+  </view>
+  <ui-mask show="{{showHb}}" hide-delay="500" bindtap="handleShowMask" effect="scale-out" custom-style="mask" wx:if="{{showHb}}" _pid="{{_pid}}">
+    <view class="get_hb_box flex-center">
+      <view class="get_hb_boxs">
+        <image src="{{hb_imgsrc}}" class="get_hb_boxs_img" />
+        <image src="{{hb_imgsrc2}}" class="get_hb_boxs_img_02 {{isopenhb ? 'get_hb_boxs_img_02_an' : ''}}" />
+        <image src="{{hb_imgsrc3}}" class="get_hb_boxs_img_03 {{isopenhb ? 'get_hb_boxs_img_03_an' : ''}}" />
+        <view class="icon icon-close getgift_close_btn" catchtap="handleShowMask" wx:if="{{isopenhb}}"></view>
+        <view class="get_hb_winbox {{isopenhb ? 'get_hb_winbox_an': ''}}" wx:if="{{isopenhb}}">
+          <image src="{{hb_icon}}" class="get_hb_winbox_icon" />
+          <view class="get_hb_winbox_title">陪你抽奖</view>
+          <view class="get_hb_winbox_msg">恭喜发财，大吉大利</view>
+          <view class="get_hb_winbox_money">
+            {{money}}
+            <text class="get_hb_winbox_money_s">元</text>
+          </view>
+          <view class="get_hb_winbox_msg_s">已存入[零钱]，可提现</view>
+        </view>
+        <view class="get_hb_boxs_msg" wx:if="{{!isopenhb}}">
+          <view class="get_hb_boxs_msg_01" wx:if="{{!ishowHb_btn}}">
+            <view class="get_hb_boxs_msg_text01">恭喜获得红包</view>
+            <view class="get_hb_boxs_msg_text02">点击下方图片领取</view>
+          </view>
+          <view class="get_hb_boxs_msg_02 {{ishowHb_btn ? 'get_hb_boxs_msg_03' : ''}}">
+            恭喜发财，大吉大利
+          </view>
+          <view class="ad_02" catchtap="clickad" wx:if="{{!ishowHb_btn}}">
+            <image src="{{hbimgbg}}" class="hbimgbg" />
+          </view>
+          <image src="{{openhb_img}}" class="getgift_open {{ishowHb_btn && iscount ? 'getgift_open_an': ''}}" wx:if="{{ishowHb_btn && !isopenhb}}" catchtap="openGift" />
+        </view>
+      </view>
+    </view>
+  </ui-mask>
+</block>
