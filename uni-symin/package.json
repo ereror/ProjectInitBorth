@@ -46,7 +46,7 @@
     "@dcloudio/webpack-uni-pages-loader": "*",
     "@vue/cli-plugin-babel": "3.5.1",
     "@vue/cli-plugin-typescript": "^3.5.1",
-    "@vue/cli-service": "^3.9.0",
+    "@vue/cli-service": "^5.0.8",
     "babel-plugin-import": "^1.11.0",
     "flyio": "^0.6.14",
     "less": "^3.9.0",
